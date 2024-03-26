@@ -1,12 +1,13 @@
-'use strict';
-const { Model, Validator } = require('sequelize');
+"use strict";
+const { Model, Validator } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
+      User.hasMany(Review, { foreignKey: "user_id" });
+      User.hasMany(Product, { foreignKey: "user_id" });
     }
-  };
+  }
 
   User.init(
     {
@@ -19,33 +20,33 @@ module.exports = (sequelize, DataTypes) => {
             if (Validator.isEmail(value)) {
               throw new Error("Cannot be an email.");
             }
-          }
-        }
+          },
+        },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [3, 256],
-          isEmail: true
-        }
+          isEmail: true,
+        },
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
         allowNull: false,
         validate: {
-          len: [60, 60]
-        }
-      }
+          len: [60, 60],
+        },
+      },
     },
     {
       sequelize,
       modelName: "User",
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
-        }
-      }
+          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
+        },
+      },
     }
   );
   return User;
