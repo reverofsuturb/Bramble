@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      type: {
-        type: Sequelize.STRING
-      },
       body: {
         type: Sequelize.STRING
       },
@@ -22,9 +19,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       product_id: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       shop_id: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       createdAt: {
