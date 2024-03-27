@@ -24,6 +24,9 @@ module.exports = {
       product_id: {
         type: Sequelize.INTEGER
       },
+      shop_id: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

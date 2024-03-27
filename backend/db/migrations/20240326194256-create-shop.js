@@ -27,9 +27,6 @@ module.exports = {
       category_id: {
         type: Sequelize.INTEGER
       },
-      review_id: {
-        type: Sequelize.INTEGER
-      },
       user_id: {
         type: Sequelize.INTEGER
       },
