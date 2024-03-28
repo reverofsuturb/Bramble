@@ -6,6 +6,11 @@ import Navigation from "./components/Navigation/";
 import * as sessionActions from "./store/session";
 import { Modal } from "./context/Modal";
 
+import { ProductForm } from "./components/Products/ProductForm";
+import { GetAllProducts } from "./components/Products/GetAllProducts";
+import { PostProduct } from "./components/Products/PostProduct";
+import { PutProduct } from "./components/Products/PutProduct";
+
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,6 +38,12 @@ const router = createBrowserRouter([
         path: "/",
         element: <h1>Welcome!</h1>,
       },
+      { path: "/products", element: <GetAllProducts /> },
+      {
+        path: "/products/new",
+        element: <PostProduct />,
+      },
+      { path: "/products/:id", element: <PutProduct /> },
     ],
   },
 ]);
