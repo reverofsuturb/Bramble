@@ -76,6 +76,8 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
   console.log(`deleted ${productId}`);
 };
 
+// reducer
+
 export const productsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_PRODUCTS: {

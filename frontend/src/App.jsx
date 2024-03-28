@@ -6,10 +6,8 @@ import Navigation from "./components/Navigation/";
 import * as sessionActions from "./store/session";
 import { Modal } from "./context/Modal";
 
-import { ProductForm } from "./components/Products/ProductForm";
-import { GetAllProducts } from "./components/Products/GetAllProducts";
-import { PostProduct } from "./components/Products/PostProduct";
-import { PutProduct } from "./components/Products/PutProduct";
+import { GetAllProducts, PostProduct, PutProduct } from "./components/Products";
+import { GetAllShops, PostShop, PutShop } from "./components/Shops";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -44,6 +42,12 @@ const router = createBrowserRouter([
         element: <PostProduct />,
       },
       { path: "/products/:id", element: <PutProduct /> },
+      { path: "/shops", element: <GetAllShops /> },
+      {
+        path: "/shops/new",
+        element: <PostShop />,
+      },
+      { path: "/shops/:id", element: <PutShop /> },
     ],
   },
 ]);

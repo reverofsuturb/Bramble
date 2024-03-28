@@ -1,27 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  thunkGetProducts,
   thunkPostProduct,
   thunkPutProduct,
 } from "../../store/products";
 import { useDispatch } from "react-redux";
+import "./ProductForm.css";
 
 export const ProductForm = ({ product, formType, id }) => {
   const dispatch = useDispatch();
-  const [name, setName] = useState(product.name ? product.name : "");
-  const [price, setPrice] = useState(product.price ? product.price : "");
-  const [description, setDescription] = useState(
-    product.description ? product.description : ""
-  );
-  const [details, setDetails] = useState(
-    product.details ? product.details : ""
-  );
-  const [shipping, setShipping] = useState(
-    product.shipping ? product.shipping : ""
-  );
-  const [category, setCategory] = useState(
-    product.category_id ? product.category_id : ""
-  );
+  const navigate = useNavigate();
+  const [name, setName] = useState(product?.name || "");
+  const [price, setPrice] = useState(product?.price || "");
+  const [description, setDescription] = useState(product?.description || "");
+  const [details, setDetails] = useState(product?.details || "");
+  const [shipping, setShipping] = useState(product?.shipping || "");
+  const [category, setCategory] = useState(product?.category_id || "");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
@@ -40,22 +34,19 @@ export const ProductForm = ({ product, formType, id }) => {
     if (formType === "post") {
       const postProduct = await dispatch(thunkPostProduct(product));
       if (postProduct && postProduct.errors) {
-        setErrors(postProduct.errors);
+        return setErrors(postProduct.errors);
       }
-      dispatch(thunkGetProducts());
     } else if (formType === "put") {
       const putProduct = await dispatch(thunkPutProduct(id, product));
       if (putProduct && putProduct.errors) {
-        setErrors(putProduct.errors);
+        return setErrors(putProduct.errors);
       }
     }
+    navigate("/products")
   };
-  useEffect(() => {
-    dispatch(thunkGetProducts());
-  }, [dispatch]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="products-form">
       <label>
         NAME:
         <input

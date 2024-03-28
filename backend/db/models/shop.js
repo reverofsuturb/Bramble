@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
       Shop.belongsTo(models.User, { foreignKey: "user_id" });
       Shop.belongsTo(models.Product, { foreignKey: "items" });
       Shop.belongsTo(models.Product, { foreignKey: "featured" });
-      Shop.hasMany(models.ShopImage, { foreignKey: "shop_id"})
+      Shop.hasMany(models.ShopImage, { foreignKey: "shop_id" });
+      Shop.hasMany(models.Review, { foreignKey: "shop_id" });
     }
   }
   Shop.init(

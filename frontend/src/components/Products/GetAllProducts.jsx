@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetProducts, thunkDeleteProduct } from "../../store/products";
+import { Link } from "react-router-dom";
 import "./GetAllProducts.css";
 
 export const GetAllProducts = () => {
@@ -21,6 +22,7 @@ export const GetAllProducts = () => {
           <div>{product.description}</div>
           <div>{product.details}</div>
           <div>{product.shipping}</div>
+          <Link to={`/products/${product.id}`}>EDIT</Link>
           <button onClick={() => dispatch(thunkDeleteProduct(product.id))}>
             DELETE
           </button>
