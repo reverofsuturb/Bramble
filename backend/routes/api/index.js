@@ -4,6 +4,8 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const productsRouter = require("./products.js");
 const shopsRouter = require("./shops.js");
+const reviewsRouter = require("./reviews.js");
+const categoriesRouter = require("./categories.js");
 
 const { restoreUser } = require("../../utils/auth.js");
 const { setTokenCookie } = require("../../utils/auth.js");
@@ -15,6 +17,7 @@ router.use("/users", usersRouter);
 router.use("/products", productsRouter);
 router.use("/shops", shopsRouter);
 router.use("/reviews", reviewsRouter);
+router.use("/categories", categoriesRouter);
 
 router.post("/test", function (req, res) {
   res.json({ requestBody: req.body });

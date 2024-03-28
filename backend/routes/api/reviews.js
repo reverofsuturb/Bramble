@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 //to do validations, require auth
 router.post("/new", async (req, res) => {
   const { user } = req;
-  const { body, rating, product_id, shop_id } = req.params;
+  const { body, rating, product_id, shop_id } = req.body;
 
   const review = await Review.create({
     body,
@@ -53,7 +53,7 @@ router.post("/new", async (req, res) => {
 //to do validations, check user if user, require auth
 router.put("/:id", async (req, res) => {
   const { user } = req;
-  const { body, rating } = req.params;
+  const { body, rating } = req.body;
 
   const review = await Review.findByPk(req.params.id);
 

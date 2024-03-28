@@ -73,7 +73,6 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
     return product.errors;
   }
   await dispatch(deleteProduct(productId));
-  console.log(`deleted ${productId}`);
 };
 
 // reducer

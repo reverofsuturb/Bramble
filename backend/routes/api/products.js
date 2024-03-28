@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
       { model: User },
     ],
   });
-  return res.status(201).json(products);
+  return res.json(products);
 });
 
 // post a product
@@ -49,7 +49,7 @@ router.post("/new", async (req, res) => {
   res.json(product);
 });
 
-// put a product by id, ternaries used to check if new data exists to change the data else retain original value
+// put a product by id, shortciruits used to check if new data exists to change the data else retain original value
 // to do validations check user is user, require auth
 router.put("/:id", async (req, res) => {
   const { user } = req;
@@ -72,7 +72,7 @@ router.delete("/:id", async (req, res) => {
   const { user } = req;
   const product = await Product.findByPk(req.params.id);
   await product.destroy();
-  res.json({ message: "Deleted Product with id: ${req.params.id}" });
+  res.json({ message: `Deleted Product with id: ${req.params.id}` });
 });
 
 module.exports = router;
