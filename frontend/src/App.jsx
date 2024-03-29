@@ -8,6 +8,7 @@ import { Modal } from "./context/Modal";
 
 import { GetAllProducts, PostProduct, PutProduct } from "./components/Products";
 import { GetAllShops, PostShop, PutShop } from "./components/Shops";
+import { GetAllCategories } from "./components/Categories";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <h1>Welcome!</h1>,
       },
+      { path: "/categories", element: <GetAllCategories />},
       { path: "/products", element: <GetAllProducts /> },
       {
         path: "/products/new",

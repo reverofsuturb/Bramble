@@ -1,0 +1,1 @@
+export { GetAllCategories } from "./GetAllCategories";

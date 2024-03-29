@@ -18,7 +18,7 @@ const {
 //get all categories
 
 router.get("/", async (req, res) => {
-  const categories = await Category.findall();
+  const categories = await Category.findAll();
   return res.json(categories);
 });
 

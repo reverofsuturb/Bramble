@@ -28,6 +28,9 @@ function Navigation({ isLoaded }) {
           <li>
             <NavLink to="/shops/new">New Shop</NavLink>
           </li>
+          <li>
+            <NavLink to="/categories">Categories</NavLink>
+          </li>
         </>
       )}
     </ul>
