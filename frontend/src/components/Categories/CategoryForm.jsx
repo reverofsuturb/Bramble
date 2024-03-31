@@ -36,7 +36,7 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
     <form onSubmit={handleSubmit}>
       <label>
         NAME:
-        <input type="text" onChange={(e) => setName(e.target.value)} />
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </label>
       <button>Submit</button>
     </form>

@@ -5,6 +5,9 @@ import { productsReducer } from "./products";
 import { shopsReducer } from "./shops";
 import { reviewsReducer } from "./reviews";
 import { categoriesReducer } from "./categories";
+import { productImagesReducer } from "./productimages";
+import { shopImagesReducer } from "./shopimages";
+import { categoryImagesReducer } from "./categoryimages";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -12,6 +15,9 @@ const rootReducer = combineReducers({
   shops: shopsReducer,
   reviews: reviewsReducer,
   categories: categoriesReducer,
+  productimages: productImagesReducer,
+  shopimages: shopImagesReducer,
+  categoryimages: categoryImagesReducer,
 });
 
 let enhancer;

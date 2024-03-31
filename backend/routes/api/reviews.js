@@ -63,7 +63,7 @@ router.put("/:id", async (req, res) => {
   res.json(review);
 });
 
-//put a review by review id
+//delete a review by review id
 //to do validations, check user if user, require auth
 router.delete("/:id", async (req, res) => {
   const { user } = req;

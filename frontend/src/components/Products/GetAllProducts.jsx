@@ -4,17 +4,21 @@ import { thunkGetProducts, thunkDeleteProduct } from "../../store/products";
 import { Link } from "react-router-dom";
 import { ReviewCard } from "../Reviews/ReviewCard";
 import { PostReview } from "../Reviews/PostReview";
+import { ProductImageForm } from "../ProductImages/ProductImageForm";
 import "./GetAllProducts.css";
+import { thunkGetProductImages } from "../../store/productimages";
 
 export const GetAllProducts = () => {
   const dispatch = useDispatch();
   const productsObj = useSelector((state) => state.products);
+  const productImagesObj = useSelector((state) => state.productimages)
   const products = Object.values(productsObj);
   const idType = "product";
 
 
   useEffect(() => {
     dispatch(thunkGetProducts());
+    dispatch(thunkGetProductImages());
   }, [dispatch]);
 
   return (
@@ -27,6 +31,7 @@ export const GetAllProducts = () => {
           <div>{product.description}</div>
           <div>{product.details}</div>
           <div>{product.shipping}</div>
+          <ProductImageForm id={product.id} />
           <Link to={`/products/${product.id}`}>EDIT</Link>
           <button onClick={() => dispatch(thunkDeleteProduct(product.id))}>
             DELETE

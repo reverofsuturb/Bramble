@@ -6,6 +6,9 @@ const productsRouter = require("./products.js");
 const shopsRouter = require("./shops.js");
 const reviewsRouter = require("./reviews.js");
 const categoriesRouter = require("./categories.js");
+const productImagesRouter = require("./productimages.js");
+const shopImagesRouter = require("./shopimages.js");
+const categoryImagesRouter = require("./categoryimages.js");
 
 const { restoreUser } = require("../../utils/auth.js");
 const { setTokenCookie } = require("../../utils/auth.js");
@@ -18,6 +21,9 @@ router.use("/products", productsRouter);
 router.use("/shops", shopsRouter);
 router.use("/reviews", reviewsRouter);
 router.use("/categories", categoriesRouter);
+router.use("/productimages", productImagesRouter);
+router.use("/shopImagesRouter", shopImagesRouter);
+router.use("/categoryimages", categoryImagesRouter);
 
 router.post("/test", function (req, res) {
   res.json({ requestBody: req.body });
