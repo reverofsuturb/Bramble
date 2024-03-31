@@ -8,7 +8,7 @@ import { categoriesReducer } from "./categories";
 import { productImagesReducer } from "./productimages";
 import { shopImagesReducer } from "./shopimages";
 import { categoryImagesReducer } from "./categoryimages";
-
+//add all reducers here
 const rootReducer = combineReducers({
   session: sessionReducer,
   products: productsReducer,
