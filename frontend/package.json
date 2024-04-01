@@ -10,16 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.0.3",
     "js-cookie": "^3.0.5",
+    "openai": "^4.31.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.15.0",
     "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
     "vite": "^4.5.3",
-    "vite-plugin-eslint": "^1.8.1",
-    "@vitejs/plugin-react": "^4.0.3",
-    "redux-thunk": "^2.4.2"
+    "vite-plugin-eslint": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

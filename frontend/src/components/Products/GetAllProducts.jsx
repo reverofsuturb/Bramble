@@ -11,10 +11,9 @@ import { thunkGetProductImages } from "../../store/productimages";
 export const GetAllProducts = () => {
   const dispatch = useDispatch();
   const productsObj = useSelector((state) => state.products);
-  const productImagesObj = useSelector((state) => state.productimages)
+  const productImagesObj = useSelector((state) => state.productimages);
   const products = Object.values(productsObj);
   const idType = "product";
-
 
   useEffect(() => {
     dispatch(thunkGetProducts());
@@ -31,7 +30,7 @@ export const GetAllProducts = () => {
           <div>{product.description}</div>
           <div>{product.details}</div>
           <div>{product.shipping}</div>
-          <ProductImageForm id={product.id} />
+          <ProductImageForm id={product.id} description={product.description} />
           <Link to={`/products/${product.id}`}>EDIT</Link>
           <button onClick={() => dispatch(thunkDeleteProduct(product.id))}>
             DELETE
