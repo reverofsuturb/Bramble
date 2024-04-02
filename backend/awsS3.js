@@ -13,6 +13,29 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 // --------------------------- Public UPLOAD ------------------------
 
+const blobUpload = async (blob) => {
+  const buffBlob = await blob.arrayBuffer();
+  const buffer = Buffer.from(buffBlob);
+
+  const uploadParams = {
+    Bucket: NAME_OF_BUCKET,
+    Key: new Date().getTime().toString() + ".png",
+    Body: buffer,
+    ContentType: "image/png",
+    ACL: "public-read",
+  };
+
+  try {
+    const result = await s3.upload(uploadParams).promise();
+    console.log(result);
+
+    return result.Location;
+  } catch (err) {
+    console.error("s3", err);
+    throw error;
+  }
+};
+
 const singlePublicFileUpload = async (file) => {
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
@@ -97,4 +120,5 @@ module.exports = {
   retrievePrivateFile,
   singleMulterUpload,
   multipleMulterUpload,
+  blobUpload,
 };

@@ -19,7 +19,7 @@ export const thunkGetProductImages = () => async (dispatch) => {
   if (images.errors) {
     return images.errors;
   }
-  console.log(images)
+  console.log(images);
   dispatch(getProductImages(images));
 };
 
@@ -35,7 +35,7 @@ export const thunkPostProductImage = (id, image) => async (dispatch) => {
   // }
 
   if (image) formData.append("image", image);
-
+  console.log(formData);
   const response = await csrfFetch(`/api/productimages/${id}`, {
     method: "POST",
     headers: {
@@ -43,7 +43,7 @@ export const thunkPostProductImage = (id, image) => async (dispatch) => {
     },
     body: formData,
   });
-console.log(response)
+  console.log(response);
   const data = await response.json();
   console.log(data);
   const newImage = await dispatch(postProductImage(data));
