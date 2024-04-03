@@ -49,8 +49,7 @@ export const thunkPostShop = (shop) => async (dispatch) => {
     return newShop;
   }
   await dispatch(postShop(newShop));
-  return newShop
-
+  return newShop;
 };
 
 export const thunkPutShop = (shopId, shop) => async (dispatch) => {
@@ -65,7 +64,7 @@ export const thunkPutShop = (shopId, shop) => async (dispatch) => {
     return editShop;
   }
   await dispatch(putShop(editShop));
-  return editShop
+  return editShop;
 };
 
 export const thunkDeleteShop = (shopId) => async (dispatch) => {
@@ -95,10 +94,11 @@ export const shopsReducer = (state = {}, action) => {
       return { ...state, [action.shop.id]: action.shop };
     case PUT_SHOP:
       return { ...state, [action.shop.id]: action.shop };
-    case DELETE_SHOP:
+    case DELETE_SHOP: {
       const shopState = { ...state };
       delete shopState[action.shopId];
       return shopState;
+    }
     default:
       return state;
   }

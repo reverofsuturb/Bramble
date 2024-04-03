@@ -85,7 +85,7 @@ export const ShopForm = ({ shop, formType, id }) => {
           onChange={(e) => setCategory(e.target.value)}
         >
           {categories?.map((category) => (
-            <option className="shops-form-option" value={category.id}>
+            <option key={category.id} className="shops-form-option" value={category.id}>
               {category.name}
             </option>
           ))}

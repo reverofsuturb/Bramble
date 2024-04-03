@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetProducts, thunkDeleteProduct } from "../../store/products";
+import { thunkGetProducts } from "../../store/products";
 import { Link, useNavigate } from "react-router-dom";
-import { ReviewCard } from "../Reviews/ReviewCard";
-import { PostReview } from "../Reviews/PostReview";
-import { ProductImageForm } from "../ProductImages/ProductImageForm";
 import { thunkGetProductImages } from "../../store/productimages";
 import "./GetAllProducts.css";
 

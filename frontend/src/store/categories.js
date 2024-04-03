@@ -109,10 +109,11 @@ export const categoriesReducer = (state = {}, action) => {
       return { ...state, [action.category.id]: action.category };
     case PUT_CATEGORY:
       return { ...state, [action.category.id]: action.category };
-    case DELETE_CATEGORY:
+    case DELETE_CATEGORY: {
       const categoriesState = { ...state };
       delete categoriesState[action.categoryId];
       return categoriesState;
+    }
     default:
       return state;
   }

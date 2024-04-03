@@ -57,7 +57,7 @@ export const shopImagesReducer = (state = {}, action) => {
       action.images.forEach((image) => {
         shopImageState[image.id] = image;
       });
-      return ShopImageState;
+      return shopImageState;
     }
     case POST_SHOP_IMAGE:
       return { ...state, [action.image.id]: action.image };

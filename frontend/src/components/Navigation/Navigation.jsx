@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
           className={
             selected === "bramble" ? "nav-link nav-link-b" : "nav-link"
           }
-          onClick={(e) => isSelected("bramble")}
+          onClick={() => isSelected("bramble")}
           to="/"
         >
           Bramble
@@ -27,7 +27,7 @@ function Navigation({ isLoaded }) {
               className={
                 selected === "cat" ? "nav-link nav-link-b" : "nav-link"
               }
-              onClick={(e) => isSelected("cat")}
+              onClick={() => isSelected("cat")}
               to="/categories"
             >
               Categories
@@ -38,7 +38,7 @@ function Navigation({ isLoaded }) {
               className={
                 selected === "prod" ? "nav-link nav-link-b" : "nav-link"
               }
-              onClick={(e) => isSelected("prod")}
+              onClick={() => isSelected("prod")}
               to="/products"
             >
               Products
@@ -50,7 +50,7 @@ function Navigation({ isLoaded }) {
                 className={
                   selected === "newprod" ? "nav-link nav-link-b" : "nav-link"
                 }
-                onClick={(e) => isSelected("newprod")}
+                onClick={() => isSelected("newprod")}
                 to="/products/new"
               >
                 New Product
@@ -64,7 +64,7 @@ function Navigation({ isLoaded }) {
               className={
                 selected === "shop" ? "nav-link nav-link-b" : "nav-link"
               }
-              onClick={(e) => isSelected("shop")}
+              onClick={() => isSelected("shop")}
               to="/shops"
             >
               Shops
@@ -76,7 +76,7 @@ function Navigation({ isLoaded }) {
                 className={
                   selected === "newshop" ? "nav-link nav-link-b" : "nav-link"
                 }
-                onClick={(e) => isSelected("newshop")}
+                onClick={() => isSelected("newshop")}
                 to="/shops/new"
               >
                 New Shop

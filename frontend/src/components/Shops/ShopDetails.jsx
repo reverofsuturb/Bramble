@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { thunkGetShops } from "../../store/shops";
+import { thunkGetShops, thunkDeleteShop } from "../../store/shops";
 import { thunkGetShopImages } from "../../store/shopimages";
 import { ShopImageForm } from "../ShopImages/ShopImageForm";
 import { PostReview } from "../Reviews/PostReview";

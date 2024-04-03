@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCategoryById } from "../../store/categories";
 import { Link, useParams } from "react-router-dom";
@@ -22,7 +22,7 @@ export const CategoryProductsById = () => {
   }, [dispatch, id]);
 
   if (!category?.Products?.length)
-    return <div>Oh no! We don't have any {category?.name} products yet!</div>;
+    return <div>Oh no! We don&apos;t have any {category?.name} products yet!</div>;
   return (
     <div className="category-products-gallery">
       <div className="category-name">{category.name}</div>

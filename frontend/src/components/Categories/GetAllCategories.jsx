@@ -24,7 +24,7 @@ export const GetAllCategories = () => {
       <PostCategory />
       <div className="categories-gallery">
         {categories?.map((category) => (
-          <div className="categories-flex">
+          <div key={category.id} className="categories-flex">
             <Link
               className="categories-link"
               key={category.id}
@@ -38,7 +38,7 @@ export const GetAllCategories = () => {
               <div className="categories-utilities">
                 <PutCategory id={category.id} category={category} />
                 <button
-                  onClick={(e) => dispatch(thunkDeleteCategory(category.id))}
+                  onClick={() => dispatch(thunkDeleteCategory(category.id))}
                 >
                   DELETE
                 </button>

@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 export const CategoryImageForm = ({ id }) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();

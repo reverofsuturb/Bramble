@@ -93,10 +93,11 @@ export const productsReducer = (state = {}, action) => {
       return { ...state, [action.product.id]: action.product };
     case PUT_PRODUCT:
       return { ...state, [action.product.id]: action.product };
-    case DELETE_PRODUCT:
+    case DELETE_PRODUCT: {
       const productState = { ...state };
       delete productState[action.productId];
       return productState;
+    }
     default:
       return state;
   }

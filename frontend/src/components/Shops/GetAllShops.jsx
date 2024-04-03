@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetShops, thunkDeleteShop } from "../../store/shops";
+import { thunkGetShops } from "../../store/shops";
 import { Link } from "react-router-dom";
-import { PostReview } from "../Reviews/PostReview";
-import { ReviewCard } from "../Reviews/ReviewCard";
-import { ShopImageForm } from "../ShopImages/ShopImageForm";
 
 import "./GetAllShops.css";
 
@@ -12,7 +9,6 @@ export const GetAllShops = () => {
   const dispatch = useDispatch();
   const shopsObj = useSelector((state) => state.shops);
   const shops = Object.values(shopsObj);
-  const idType = "shop";
 
   const getRating = (shop) => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;

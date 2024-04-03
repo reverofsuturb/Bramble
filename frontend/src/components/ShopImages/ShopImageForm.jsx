@@ -19,7 +19,7 @@ export const ShopImageForm = ({
 }) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const blobFetcher = async (url) => {
     let fetchImage = await csrfFetch(`/api/shopimages/fetchblob`, {
@@ -81,7 +81,7 @@ export const ShopImageForm = ({
       </form>
       <form onSubmit={handleSubmit}>
         <label>
-          Generate a unique image for this product based on it's description
+          Generate a unique image for this product based on it&apos;s description
         </label>
         <button>Generate</button>
       </form>

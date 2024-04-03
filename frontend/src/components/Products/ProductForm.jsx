@@ -138,8 +138,12 @@ export const ProductForm = ({ product, formType, id }) => {
               value={shop}
               onChange={(e) => setShop(e.target.value)}
             >
-              {filteredShops.map((shop) => (
-                <option className="products-form-option" value={shop.id}>
+              {filteredShops?.map((shop) => (
+                <option
+                  key={shop.id}
+                  className="products-form-option"
+                  value={shop.id}
+                >
                   {shop.name}
                 </option>
               ))}
@@ -159,8 +163,12 @@ export const ProductForm = ({ product, formType, id }) => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          {categories.map((category) => (
-            <option className="products-form-option" value={category.id}>
+          {categories?.map((category) => (
+            <option
+              key={category.id}
+              className="products-form-option"
+              value={category.id}
+            >
               {category.name}
             </option>
           ))}

@@ -92,10 +92,11 @@ export const reviewsReducer = (state = {}, action) => {
       return { ...state, [action.review.id]: action.review };
     case PUT_REVIEW:
       return { ...state, [action.review.id]: action.review };
-    case DELETE_REVIEW:
+    case DELETE_REVIEW: {
       const reviewState = { ...state };
       delete reviewState[action.reviewId];
       return reviewState;
+    }
     default:
       return state;
   }
