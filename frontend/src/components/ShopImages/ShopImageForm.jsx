@@ -28,7 +28,9 @@ const makeAi = async () => {
 };
 
 makeAi()
-  .then((openai) => {})
+  .then((openai) => {
+    console.log(openai);
+  })
   .catch((error) => console.error(error));
 
 export const ShopImageForm = ({
@@ -60,7 +62,7 @@ export const ShopImageForm = ({
     e.preventDefault();
     if (!image) {
       isGenerating(true);
-      // let openai =  await makeAi()
+      let openai = await makeAi();
       let generateImage = await openai.images.generate({
         model: "dall-e-3",
         prompt: `This is a shop called: ${name}, this is a description of the shop: ${about}`,
