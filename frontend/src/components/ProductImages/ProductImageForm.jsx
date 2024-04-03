@@ -11,7 +11,6 @@ const keyFetch = async () => {
   try {
     const res = await csrfFetch("/api/productimages/api-key");
     const key = await res.json();
-    console.log(key);
     return key;
   } catch (err) {
     console.error(err);
@@ -21,7 +20,6 @@ const keyFetch = async () => {
 const makeAi = async () => {
   try {
     const key = await keyFetch();
-    console.log(key, "key");
     const openai = new OpenAI({
       apiKey: key.key,
       dangerouslyAllowBrowser: true,
