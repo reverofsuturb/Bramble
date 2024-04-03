@@ -13,36 +13,6 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-//this function is fetching from the created ai-art and converting it into a blob (binary large object), needed to set a no-cors header to avoid error
-// this is not working on front end attempting to use in backend via proxy
-// const imageHelper = async (url) => {
-//   try {
-//     let file = await fetch(url, {
-//     });
-//     return file.blob();
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
-// const pngHelper = async (blob) => {
-//   //image constructor, pass blob to html image constructor, assign blob as the src using createObjectURL from the URL interface
-//   let png = new Image();
-//   png.src = URL.createObjectURL(blob);
-//   await png.onload;
-//   //instantiate an html canvas element, ctx is used to render a 2d context and draw the image constructor which is using the blob for image info
-//   const canvas = document.createElement("canvas");
-//   canvas.width = png.width;
-//   canvas.height = png.height;
-//   const ctx = canvas.getContext("2d");
-//   ctx.drawImage(png, 0, 0);
-//   let pngBlob = await canvas.toBlob(png, "image/png");
-//   // creates a new file instance for s3 upload, uses the blob created from the canvas to ensure png
-//   let pngFile = new File([pngBlob], "generatedimage.png", {
-//     type: "image/png",
-//   });
-//   return pngFile;
-// };
 const fileHelper = (blob) => {
   let pngFile = new File([pngBlob], "generatedimage.png", {
     type: "image/png",
@@ -69,8 +39,6 @@ export const ProductImageForm = ({ id, description }) => {
     return fetchImage;
   };
 
-  console.log(id, description);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
@@ -84,20 +52,6 @@ export const ProductImageForm = ({ id, description }) => {
 
       let pngBlob = await blobFetcher(generateImage.data[0].url);
       console.log(pngBlob);
-      // let pngImage = await fileHelper(pngBlob);
-      // console.log(pngImage)
-
-      // let png = new File([pngImage], "generatedimage.png", {
-      //   type: "image/png",
-      // });
-      // console.log(png)
-      //   return png;
-      // let formData = new FormData();
-      // formData.append("file", pngImage, "upload.png");
-
-      // let uploadImage = pngHelper(imageBlob);
-
-      // console.log(uploadImage);
 
       dispatch(thunkGetProductImages());
       return pngBlob;

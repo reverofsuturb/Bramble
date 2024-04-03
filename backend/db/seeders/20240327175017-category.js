@@ -2,10 +2,9 @@
 const { Category } = require("../models");
 
 let options = {};
-if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+if (process.env.NODE_ENV === "production") {
+  options.schema = process.env.SCHEMA; // define your schema in options object
 }
-
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -13,40 +12,49 @@ module.exports = {
     await Category.bulkCreate(
       [
         {
-          name: "clothing",
+          name: "Clothing",
         },
         {
-          name: "food",
+          name: "Food",
         },
         {
-          name: "animals",
+          name: "Animals",
         },
         {
-          name: "drinks",
+          name: "Drinks",
         },
         {
-          name: "furniture",
+          name: "Furniture",
         },
         {
-          name: "electronics",
+          name: "Electronics",
         },
         {
-          name: "weapons",
+          name: "Weapons",
         },
         {
-          name: "armor",
+          name: "Armor",
         },
         {
-          name: "movies",
+          name: "Movies",
         },
         {
-          name: "shows",
+          name: "Shows",
         },
         {
-          name: "decorations",
+          name: "Decorations",
         },
         {
-          name: "art",
+          name: "Art",
+        },
+        {
+          name: "Automobile",
+        },
+        {
+          name: "Property",
+        },
+        {
+          name: "Recreation",
         },
       ],
       { validate: true }
@@ -63,11 +71,11 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Categories'
-    const Op = Sequelize.Op
+    options.tableName = "Categories";
+    const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ['%a%']}
-    })
+      name: { [Op.in]: ["%a%"] },
+    });
     /**
      * Add commands to revert seed here.
      *

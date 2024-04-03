@@ -3,8 +3,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  width: fit-content;
+  margin: 5px;
+  max-width: 350px;
   padding: 10px;
-  background-color:grey;
+  background-color: grey;
+}
+
+.products-container-text {
+  display: flex;
+  max-width: 350px;
+  flex-direction: column;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+.products-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.products-allimage {
+  height: 327.5px;
+  width: 327.5px;
+}
+
+.products-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 350px;
 }

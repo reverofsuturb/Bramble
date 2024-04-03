@@ -49,18 +49,8 @@ router.post("/fetchblob", async (req, res) => {
     console.log(err);
     return res.status(500).json({ message: "Image failed to be retrieved" });
   }
-  // try {
-  //   let image = await fetch(url);
-  //   console.log(image);
-  //   res.setHeader("Content-Type", image.headers.get("Content-Type"));
-  //   await pipeline(image.body, res);
-
-  //   return console.log("successfully sent");
-  // } catch (err) {
-  //   console.error(err);
-  //   return res.status(500).json({ message: "Image failed to be retrieved" });
-  // }
 });
+
 
 router.post("/:id", singleMulterUpload("image"), async (req, res) => {
   const user = { req };

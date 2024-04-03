@@ -30,4 +30,31 @@ router.post("/:id", singleMulterUpload("image"), async (req, res) => {
   return res.json(shopImage);
 });
 
+router.post("/fetchblob", async (req, res) => {
+  const user = { req };
+  const { url } = req.body;
+  console.log(url);
+  const blobHelper = async (url) => {
+    try {
+      let image = await fetch(url);
+      let blob = await image.blob();
+      return blob;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
+  try {
+    let blob = await blobHelper(url);
+    console.log(blob);
+    let response = await blobUpload(blob);
+    console.log(response);
+    return res.json({ message: response });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Image failed to be retrieved" });
+  }
+});
+
 module.exports = router;

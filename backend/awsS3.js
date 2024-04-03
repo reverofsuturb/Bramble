@@ -12,6 +12,7 @@ const multer = require("multer");
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 // --------------------------- Public UPLOAD ------------------------
+// This function is for uploading blobs created by the image generator
 
 const blobUpload = async (blob) => {
   const buffBlob = await blob.arrayBuffer();
