@@ -35,7 +35,7 @@ export const CategoryProductsById = () => {
           <div className="category-products-container">
             <img
               className="category-products-allimage"
-              src={product?.ProductImages[0]?.image}
+              src={product?.ProductImages[0]?.image || "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"}
             />
             <div className="category-products-container-text">
               <div className="category-products-name">{product.name}</div>

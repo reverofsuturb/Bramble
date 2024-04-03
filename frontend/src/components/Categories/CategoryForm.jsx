@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { thunkPostCategory, thunkPutCategory } from "../../store/categories";
 import { useDispatch } from "react-redux";
-import "./CategoryForm.css"
+import "./CategoryForm.css";
 
 export const CategoryForm = ({ id, formType, category, setEditing }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrors({});
     const category = {
       name,
     };
@@ -34,12 +34,20 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
   };
 
   return (
-    <form className="categories-form" onSubmit={handleSubmit}>
-      <label className="categories-form-label">
-        NAME:
-        <input className="categories-form-input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <button className="categories-form-button">Submit</button>
-    </form>
+    <>
+      {errors.name && <p className="error">{errors.name}</p>}
+      <form className="categories-form" onSubmit={handleSubmit}>
+        <label className="categories-form-label">
+          NAME:
+          <input
+            className="categories-form-input"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+        <button className="categories-form-button">Submit</button>
+      </form>
+    </>
   );
 };

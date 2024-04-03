@@ -9,12 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Category.hasMany(models.Product, { foreignKey: "category_id" });
+      Category.belongsTo(models.User, { foreignKey: "user_id" });
       // Category.belongsTo(models.Product, { foreignKey: "category_id" });
     }
   }
   Category.init(
     {
       name: DataTypes.STRING,
+      user_id: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -9,6 +9,11 @@
   background-color: grey;
 }
 
+.categories-flex {
+  display: flex;
+  flex-direction: column;
+}
+
 .categories-gallery {
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -26,6 +31,13 @@
 
 .categories-link:hover {
   box-shadow: 7.5px 7.5px 7.5px #28b599;
+}
+
+.categories-utilities {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px;
 }
 
 @media screen and (max-width: 1300px) {

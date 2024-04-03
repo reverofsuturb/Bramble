@@ -10,7 +10,13 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-export const ShopImageForm = ({ id, name, about }) => {
+export const ShopImageForm = ({
+  id,
+  name,
+  about,
+  isGenerating,
+  isUploading,
+}) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
@@ -32,6 +38,7 @@ export const ShopImageForm = ({ id, name, about }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
+      isGenerating(true);
       let generateImage = await openai.images.generate({
         model: "dall-e-3",
         prompt: `This is a shop called: ${name}, this is a description of the shop: ${about}`,
@@ -43,16 +50,19 @@ export const ShopImageForm = ({ id, name, about }) => {
       let pngBlob = await blobFetcher(generateImage.data[0].url);
       console.log(pngBlob);
 
-      dispatch(thunkGetShopImages());
+      await dispatch(thunkGetShopImages());
+      isGenerating(false);
       return pngBlob;
     } else {
+      isUploading(true);
       const shopImage = await dispatch(thunkPostShopImage(id, image));
       console.log(shopImage);
       if (shopImage && shopImage.errors) {
         console.log(shopImage);
         return shopImage.errors;
       }
-      dispatch(thunkGetShopImages());
+      await dispatch(thunkGetShopImages());
+      isUploading(false);
     }
   };
   const updateFile = (e) => {

@@ -15,6 +15,7 @@ const {
   ShopImage,
 } = require("../../db/models");
 
+const { validateShop } = require("../../utils/validation");
 // get all shops, includes for eager loads
 // to do validations, (do I need them for this route?)
 router.get("/", async (req, res) => {
@@ -39,7 +40,7 @@ router.get("/", async (req, res) => {
 
 // post a shop
 // to do validations, require auth
-router.post("/new", async (req, res) => {
+router.post("/new", [requireAuth, validateShop], async (req, res) => {
   const { user } = req;
   const { name, about, policies, items, featured, category_id } = req.body;
 
@@ -55,10 +56,14 @@ router.post("/new", async (req, res) => {
 
 // put a shop by id, shortcircuit or statements used to take in new data if exists or (||) retain original value
 // to do validations check user is user, require auth
-router.put("/:id", async (req, res) => {
+router.put("/:id", [requireAuth, validateShop], async (req, res) => {
   const { user } = req;
   const { name, about, policies, items, featured, category_id } = req.body;
   const shop = await Shop.findByPk(req.params.id);
+
+  if (!shop) return res.status(404).json({ message: "Shop Not Found" });
+  if (shop.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
 
   shop.name = name || shop.name;
   shop.about = about || shop.about;
@@ -71,9 +76,14 @@ router.put("/:id", async (req, res) => {
 
 // delete a shop by id
 // to do validations check user is user, require auth
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
   const { user } = req;
   const shop = await Shop.findByPk(req.params.id);
+
+  if (!shop) return res.status(404).json({ message: "Shop Not Found" });
+  if (shop.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
+
   await shop.destoy();
   res.json({ message: `Deleted Shop with id: ${req.params.id}` });
 });

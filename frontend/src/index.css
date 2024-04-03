@@ -28,3 +28,12 @@ html {
   font-weight: 400;
   font-style: normal;
 }
+
+.error {
+  font-size: 0.75rem;
+  color: red
+}
+
+.loading {
+  color: green
+}

@@ -15,6 +15,7 @@ export const ReviewForm = ({
   const dispatch = useDispatch();
   const [body, setBody] = useState(review?.body || "");
   const [rating, setRating] = useState(review?.rating || "");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,6 +70,7 @@ export const ReviewForm = ({
           onChange={(e) => setBody(e.target.value)}
         />
       </label>
+      {errors.body && <p className="error">{errors.body}</p>}
       <label>
         Rating:
         <input
@@ -77,6 +79,7 @@ export const ReviewForm = ({
           onChange={(e) => setRating(e.target.value)}
         />
       </label>
+      {errors.rating && <p className="error">{errors.rating}</p>}
       <button>Submit</button>
     </form>
   );

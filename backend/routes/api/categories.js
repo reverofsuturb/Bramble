@@ -15,6 +15,7 @@ const {
   ShopImage,
 } = require("../../db/models");
 
+const { validateCategory } = require("../../utils/validation");
 //get all categories
 
 router.get("/", async (req, res) => {
@@ -36,12 +37,13 @@ router.get("/:id", async (req, res) => {
 //post a category
 // to do validations require auth
 
-router.post("/new", async (req, res) => {
+router.post("/new", [requireAuth, validateCategory], async (req, res) => {
   const { user } = req;
   const { name } = req.body;
 
   const category = await Category.create({
     name,
+    user_id: user.id,
   });
   return res.status(201).json(category);
 });
@@ -49,11 +51,15 @@ router.post("/new", async (req, res) => {
 // put category by id, shortciruits used to check if new data exists to change the data else retain original value
 // to do validations check user is user, require auth
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", [requireAuth, validateCategory], async (req, res) => {
   const { user } = req;
   const { name } = req.body;
 
   const category = await Category.findByPk(req.params.id);
+
+  if (!category) return res.status(404).json({ message: "Category Not Found" });
+  if (category.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
 
   category.name = name || category.name;
   await category.save();
@@ -64,10 +70,15 @@ router.put("/:id", async (req, res) => {
 // delete category by id
 // to do validations check user is user, require auth
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
   const { user } = req;
 
   const category = await Category.findByPk(req.params.id);
+
+  if (!category) return res.status(404).json({ message: "Category Not Found" });
+  if (category.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
+
   await category.destroy();
 
   res.json({ message: `Deleted Category with id: ${req.params.id}` });

@@ -46,7 +46,7 @@ export const thunkPostReview = (review) => async (dispatch) => {
   });
   const newReview = await response.json();
   if (newReview.errors) {
-    return newReview.errors;
+    return newReview;
   }
   dispatch(postReview(newReview));
 };
@@ -60,7 +60,7 @@ export const thunkPutReview = (reviewId, review) => async (dispatch) => {
   const editReview = await response.json();
   console.log(editReview);
   if (editReview.errors) {
-    return editReview.errors;
+    return editReview;
   }
   dispatch(putReview(editReview));
 };
@@ -71,7 +71,7 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
   });
   const review = await response.json();
   if (review.errors) {
-    return review.errors;
+    return review;
   }
   await dispatch(deleteReview(reviewId));
   console.log(`deleted ${reviewId}`);

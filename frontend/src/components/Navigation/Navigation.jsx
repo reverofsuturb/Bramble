@@ -44,17 +44,21 @@ function Navigation({ isLoaded }) {
               Products
             </NavLink>
           </div>
-          <div>
-            <NavLink
-              className={
-                selected === "newprod" ? "nav-link nav-link-b" : "nav-link"
-              }
-              onClick={(e) => isSelected("newprod")}
-              to="/products/new"
-            >
-              New Product
-            </NavLink>
-          </div>
+          {sessionUser ? (
+            <div>
+              <NavLink
+                className={
+                  selected === "newprod" ? "nav-link nav-link-b" : "nav-link"
+                }
+                onClick={(e) => isSelected("newprod")}
+                to="/products/new"
+              >
+                New Product
+              </NavLink>
+            </div>
+          ) : (
+            ""
+          )}
           <div>
             <NavLink
               className={
@@ -66,17 +70,21 @@ function Navigation({ isLoaded }) {
               Shops
             </NavLink>
           </div>
-          <div>
-            <NavLink
-              className={
-                selected === "newshop" ? "nav-link nav-link-b" : "nav-link"
-              }
-              onClick={(e) => isSelected("newshop")}
-              to="/shops/new"
-            >
-              New Shop
-            </NavLink>
-          </div>
+          {sessionUser ? (
+            <div>
+              <NavLink
+                className={
+                  selected === "newshop" ? "nav-link nav-link-b" : "nav-link"
+                }
+                onClick={(e) => isSelected("newshop")}
+                to="/shops/new"
+              >
+                New Shop
+              </NavLink>
+            </div>
+          ) : (
+            ""
+          )}
           <div>
             <ProfileButton user={sessionUser} />
           </div>

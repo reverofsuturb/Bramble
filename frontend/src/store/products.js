@@ -44,11 +44,13 @@ export const thunkPostProduct = (product) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(product),
   });
-  const newProduct = await response.json();
+  let newProduct = await response.json();
   if (newProduct.errors) {
-    return newProduct.errors;
+    return newProduct;
   }
-  dispatch(postProduct(newProduct));
+  await dispatch(postProduct(newProduct));
+  console.log(newProduct)
+  return newProduct;
 };
 
 export const thunkPutProduct = (productId, product) => async (dispatch) => {
@@ -57,11 +59,12 @@ export const thunkPutProduct = (productId, product) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(product),
   });
-  const editProduct = await response.json();
+  let editProduct = await response.json();
   if (editProduct.errors) {
-    return editProduct.errors;
+    return editProduct;
   }
-  dispatch(putProduct(editProduct));
+  await dispatch(putProduct(editProduct));
+  return editProduct;
 };
 
 export const thunkDeleteProduct = (productId) => async (dispatch) => {
@@ -70,7 +73,7 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
   });
   const product = await response.json();
   if (product.errors) {
-    return product.errors;
+    return product;
   }
   await dispatch(deleteProduct(productId));
 };

@@ -24,12 +24,12 @@ export const ProductForm = ({ product, formType, id }) => {
   const categories = Object.values(categoriesObj);
   const shops = Object.values(shopsObj);
 
-  const shopFind = shops?.find((shop) => shop.user_id === user.id);
-  const filteredShops = shops?.filter((shop) => shop.user_id === user.id);
+  const shopFind = shops?.find((shop) => shop.user_id === user?.id);
+  const filteredShops = shops?.filter((shop) => shop.user_id === user?.id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrors({});
     const product = {
       name,
       price: parseFloat(price),
@@ -47,13 +47,15 @@ export const ProductForm = ({ product, formType, id }) => {
       if (postProduct && postProduct.errors) {
         return setErrors(postProduct.errors);
       }
+      console.log(postProduct);
+      navigate(`/products/${postProduct.id}`);
     } else if (formType === "put") {
       const putProduct = await dispatch(thunkPutProduct(id, product));
       if (putProduct && putProduct.errors) {
         return setErrors(putProduct.errors);
       }
+      navigate(`/products/${id}`);
     }
-    navigate("/products");
   };
   useEffect(() => {
     dispatch(thunkGetShops());
@@ -71,6 +73,7 @@ export const ProductForm = ({ product, formType, id }) => {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
+      {errors.name && <p className="error">{errors.name}</p>}
       <label className="products-form-label">
         PRICE
         <input
@@ -80,33 +83,37 @@ export const ProductForm = ({ product, formType, id }) => {
           onChange={(e) => setPrice(e.target.value)}
         />
       </label>
+      {errors.price && <p className="error">{errors.price}</p>}
       <label className="products-form-label">
         DESCRIPTION
-        <input
+        <textarea
           className="products-form-input"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </label>
+      {errors.description && <p className="error">{errors.description}</p>}
       <label className="products-form-label">
         DETAILS
-        <input
+        <textarea
           className="products-form-input"
           type="text"
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         />
       </label>
+      {errors.details && <p className="error">{errors.details}</p>}
       <label className="products-form-label">
         SHIPPING
-        <input
+        <textarea
           className="products-form-input"
           type="text"
           value={shipping}
           onChange={(e) => setShipping(e.target.value)}
         />
       </label>
+      {errors.shipping && <p className="error">{errors.shipping}</p>}
       {shopFind ? (
         <>
           <label className="products-form-label">
@@ -147,12 +154,19 @@ export const ProductForm = ({ product, formType, id }) => {
       )}
       <label className="products-form-label">
         CATEGORY
-        <select className="products-form-select" value={category} onChange={(e) => setCategory(e.target.value)}>
+        <select
+          className="products-form-select"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
           {categories.map((category) => (
-            <option className="products-form-option" value={category.id}>{category.name}</option>
+            <option className="products-form-option" value={category.id}>
+              {category.name}
+            </option>
           ))}
         </select>
       </label>
+      {errors.category_id && <p className="error">{errors.category_id}</p>}
       <button className="products-form-button">Submit</button>
     </form>
   );

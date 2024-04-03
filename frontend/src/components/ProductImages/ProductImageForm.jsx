@@ -13,7 +13,7 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-export const ProductImageForm = ({ id, name, description }) => {
+export const ProductImageForm = ({ id, name, description, isGenerating, isUploading }) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
@@ -35,6 +35,7 @@ export const ProductImageForm = ({ id, name, description }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
+      isGenerating(true);
       let generateImage = await openai.images.generate({
         model: "dall-e-3",
         prompt: `This is a product called: ${name}, this is a description of the product: ${description}`,
@@ -46,17 +47,20 @@ export const ProductImageForm = ({ id, name, description }) => {
       let pngBlob = await blobFetcher(generateImage.data[0].url);
       console.log(pngBlob);
 
-      dispatch(thunkGetProductImages());
+      await dispatch(thunkGetProductImages());
+      isGenerating(false);
       return pngBlob;
     } else {
       console.log(image);
+      isUploading(true);
       const productImage = await dispatch(thunkPostProductImage(id, image));
       console.log(productImage);
       if (productImage && productImage.errors) {
         console.log(productImage);
         return productImage.errors;
       }
-      dispatch(thunkGetProductImages());
+      await dispatch(thunkGetProductImages());
+      isUploading(false);
     }
   };
 

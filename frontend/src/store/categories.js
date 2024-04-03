@@ -48,7 +48,7 @@ export const thunkGetCategoryById = (categoryId) => async (dispatch) => {
   const response = await csrfFetch(`/api/categories/${categoryId}`);
   const category = await response.json();
   if (category.errors) {
-    return category.errors;
+    return category;
   }
   dispatch(getCategoryById(category));
 };
@@ -61,7 +61,8 @@ export const thunkPostCategory = (category) => async (dispatch) => {
   });
   const newCategory = await response.json();
   if (newCategory.errors) {
-    return newCategory.errors;
+    console.log(newCategory.errors);
+    return newCategory;
   }
   dispatch(postCategory(newCategory));
 };
@@ -74,7 +75,7 @@ export const thunkPutCategory = (categoryId, category) => async (dispatch) => {
   });
   const editCategory = await response.json();
   if (editCategory.errors) {
-    return editCategory.errors;
+    return editCategory;
   }
   dispatch(putCategory(editCategory));
 };
@@ -85,7 +86,7 @@ export const thunkDeleteCategory = (categoryId) => async (dispatch) => {
   });
   const category = await response.json();
   if (category.errors) {
-    return category.errors;
+    return category;
   }
   await dispatch(deleteCategory(categoryId));
 };
@@ -102,7 +103,7 @@ export const categoriesReducer = (state = {}, action) => {
       return categoriesState;
     }
     case GET_CATEGORY_BY_ID: {
-      return {...state, [action.category.id]: action.category };
+      return { ...state, [action.category.id]: action.category };
     }
     case POST_CATEGORY:
       return { ...state, [action.category.id]: action.category };

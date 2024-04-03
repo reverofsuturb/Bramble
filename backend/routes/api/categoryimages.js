@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   return res.json(categoryImages);
 });
 
-router.post("/fetchblob", async (req, res) => {
+router.post("/fetchblob", [requireAuth], async (req, res) => {
   const user = { req };
   const { url } = req.body;
   console.log(url);
@@ -47,15 +47,18 @@ router.post("/fetchblob", async (req, res) => {
   }
 });
 
-router.post("/:id", singleMulterUpload("image"), async (req, res) => {
-  const user = { req };
-  const categoryImageUrl = await singlePublicFileUpload(req.file);
-  const categoryImage = await CategoryImage.create({
-    image: categoryImageUrl,
-    category_id: req.params.id,
-  });
-  return res.json(categoryImage);
-});
-
+router.post(
+  "/:id",
+  [requireAuth, singleMulterUpload("image")],
+  async (req, res) => {
+    const user = { req };
+    const categoryImageUrl = await singlePublicFileUpload(req.file);
+    const categoryImage = await CategoryImage.create({
+      image: categoryImageUrl,
+      category_id: req.params.id,
+    });
+    return res.json(categoryImage);
+  }
+);
 
 module.exports = router;

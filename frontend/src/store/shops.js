@@ -46,9 +46,11 @@ export const thunkPostShop = (shop) => async (dispatch) => {
   });
   const newShop = await response.json();
   if (newShop.errors) {
-    return newShop.errors;
+    return newShop;
   }
-  dispatch(postShop(newShop));
+  await dispatch(postShop(newShop));
+  return newShop
+
 };
 
 export const thunkPutShop = (shopId, shop) => async (dispatch) => {
@@ -58,11 +60,12 @@ export const thunkPutShop = (shopId, shop) => async (dispatch) => {
     body: JSON.stringify(shop),
   });
   const editShop = await response.json();
-  console.log(editShop)
+  console.log(editShop);
   if (editShop.errors) {
-    return editShop.errors;
+    return editShop;
   }
-  dispatch(putShop(editShop));
+  await dispatch(putShop(editShop));
+  return editShop
 };
 
 export const thunkDeleteShop = (shopId) => async (dispatch) => {
@@ -71,7 +74,7 @@ export const thunkDeleteShop = (shopId) => async (dispatch) => {
   });
   const shop = await response.json();
   if (shop.errors) {
-    return shop.errors;
+    return shop;
   }
   await dispatch(deleteShop(shopId));
   console.log(`deleted ${shopId}`);

@@ -26,12 +26,21 @@ export const GetAllShops = () => {
     <div className="shops-gallery">
       {shops?.map((shop) => (
         <Link className="shops-link" key={shop.id} to={`/shops/${shop.id}`}>
-          <div key={shop.id} className="shops-container">
-            <img src={shop?.ShopImages[0].image} className="shops-allimage" />
+          <div key={shop?.id} className="shops-container">
+            <img
+              src={
+                shop?.ShopImages?.length
+                  ? shop?.ShopImages[0]?.image
+                  : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+              }
+              className="shops-allimage"
+            />
             <div className="shops-container-text">
               <div className="shops-name">{shop.name}</div>
-              <div>Rating: {shop.Reviews.length ? getRating(shop) : "Not Rated"}</div>
-              <div>Policies: {shop.policies}</div>
+              <div>
+                Rating: {shop?.Reviews?.length ? getRating(shop) : "Not Rated"}
+              </div>
+              <div>Policies: {shop?.policies}</div>
               <div>Category: {shop?.Category?.name}</div>
             </div>
           </div>

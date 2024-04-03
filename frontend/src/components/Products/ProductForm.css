@@ -1,8 +1,8 @@
 .products-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 400px;
+  gap: 10px;
 }
 
 .products-form-label {

@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
   return res.json(shopImages);
 });
 
-router.post("/fetchblob", async (req, res) => {
+router.post("/fetchblob", [requireAuth], async (req, res) => {
   const user = { req };
   const { url, id } = req.body;
   console.log(url);
@@ -55,14 +55,18 @@ router.post("/fetchblob", async (req, res) => {
   }
 });
 
-router.post("/:id", singleMulterUpload("image"), async (req, res) => {
-  const user = { req };
-  const shopImageUrl = await singlePublicFileUpload(req.file);
-  const shopImage = await ShopImage.create({
-    image: shopImageUrl,
-    shop_id: req.params.id,
-  });
-  return res.json(shopImage);
-});
+router.post(
+  "/:id",
+  [requireAuth, singleMulterUpload("image")],
+  async (req, res) => {
+    const user = { req };
+    const shopImageUrl = await singlePublicFileUpload(req.file);
+    const shopImage = await ShopImage.create({
+      image: shopImageUrl,
+      shop_id: req.params.id,
+    });
+    return res.json(shopImage);
+  }
+);
 
 module.exports = router;

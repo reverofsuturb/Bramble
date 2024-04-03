@@ -13,48 +13,63 @@ module.exports = {
       [
         {
           name: "Clothing",
+          user_id: 1,
         },
         {
           name: "Food",
+          user_id: 1,
         },
         {
           name: "Animals",
+          user_id: 1,
         },
         {
           name: "Drinks",
+          user_id: 1,
         },
         {
           name: "Furniture",
+          user_id: 1,
         },
         {
           name: "Electronics",
+          user_id: 2,
         },
         {
           name: "Weapons",
+          user_id: 2,
         },
         {
           name: "Armor",
+          user_id: 2,
         },
         {
           name: "Movies",
+          user_id: 2,
         },
         {
           name: "Shows",
+          user_id: 2,
         },
         {
           name: "Decorations",
+          user_id: 3,
         },
         {
           name: "Art",
+          user_id: 3,
         },
         {
           name: "Automobile",
+          user_id: 3,
         },
         {
           name: "Property",
+          user_id: 3,
         },
         {
           name: "Recreation",
+          user_id: 3,
         },
       ],
       { validate: true }

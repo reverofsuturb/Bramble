@@ -15,6 +15,8 @@ const {
   ShopImage,
 } = require("../../db/models");
 
+const { validateProduct } = require("../../utils/validation");
+
 // get all products, includes for eager loads
 // to do validations, (do I need them for this route?)
 router.get("/", async (req, res) => {
@@ -32,9 +34,18 @@ router.get("/", async (req, res) => {
 
 // post a product
 // to do validations, require auth
-router.post("/new", async (req, res) => {
+router.post("/new", [requireAuth, validateProduct], async (req, res) => {
   const { user } = req;
-  const { name, price, description, details, shipping, category_id } = req.body;
+  const {
+    name,
+    price,
+    description,
+    details,
+    shipping,
+    featured,
+    shop_id,
+    category_id,
+  } = req.body;
 
   const product = await Product.create({
     name,
@@ -53,10 +64,23 @@ router.post("/new", async (req, res) => {
 
 // put a product by id, shortciruits used to check if new data exists to change the data else retain original value
 // to do validations check user is user, require auth
-router.put("/:id", async (req, res) => {
+router.put("/:id", [requireAuth, validateProduct], async (req, res) => {
   const { user } = req;
-  const { name, price, description, details, shipping, category_id } = req.body;
+  const {
+    name,
+    price,
+    description,
+    details,
+    featured,
+    shop_id,
+    shipping,
+    category_id,
+  } = req.body;
   const product = await Product.findByPk(req.params.id);
+
+  if (!product) return res.status(404).json({ message: "Product Not Found" });
+  if (product.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
 
   product.name = name || product.name;
   product.price = price || product.price;
@@ -72,9 +96,13 @@ router.put("/:id", async (req, res) => {
 
 // delete a product by id
 // to do validations check user is user, require auth
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
   const { user } = req;
   const product = await Product.findByPk(req.params.id);
+  if (!product) return res.status(404).json({ message: "Product Not Found" });
+  if (product.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
+
   await product.destroy();
   res.json({ message: `Deleted Product with id: ${req.params.id}` });
 });

@@ -12,6 +12,7 @@ import "./GetAllCategories.css";
 export const GetAllCategories = () => {
   const dispatch = useDispatch();
   const categoriesObj = useSelector((state) => state.categories);
+  const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
 
   useEffect(() => {
@@ -23,17 +24,29 @@ export const GetAllCategories = () => {
       <PostCategory />
       <div className="categories-gallery">
         {categories?.map((category) => (
-          <Link className="categories-link" key={category.id} to={`/categories/${category.id}`}>
-            <div className="categories-container">
-              <div>{category.name}</div>
-              <PutCategory id={category.id} category={category} />
-              <button
-                onClick={(e) => dispatch(thunkDeleteCategory(category.id))}
-              >
-                DELETE
-              </button>
-            </div>
-          </Link>
+          <div className="categories-flex">
+            <Link
+              className="categories-link"
+              key={category.id}
+              to={`/categories/${category.id}`}
+            >
+              <div className="categories-container">
+                <div>{category.name}</div>
+              </div>
+            </Link>
+            {category.user_id === user?.id ? (
+              <div className="categories-utilities">
+                <PutCategory id={category.id} category={category} />
+                <button
+                  onClick={(e) => dispatch(thunkDeleteCategory(category.id))}
+                >
+                  DELETE
+                </button>
+              </div>
+            ) : (
+              " "
+            )}
+          </div>
         ))}
       </div>
     </div>

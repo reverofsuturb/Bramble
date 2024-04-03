@@ -15,6 +15,8 @@ const {
   ShopImage,
 } = require("../../db/models");
 
+const { validateReview } = require("../../utils/validation");
+
 // get all reviews associated with id
 // need to decide if this is dynamically implementable this way as not really following rest convention
 router.get("/:id", async (req, res) => {
@@ -33,8 +35,8 @@ router.get("/:id", async (req, res) => {
 });
 
 //post a review
-//to do validations, require auth
-router.post("/new", async (req, res) => {
+
+router.post("/new", [requireAuth, validateReview], async (req, res) => {
   const { user } = req;
   const { body, rating, product_id, shop_id } = req.body;
 
@@ -50,12 +52,16 @@ router.post("/new", async (req, res) => {
 });
 
 //put a review by review id
-//to do validations, check user if user, require auth
-router.put("/:id", async (req, res) => {
+
+router.put("/:id", [requireAuth, validateReview], async (req, res) => {
   const { user } = req;
   const { body, rating } = req.body;
 
   const review = await Review.findByPk(req.params.id);
+
+  if (!review) return res.status(404).json({ message: "Review Not Found" });
+  if (review.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
 
   review.body = body || review.body;
   review.rating = rating || review.rating;
@@ -64,10 +70,15 @@ router.put("/:id", async (req, res) => {
 });
 
 //delete a review by review id
-//to do validations, check user if user, require auth
-router.delete("/:id", async (req, res) => {
+
+router.delete("/:id", requireAuth, async (req, res) => {
   const { user } = req;
   const review = await Review.findByPk(req.params.id);
+
+  if (!review) return res.status(404).json({ message: "Review Not Found" });
+  if (review.user_id != user.id)
+    return res.status(403).json({ message: "Forbidden" });
+
   await review.destroy();
   res.json({ message: `Deleted Review with id: ${req.params.id}` });
 });

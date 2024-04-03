@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { thunkGetShops } from "../../store/shops";
+import { thunkGetShopImages } from "../../store/shopimages";
 import { ShopImageForm } from "../ShopImages/ShopImageForm";
 import { PostReview } from "../Reviews/PostReview";
 import { ReviewCard } from "../Reviews/ReviewCard";
@@ -9,40 +10,79 @@ import "./ShopDetails.css";
 
 export const ShopDetails = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const shop = useSelector((state) => state.shops[id]);
   const user = useSelector((state) => state.session.user);
+  const [generating, isGenerating] = useState(false);
+  const [uploading, isUploading] = useState(false);
   const idType = "shop";
-
+  console.log(isGenerating);
   const getRating = (shop) => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
   };
 
   useEffect(() => {
     dispatch(thunkGetShops());
-  }, [dispatch, id]);
+    dispatch(thunkGetShopImages());
+  }, [dispatch, id, generating, uploading]);
 
-  if (!shop) return <>/</>;
+  if (!shop) return <></>;
   return (
     <div className="shopdetails-container">
       <div className="shopdetails-imgdetails-container">
-        <img className="shopdetails-image" src={shop?.ShopImages[0].image} />
+        <img
+          className="shopdetails-image"
+          src={
+            shop?.ShopImages?.length
+              ? shop?.ShopImages[0]?.image
+              : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+          }
+        />
         <div className="shopdetails-container-text">
           <div className="shopdetails-name">{shop.name}</div>
-          <div>{shop.Reviews.length ? getRating(shop) : "Not Rated"}</div>
-          <div>{shop.about}</div>
-          <div>{shop.policies}</div>
+          <div>{shop?.Reviews?.length ? getRating(shop) : "Not Rated"}</div>
+          <div>{shop?.about}</div>
+          <div>{shop?.policies}</div>
         </div>
       </div>
-      {shop.user_id === user.id ? (
+      {shop?.user_id == user?.id ? (
         <div className="shopdetails-utilities">
-          <ShopImageForm id={shop.id} name={shop.name} about={shop.about} />
-          <Link to={`/shops/${shop.id}/edit`}>
+          {generating || uploading || shop?.ShopImages?.length ? (
+            ""
+          ) : (
+            <ShopImageForm
+              id={shop?.id}
+              name={shop?.name}
+              about={shop?.about}
+              isGenerating={isGenerating}
+              isUploading={isUploading}
+            />
+          )}
+          {generating ? (
+            <p className="loading">
+              Your image is currently generating, please wait about 7-10 seconds
+              and it should appear shortly
+            </p>
+          ) : (
+            ""
+          )}
+          {uploading ? (
+            <p className="loading">
+              Your image is currently uploading, it should appear shortly
+            </p>
+          ) : (
+            ""
+          )}
+          <Link to={`/shops/${shop?.id}/edit`}>
             <button className="shopdetails-button">EDIT SHOP</button>
           </Link>
           <button
             className="shopdetails-button"
-            onClick={() => dispatch(thunkDeleteShop(shop.id))}
+            onClick={() => {
+              dispatch(thunkDeleteShop(shop.id));
+              navigate("/shops");
+            }}
           >
             DELETE SHOP
           </button>
@@ -50,10 +90,10 @@ export const ShopDetails = () => {
       ) : (
         ""
       )}
-      <PostReview id={shop.id} idType={idType} />
+      <PostReview id={shop?.id} idType={idType} />
       <div>
-        {shop.Reviews?.length ? "Reviews:" : ""}
-        {shop.Reviews?.map((review) => (
+        {shop?.Reviews?.length ? "Reviews:" : ""}
+        {shop?.Reviews?.map((review) => (
           <ReviewCard
             key={review.id}
             review={review}
@@ -72,15 +112,18 @@ export const ShopDetails = () => {
             <div className="shopdetails-container-products">
               <img
                 className="shopdetails-allimage"
-                src={product?.ProductImages[0].image}
+                src={
+                  product?.ProductImages[0]?.image ||
+                  "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+                }
               />
               <div className="shopdetails-container-text">
-                <div className="shopdetails-name">{product.name}</div>
+                <div className="shopdetails-name">{product?.name}</div>
                 <div>${product?.price.toFixed(2)}</div>
                 <div>
                   {product?.Reviews.length ? getRating(product) : "Not Rated"}
                 </div>
-                <div>{product?.Category.name}</div>
+                <div>{product?.Category?.name}</div>
               </div>
             </div>
           </Link>

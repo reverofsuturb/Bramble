@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetProducts, thunkDeleteProduct } from "../../store/products";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReviewCard } from "../Reviews/ReviewCard";
 import { PostReview } from "../Reviews/PostReview";
 import { ProductImageForm } from "../ProductImages/ProductImageForm";
@@ -10,8 +10,8 @@ import "./GetAllProducts.css";
 
 export const GetAllProducts = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const productsObj = useSelector((state) => state.products);
-  // const productImagesObj = useSelector((state) => state.productimages);
   const products = Object.values(productsObj);
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
@@ -32,19 +32,34 @@ export const GetAllProducts = () => {
           <div className="products-container">
             <img
               className="products-allimage"
-              src={product?.ProductImages[0].image}
+              src={
+                product?.ProductImages?.length
+                  ? product?.ProductImages[0]?.image
+                  : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+              }
             />
             <div className="products-container-text">
               <div className="products-name">{product.name}</div>
               <div>${product.price.toFixed(2)}</div>
               <div className="products-review-shop">
-              <div>
-                {product.Reviews.length ? getRating(product) : "Not Rated"}
-
+                <div>
+                  {product?.Reviews?.length ? getRating(product) : "Not Rated"}
+                </div>
+                <div>
+                  Visit{" "}
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      navigate(`/shops/${product?.Shop?.id}`);
+                    }}
+                    className="products-link-shop"
+                  >
+                    {product?.Shop?.name}
+                  </span>
+                </div>
               </div>
-              <div>Visit <Link className="products-link-shop" to={`/shops/${product.Shop.id}`}>{product.Shop.name}</Link></div>
-              </div>
-              <div>{product?.Category.name}</div>
+              <div>{product?.Category?.name}</div>
             </div>
           </div>
         </Link>
