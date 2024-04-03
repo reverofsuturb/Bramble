@@ -13,13 +13,6 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-const fileHelper = (blob) => {
-  let pngFile = new File([pngBlob], "generatedimage.png", {
-    type: "image/png",
-  });
-  return pngFile;
-};
-
 export const ProductImageForm = ({ id, description }) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);

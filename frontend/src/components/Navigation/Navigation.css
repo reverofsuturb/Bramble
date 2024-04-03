@@ -5,3 +5,19 @@
 .hidden {
   display: none;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: black
+}
+
+.nav-link-b {
+  border-bottom: 2px solid black
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 10px;
+}

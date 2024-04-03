@@ -21,6 +21,7 @@ export const ProductDetails = () => {
     dispatch(thunkGetProducts());
   }, [dispatch, id]);
 
+  if (!product) return <>/</>;
   return (
     <div className="prodetails-container">
       <div className="prodetails-imgdetails-container">
@@ -29,13 +30,12 @@ export const ProductDetails = () => {
           src={product?.ProductImages[0].image}
         />
         <div className="prodetails-container-text">
-          <div className="prodetails-name">{product.name}</div>
           <div>${product.price.toFixed(2)}</div>
+          <div className="prodetails-name">{product.name}</div>
           <div>{product.Reviews.length ? getRating(product) : "Not Rated"}</div>
           <div>{product.description}</div>
           <div>{product.details}</div>
           <div>{product.shipping}</div>
-          <div>{product?.Category.name}</div>
         </div>
       </div>
       <ProductImageForm id={product.id} description={product.description} />

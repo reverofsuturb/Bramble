@@ -11,9 +11,8 @@ import "./GetAllProducts.css";
 export const GetAllProducts = () => {
   const dispatch = useDispatch();
   const productsObj = useSelector((state) => state.products);
-  const productImagesObj = useSelector((state) => state.productimages);
+  // const productImagesObj = useSelector((state) => state.productimages);
   const products = Object.values(productsObj);
-  const idType = "product";
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
@@ -25,7 +24,11 @@ export const GetAllProducts = () => {
   return (
     <div className="products-gallery">
       {products?.map((product) => (
-        <Link key={product.id} to={`/products/${product.id}`}>
+        <Link
+          className="products-link"
+          key={product.id}
+          to={`/products/${product.id}`}
+        >
           <div className="products-container">
             <img
               className="products-allimage"
@@ -37,31 +40,8 @@ export const GetAllProducts = () => {
               <div>
                 {product.Reviews.length ? getRating(product) : "Not Rated"}
               </div>
-              {/* <div>{product.description}</div> */}
-              {/* <div>{product.details}</div> */}
-              {/* <div>{product.shipping}</div> */}
               <div>{product?.Category.name}</div>
             </div>
-            <ProductImageForm
-              id={product.id}
-              description={product.description}
-            />
-            <Link to={`/products/${product.id}`}>EDIT</Link>
-            <button onClick={() => dispatch(thunkDeleteProduct(product.id))}>
-              DELETE
-            </button>
-            {/* <PostReview id={product.id} idType={idType} />
-          <div>
-            {product.Reviews?.length ? "Reviews:" : ""}
-            {product.Reviews?.map((review) => (
-              <ReviewCard
-                key={review.id}
-                review={review}
-                id={product.id}
-                idType={idType}
-              />
-            ))}
-          </div> */}
           </div>
         </Link>
       ))}

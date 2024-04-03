@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton-bonus";
@@ -5,35 +6,83 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-
+  const [selected, isSelected] = useState("");
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+    <div className="nav-container">
+      <div>
+        <NavLink
+          className={
+            selected === "bramble" ? "nav-link nav-link-b" : "nav-link"
+          }
+          onClick={(e) => isSelected("bramble")}
+          to="/"
+        >
+          Bramble
+        </NavLink>
+      </div>
       {isLoaded && (
         <>
-          <li>
+          <div>
+            <NavLink
+              className={
+                selected === "cat" ? "nav-link nav-link-b" : "nav-link"
+              }
+              onClick={(e) => isSelected("cat")}
+              to="/categories"
+            >
+              Categories
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className={
+                selected === "prod" ? "nav-link nav-link-b" : "nav-link"
+              }
+              onClick={(e) => isSelected("prod")}
+              to="/products"
+            >
+              Products
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className={
+                selected === "newprod" ? "nav-link nav-link-b" : "nav-link"
+              }
+              onClick={(e) => isSelected("newprod")}
+              to="/products/new"
+            >
+              New Product
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className={
+                selected === "shop" ? "nav-link nav-link-b" : "nav-link"
+              }
+              onClick={(e) => isSelected("shop")}
+              to="/shops"
+            >
+              Shops
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className={
+                selected === "newshop" ? "nav-link nav-link-b" : "nav-link"
+              }
+              onClick={(e) => isSelected("newshop")}
+              to="/shops/new"
+            >
+              New Shop
+            </NavLink>
+          </div>
+          <div>
             <ProfileButton user={sessionUser} />
-          </li>
-          <li>
-            <NavLink to="/products">Products</NavLink>
-          </li>
-          <li>
-            <NavLink to="/products/new">New Product</NavLink>
-          </li>
-          <li>
-            <NavLink to="/shops">Shops</NavLink>
-          </li>
-          <li>
-            <NavLink to="/shops/new">New Shop</NavLink>
-          </li>
-          <li>
-            <NavLink to="/categories">Categories</NavLink>
-          </li>
+          </div>
         </>
       )}
-    </ul>
+    </div>
   );
 }
 

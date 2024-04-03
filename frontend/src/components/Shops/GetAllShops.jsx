@@ -4,6 +4,7 @@ import { thunkGetShops, thunkDeleteShop } from "../../store/shops";
 import { Link } from "react-router-dom";
 import { PostReview } from "../Reviews/PostReview";
 import { ReviewCard } from "../Reviews/ReviewCard";
+import { ShopImageForm } from "../ShopImages/ShopImageForm";
 
 import "./GetAllShops.css";
 
