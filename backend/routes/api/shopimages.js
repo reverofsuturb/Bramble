@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { requireAuth } = require("../../utils/auth");
-const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3");
+const {
+  singleMulterUpload,
+  singlePublicFileUpload,
+  blobUpload,
+} = require("../../awsS3");
 
 // import models
 const {
@@ -20,19 +24,9 @@ router.get("/", async (req, res) => {
   return res.json(shopImages);
 });
 
-router.post("/:id", singleMulterUpload("image"), async (req, res) => {
-  const user = { req };
-  const shopImageUrl = await singlePublicFileUpload(req.file);
-  const shopImage = await ShopImage.create({
-    image: shopImageUrl,
-    shop_id: req.params.id,
-  });
-  return res.json(shopImage);
-});
-
 router.post("/fetchblob", async (req, res) => {
   const user = { req };
-  const { url } = req.body;
+  const { url, id } = req.body;
   console.log(url);
   const blobHelper = async (url) => {
     try {
@@ -50,11 +44,25 @@ router.post("/fetchblob", async (req, res) => {
     console.log(blob);
     let response = await blobUpload(blob);
     console.log(response);
-    return res.json({ message: response });
+    let shopImage = await ShopImage.create({
+      image: response,
+      shop_id: id,
+    });
+    return res.json(shopImage);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Image failed to be retrieved" });
   }
+});
+
+router.post("/:id", singleMulterUpload("image"), async (req, res) => {
+  const user = { req };
+  const shopImageUrl = await singlePublicFileUpload(req.file);
+  const shopImage = await ShopImage.create({
+    image: shopImageUrl,
+    shop_id: req.params.id,
+  });
+  return res.json(shopImage);
 });
 
 module.exports = router;

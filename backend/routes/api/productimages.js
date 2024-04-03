@@ -44,13 +44,16 @@ router.post("/fetchblob", async (req, res) => {
     console.log(blob);
     let response = await blobUpload(blob);
     console.log(response);
-    return res.json({ message: response });
+    let productImage = await ProductImage.create({
+      image: response,
+      product_id: id,
+    });
+    return res.json(productImage);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Image failed to be retrieved" });
   }
 });
-
 
 router.post("/:id", singleMulterUpload("image"), async (req, res) => {
   const user = { req };

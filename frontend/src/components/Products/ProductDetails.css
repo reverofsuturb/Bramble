@@ -10,9 +10,9 @@
 }
 
 .prodetails-container-text {
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .prodetails-image {
@@ -22,4 +22,21 @@ justify-content: space-evenly;
 
 .prodetails-name {
   font-size: 1rem;
+}
+
+.prodetails-utilities {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+.prodetails-button {
+  width: 87px;
+}
+
+.prodetails-link-shop {
+  text-decoration: none;
+  color: black;
+}
+.prodetails-link-shop:hover {
+  border-bottom: 1px black solid;
 }

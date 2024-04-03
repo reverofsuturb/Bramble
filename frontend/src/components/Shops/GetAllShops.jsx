@@ -14,35 +14,28 @@ export const GetAllShops = () => {
   const shops = Object.values(shopsObj);
   const idType = "shop";
 
+  const getRating = (shop) => {
+    return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
+  };
+
   useEffect(() => {
     dispatch(thunkGetShops());
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="shops-gallery">
       {shops?.map((shop) => (
-        <div key={shop.id} className="shops-container">
-          <div>{shop.name}</div>
-          <div>{shop.about}</div>
-          <div>{shop.policies}</div>
-          <div>{shop.category_id}</div>
-          <Link to={`/shops/${shop.id}`}>EDIT</Link>
-          <button onClick={() => dispatch(thunkDeleteShop(shop.id))}>
-            DELETE
-          </button>
-          <PostReview id={shop.id} idType={idType} />
-          <div>
-            {shop.Reviews?.length ? "Reviews:" : ""}
-            {shop.Reviews?.map((review) => (
-              <ReviewCard
-                key={review.id}
-                review={review}
-                id={shop.id}
-                idType={idType}
-              />
-            ))}
+        <Link className="shops-link" key={shop.id} to={`/shops/${shop.id}`}>
+          <div key={shop.id} className="shops-container">
+            <img src={shop?.ShopImages[0].image} className="shops-allimage" />
+            <div className="shops-container-text">
+              <div className="shops-name">{shop.name}</div>
+              <div>Rating: {shop.Reviews.length ? getRating(shop) : "Not Rated"}</div>
+              <div>Policies: {shop.policies}</div>
+              <div>Category: {shop?.Category?.name}</div>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

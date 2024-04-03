@@ -16,10 +16,10 @@ export const ShopImageForm = ({ id, name, about }) => {
   const [errors, setErrors] = useState({});
 
   const blobFetcher = async (url) => {
-    let fetchImage = await csrfFetch(`api/shopimages/fetchblob`, {
+    let fetchImage = await csrfFetch(`/api/shopimages/fetchblob`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: url }),
+      body: JSON.stringify({ url: url, id: id }),
     });
     if (fetchImage && fetchImage.errors) {
       console.log(fetchImage);
@@ -34,7 +34,7 @@ export const ShopImageForm = ({ id, name, about }) => {
     if (!image) {
       let generateImage = await openai.images.generate({
         model: "dall-e-3",
-        prompt: `This is a shop called ${title}, this is a description of the shop ${about}`,
+        prompt: `This is a shop called: ${name}, this is a description of the shop: ${about}`,
         n: 1,
         size: "1024x1024",
       });
@@ -64,7 +64,7 @@ export const ShopImageForm = ({ id, name, about }) => {
     <>
       <form onSubmit={handleSubmit}>
         <label>
-          IMAGE:
+          Submit your own image:
           <input type="file" onChange={updateFile} />
         </label>
         <button>Submit</button>

@@ -21,7 +21,14 @@ router.get("/", async (req, res) => {
   const shops = await Shop.findAll({
     include: [
       { model: Category },
-      { model: Product },
+      {
+        model: Product,
+        include: [
+          { model: Category },
+          { model: Review },
+          { model: ProductImage },
+        ],
+      },
       { model: ShopImage },
       { model: Review },
       { model: User },

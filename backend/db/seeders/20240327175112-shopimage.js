@@ -12,15 +12,18 @@ module.exports = {
     await ShopImage.bulkCreate(
       [
         {
-          image: "url.url",
+          image:
+            "https://bramble-bucket.s3.us-east-2.amazonaws.com/img-LzLLUYrSV5TS6CG4TWRz6suw.png",
           shop_id: 1,
         },
         {
-          image: "url.url",
+          image:
+            "https://bramble-bucket.s3.us-east-2.amazonaws.com/img-xtIBnpCpQPT7rBVa3iTWkJvR.png",
           shop_id: 2,
         },
         {
-          image: "url.url",
+          image:
+            "https://bramble-bucket.s3.us-east-2.amazonaws.com/img-lsHEuUPLEdzctaF1P22iznSE.png",
           shop_id: 3,
         },
       ],

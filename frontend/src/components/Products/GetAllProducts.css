@@ -4,7 +4,7 @@
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin: 8px;
   width: 350px;
   padding: 10px;
   background-color: grey;
@@ -21,6 +21,18 @@
 .products-link {
   text-decoration: none;
   color: black;
+}
+
+.products-link:hover {
+  box-shadow: 7.5px 7.5px 7.5px #28b599;
+}
+
+.products-link-shop {
+  text-decoration: none;
+  color: black;
+}
+.products-link-shop:hover {
+  border-bottom: 1px black solid;
 }
 
 .products-gallery {
@@ -45,6 +57,11 @@
   width: 350px;
 }
 
+.products-review-shop {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 1300px) {
   .products-gallery {
     display: grid;
@@ -57,7 +74,7 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
   .products-gallery {
     display: grid;
     grid-template-columns: auto auto;

@@ -6,8 +6,13 @@ import Navigation from "./components/Navigation/";
 import * as sessionActions from "./store/session";
 import { Modal } from "./context/Modal";
 
-import { GetAllProducts, PostProduct, ProductDetails, PutProduct } from "./components/Products";
-import { GetAllShops, PostShop, PutShop } from "./components/Shops";
+import {
+  GetAllProducts,
+  PostProduct,
+  ProductDetails,
+  PutProduct,
+} from "./components/Products";
+import { GetAllShops, PostShop, PutShop, ShopDetails } from "./components/Shops";
 import { GetAllCategories } from "./components/Categories";
 
 function Layout() {
@@ -37,20 +42,21 @@ const router = createBrowserRouter([
         path: "/",
         element: <h1>Welcome!</h1>,
       },
-      { path: "/categories", element: <GetAllCategories />},
+      { path: "/categories", element: <GetAllCategories /> },
       { path: "/products", element: <GetAllProducts /> },
       {
         path: "/products/new",
         element: <PostProduct />,
       },
       { path: "/products/:id/edit", element: <PutProduct /> },
-      { path: "/products/:id", element: <ProductDetails />},
+      { path: "/products/:id", element: <ProductDetails /> },
       { path: "/shops", element: <GetAllShops /> },
       {
         path: "/shops/new",
         element: <PostShop />,
       },
-      { path: "/shops/:id", element: <PutShop /> },
+      { path: "/shops/:id/edit", element: <PutShop /> },
+      { path: "/shops/:id", element: <ShopDetails /> },
     ],
   },
 ]);

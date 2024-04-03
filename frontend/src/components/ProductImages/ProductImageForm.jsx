@@ -13,16 +13,16 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-export const ProductImageForm = ({ id, description }) => {
+export const ProductImageForm = ({ id, name, description }) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
 
   const blobFetcher = async (url) => {
-    let fetchImage = await csrfFetch(`api/productimages/fetchblob`, {
+    let fetchImage = await csrfFetch(`/api/productimages/fetchblob`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: url }),
+      body: JSON.stringify({ url: url, id: id }),
     });
     if (fetchImage && fetchImage.errors) {
       console.log(fetchImage);
@@ -37,7 +37,7 @@ export const ProductImageForm = ({ id, description }) => {
     if (!image) {
       let generateImage = await openai.images.generate({
         model: "dall-e-3",
-        prompt: description,
+        prompt: `This is a product called: ${name}, this is a description of the product: ${description}`,
         n: 1,
         size: "1024x1024",
       });

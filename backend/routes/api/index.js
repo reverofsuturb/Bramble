@@ -22,7 +22,7 @@ router.use("/shops", shopsRouter);
 router.use("/reviews", reviewsRouter);
 router.use("/categories", categoriesRouter);
 router.use("/productimages", productImagesRouter);
-router.use("/shopImagesRouter", shopImagesRouter);
+router.use("/shopimages", shopImagesRouter);
 router.use("/categoryimages", categoryImagesRouter);
 
 router.post("/test", function (req, res) {

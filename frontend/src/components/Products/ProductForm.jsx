@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { thunkPostProduct, thunkPutProduct } from "../../store/products";
+import { thunkGetShops } from "../../store/shops";
+import { thunkGetCategories } from "../../store/categories";
 import { useDispatch } from "react-redux";
 import "./ProductForm.css";
 
@@ -44,6 +46,11 @@ export const ProductForm = ({ product, formType, id }) => {
       }
     }
     navigate("/products");
+
+    useEffect(() => {
+      dispatch(thunkGetShops());
+      dispatch(thunkGetCategories());
+    }, []);
   };
 
   return (
