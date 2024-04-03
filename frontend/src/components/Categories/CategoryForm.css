@@ -1,43 +1,34 @@
-.shops-form {
+.categories-form {
   display: flex;
-  flex-direction: column;
   gap: 10px;
   width: 400px;
 }
 
-.shops-form-label {
+.categories-form-label {
   display: flex;
   gap: 10px;
   justify-content: space-between;
 }
 
-.shops-form-input {
+.categories-form-input {
   border-radius: 15px;
   width: 175px;
   outline: none;
 }
 
-.shops-form-input:hover {
+.categories-form-input:hover {
   box-shadow: 3px 3px 3px #28b599;
 }
 
-.shops-form-input:focus {
+.categories-form-input:focus {
   box-shadow: 3px 3px 3px #28b599;
 }
 
-.shops-form-select {
-  width: 175px;
-}
-
-.shops-form-select:hover {
-  box-shadow: inset 2px 2px 2px #28b599;
-}
-
-.shops-form-button {
+.categories-form-button {
   margin: auto;
   width: 87px;
 }
 
-.shops-form-button:hover {
+.categories-form-button:hover {
   box-shadow: 3px 3px 3px #28b599;
 }

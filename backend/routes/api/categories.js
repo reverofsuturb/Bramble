@@ -22,6 +22,17 @@ router.get("/", async (req, res) => {
   return res.json(categories);
 });
 
+router.get("/:id", async (req, res) => {
+  const category = await Category.findByPk(req.params.id, {
+    include: {
+      model: Product,
+      where: { category_id: req.params.id },
+      include: [{ model: Review }, { model: ProductImage }, { model: Shop }],
+    },
+  });
+  res.json(category);
+});
+
 //post a category
 // to do validations require auth
 

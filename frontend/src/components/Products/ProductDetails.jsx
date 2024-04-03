@@ -39,7 +39,12 @@ export const ProductDetails = () => {
           <div>{product.Reviews.length ? getRating(product) : "Not Rated"}</div>
           <div>
             Visit{" "}
-            <Link className="prodetails-link-shop" to={`/shops/${product?.Shop.id}`}>{product?.Shop.name}</Link>
+            <Link
+              className="prodetails-link-shop"
+              to={`/shops/${product?.Shop.id}`}
+            >
+              {product?.Shop.name}
+            </Link>
           </div>
           <div>{product.description}</div>
           <div>{product.details}</div>

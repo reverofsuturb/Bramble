@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 // action type creators
 export const GET_CATEGORIES = "categories/getCategories";
+export const GET_CATEGORY_BY_ID = "categories/getCategoryById";
 export const POST_CATEGORY = "categories/postCategory";
 export const PUT_CATEGORY = "categories/putCategory";
 export const DELETE_CATEGORY = "categories/deleteCategory";
@@ -10,6 +11,11 @@ export const DELETE_CATEGORY = "categories/deleteCategory";
 export const getCategories = (categories) => ({
   type: GET_CATEGORIES,
   categories,
+});
+
+export const getCategoryById = (category) => ({
+  type: GET_CATEGORY_BY_ID,
+  category,
 });
 
 export const postCategory = (category) => ({
@@ -36,6 +42,15 @@ export const thunkGetCategories = () => async (dispatch) => {
     return categories;
   }
   dispatch(getCategories(categories));
+};
+
+export const thunkGetCategoryById = (categoryId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/categories/${categoryId}`);
+  const category = await response.json();
+  if (category.errors) {
+    return category.errors;
+  }
+  dispatch(getCategoryById(category));
 };
 
 export const thunkPostCategory = (category) => async (dispatch) => {
@@ -85,6 +100,9 @@ export const categoriesReducer = (state = {}, action) => {
         categoriesState[category.id] = category;
       });
       return categoriesState;
+    }
+    case GET_CATEGORY_BY_ID: {
+      return {...state, [action.category.id]: action.category };
     }
     case POST_CATEGORY:
       return { ...state, [action.category.id]: action.category };

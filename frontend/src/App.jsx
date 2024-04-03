@@ -12,8 +12,16 @@ import {
   ProductDetails,
   PutProduct,
 } from "./components/Products";
-import { GetAllShops, PostShop, PutShop, ShopDetails } from "./components/Shops";
-import { GetAllCategories } from "./components/Categories";
+import {
+  GetAllShops,
+  PostShop,
+  PutShop,
+  ShopDetails,
+} from "./components/Shops";
+import {
+  GetAllCategories,
+  CategoryProductsById,
+} from "./components/Categories";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -43,6 +51,7 @@ const router = createBrowserRouter([
         element: <h1>Welcome!</h1>,
       },
       { path: "/categories", element: <GetAllCategories /> },
+      { path: "/categories/:id", element: <CategoryProductsById /> },
       { path: "/products", element: <GetAllProducts /> },
       {
         path: "/products/new",

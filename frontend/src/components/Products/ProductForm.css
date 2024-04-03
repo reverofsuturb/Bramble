@@ -2,4 +2,42 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 400px;
+}
+
+.products-form-label {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.products-form-input {
+  border-radius: 15px;
+  width: 175px;
+  outline: none;
+}
+
+.products-form-input:hover {
+  box-shadow: 3px 3px 3px #28b599;
+}
+
+.products-form-input:focus {
+  box-shadow: 3px 3px 3px #28b599;
+}
+
+.products-form-select {
+  width: 175px;
+}
+
+.products-form-select:hover {
+  box-shadow: inset 2px 2px 2px #28b599;
+}
+
+.products-form-button {
+  margin: auto;
+  width: 87px;
+}
+
+.products-form-button:hover {
+  box-shadow: 3px 3px 3px #28b599;
 }

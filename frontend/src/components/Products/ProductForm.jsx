@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { thunkPostProduct, thunkPutProduct } from "../../store/products";
 import { thunkGetShops } from "../../store/shops";
 import { thunkGetCategories } from "../../store/categories";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./ProductForm.css";
 
 export const ProductForm = ({ product, formType, id }) => {
@@ -15,9 +15,17 @@ export const ProductForm = ({ product, formType, id }) => {
   const [details, setDetails] = useState(product?.details || "");
   const [shipping, setShipping] = useState(product?.shipping || "");
   const [category, setCategory] = useState(product?.category_id || "");
-  const [featured, setFeatured] = useState(product?.featured || "");
-  const [shop, setShop] = useState(product?.shop_id || "");
+  const [featured, setFeatured] = useState(product?.featured || false);
+  const [shop, setShop] = useState(product?.shop_id || null);
   const [errors, setErrors] = useState({});
+  const user = useSelector((state) => state.session.user);
+  const categoriesObj = useSelector((state) => state.categories);
+  const shopsObj = useSelector((state) => state.shops);
+  const categories = Object.values(categoriesObj);
+  const shops = Object.values(shopsObj);
+
+  const shopFind = shops?.find((shop) => shop.user_id === user.id);
+  const filteredShops = shops?.filter((shop) => shop.user_id === user.id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,79 +54,106 @@ export const ProductForm = ({ product, formType, id }) => {
       }
     }
     navigate("/products");
-
-    useEffect(() => {
-      dispatch(thunkGetShops());
-      dispatch(thunkGetCategories());
-    }, []);
   };
+  useEffect(() => {
+    dispatch(thunkGetShops());
+    dispatch(thunkGetCategories());
+  }, [dispatch]);
 
   return (
     <form onSubmit={handleSubmit} className="products-form">
-      <label>
-        NAME:
+      <label className="products-form-label">
+        NAME
         <input
+          className="products-form-input"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label>
-        PRICE:
+      <label className="products-form-label">
+        PRICE
         <input
+          className="products-form-input"
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
       </label>
-      <label>
+      <label className="products-form-label">
         DESCRIPTION
         <input
+          className="products-form-input"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </label>
-      <label>
+      <label className="products-form-label">
         DETAILS
         <input
+          className="products-form-input"
           type="text"
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         />
       </label>
-      <label>
+      <label className="products-form-label">
         SHIPPING
         <input
+          className="products-form-input"
           type="text"
           value={shipping}
           onChange={(e) => setShipping(e.target.value)}
         />
       </label>
-      <label>
-        FEATURED
-        <select value={featured} onChange={(e) => setFeatured(e.target.value)}>
-          <option value={true}>True</option>
-          <option value={false}>False</option>
+      {shopFind ? (
+        <>
+          <label className="products-form-label">
+            FEATURED
+            <select
+              className="products-form-select"
+              value={featured}
+              onChange={(e) => setFeatured(e.target.value)}
+            >
+              <option className="products-form-option" value={true}>
+                True
+              </option>
+              <option className="products-form-option" value={false}>
+                False
+              </option>
+            </select>
+          </label>
+          <label className="products-form-label">
+            SHOP
+            <select
+              className="products-form-select"
+              value={shop}
+              onChange={(e) => setShop(e.target.value)}
+            >
+              {filteredShops.map((shop) => (
+                <option className="products-form-option" value={shop.id}>
+                  {shop.name}
+                </option>
+              ))}
+              <option className="products-form-option" value={null}>
+                No Shop
+              </option>
+            </select>
+          </label>
+        </>
+      ) : (
+        ""
+      )}
+      <label className="products-form-label">
+        CATEGORY
+        <select className="products-form-select" value={category} onChange={(e) => setCategory(e.target.value)}>
+          {categories.map((category) => (
+            <option className="products-form-option" value={category.id}>{category.name}</option>
+          ))}
         </select>
       </label>
-      <label>
-        SHOP
-        <input
-          type="number"
-          value={shop}
-          onChange={(e) => setShop(e.target.value)}
-        />
-      </label>
-      <label>
-        CATEGORY
-        <input
-          type="number"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-      </label>
-      <button>Submit</button>
+      <button className="products-form-button">Submit</button>
     </form>
   );
 };

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { thunkPostShop, thunkPutShop } from "../../store/shops";
-import { useDispatch } from "react-redux";
+import { thunkGetCategories } from "../../store/categories";
+import { useDispatch, useSelector } from "react-redux";
 import "./ShopForm.css";
 
 export const ShopForm = ({ shop, formType, id }) => {
@@ -12,6 +13,8 @@ export const ShopForm = ({ shop, formType, id }) => {
   const [policies, setPolicies] = useState(shop?.policies || "");
   const [category, setCategory] = useState(shop?.category_id || "");
   const [errors, setErrors] = useState({});
+  const categoriesObj = useSelector((state) => state.categories);
+  const categories = Object.values(categoriesObj);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,41 +42,54 @@ export const ShopForm = ({ shop, formType, id }) => {
     navigate("/shops");
   };
 
+  useEffect(() => {
+    dispatch(thunkGetCategories());
+  }, [dispatch]);
+
   return (
     <form onSubmit={handleSubmit} className="shops-form">
-      <label>
-        NAME:
+      <label className="shops-form-label">
+        NAME
         <input
+          className="shops-form-input"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label>
-        ABOUT:
+      <label className="shops-form-label">
+        ABOUT
         <input
+          className="shops-form-input"
           type="text"
           value={about}
           onChange={(e) => setAbout(e.target.value)}
         />
       </label>
-      <label>
-        POLICIES:
+      <label className="shops-form-label">
+        POLICIES
         <input
+          className="shops-form-input"
           type="text"
           value={policies}
           onChange={(e) => setPolicies(e.target.value)}
         />
       </label>
-      <label>
-        CATEGORY:
-        <input
-          type="number"
+      <label className="shops-form-label">
+        CATEGORY
+        <select
+          className="shops-form-select"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-        />
+        >
+          {categories.map((category) => (
+            <option className="shops-form-option" value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </label>
-      <button>Submit</button>
+      <button className="shops-form-button">Submit</button>
     </form>
   );
 };
