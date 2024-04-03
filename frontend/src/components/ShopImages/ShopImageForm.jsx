@@ -4,11 +4,32 @@ import { thunkGetShopImages, thunkPostShopImage } from "../../store/shopimages";
 import { useDispatch } from "react-redux";
 import OpenAI from "openai";
 
-const OPEN_API_KEY = process.env.OPEN_API_KEY;
-const openai = new OpenAI({
-  apiKey: OPEN_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+const keyFetch = async () => {
+  try {
+    const res = await csrfFetch("/api/productimages/api-key");
+    const key = await res.json();
+    return key;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const makeAi = async () => {
+  try {
+    const key = await keyFetch();
+    const openai = new OpenAI({
+      apiKey: key.key,
+      dangerouslyAllowBrowser: true,
+    });
+    return openai;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+makeAi()
+  .then((openai) => {})
+  .catch((error) => console.error(error));
 
 export const ShopImageForm = ({
   id,
@@ -39,6 +60,7 @@ export const ShopImageForm = ({
     e.preventDefault();
     if (!image) {
       isGenerating(true);
+      // let openai =  await makeAi()
       let generateImage = await openai.images.generate({
         model: "dall-e-3",
         prompt: `This is a shop called: ${name}, this is a description of the shop: ${about}`,
@@ -81,7 +103,8 @@ export const ShopImageForm = ({
       </form>
       <form onSubmit={handleSubmit}>
         <label>
-          Generate a unique image for this product based on it&apos;s description
+          Generate a unique image for this product based on it&apos;s
+          description
         </label>
         <button>Generate</button>
       </form>

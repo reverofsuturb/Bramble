@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const productsRouter = require("./products.js");
@@ -9,7 +8,6 @@ const categoriesRouter = require("./categories.js");
 const productImagesRouter = require("./productimages.js");
 const shopImagesRouter = require("./shopimages.js");
 const categoryImagesRouter = require("./categoryimages.js");
-
 const { restoreUser } = require("../../utils/auth.js");
 const { setTokenCookie } = require("../../utils/auth.js");
 const { User } = require("../../db/models");

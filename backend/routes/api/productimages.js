@@ -6,7 +6,7 @@ const {
   singlePublicFileUpload,
   blobUpload,
 } = require("../../awsS3");
-
+require("dotenv")
 // import models
 const {
   User,
@@ -22,6 +22,12 @@ const {
 router.get("/", async (req, res) => {
   const productImages = await ProductImage.findAll();
   return res.json(productImages);
+});
+
+const { OPEN_API_KEY } = process.env;
+
+router.get("/api-key", async (req, res) => {
+  res.json({ key: OPEN_API_KEY });
 });
 
 router.post("/fetchblob", [requireAuth], async (req, res) => {
