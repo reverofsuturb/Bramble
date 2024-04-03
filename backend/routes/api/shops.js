@@ -40,8 +40,6 @@ router.post("/new", async (req, res) => {
     name,
     about,
     policies,
-    items,
-    featured,
     category_id,
     user_id: user.id,
   });
@@ -58,8 +56,6 @@ router.put("/:id", async (req, res) => {
   shop.name = name || shop.name;
   shop.about = about || shop.about;
   shop.policies = policies || shop.policies;
-  shop.items = items || shop.items;
-  shop.featured = featured || shop.featured;
   shop.category_id = category_id || shop.category_id;
 
   await shop.save();

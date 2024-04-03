@@ -24,6 +24,14 @@ module.exports = {
       shipping: {
         type: Sequelize.STRING
       },
+      featured: {
+        allowNull: true,
+        type: Sequelize.BOOLEAN
+      },
+      shop_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
       category_id: {
         type: Sequelize.INTEGER
       },

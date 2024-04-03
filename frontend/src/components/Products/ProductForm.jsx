@@ -1,9 +1,6 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  thunkPostProduct,
-  thunkPutProduct,
-} from "../../store/products";
+import { thunkPostProduct, thunkPutProduct } from "../../store/products";
 import { useDispatch } from "react-redux";
 import "./ProductForm.css";
 
@@ -16,6 +13,8 @@ export const ProductForm = ({ product, formType, id }) => {
   const [details, setDetails] = useState(product?.details || "");
   const [shipping, setShipping] = useState(product?.shipping || "");
   const [category, setCategory] = useState(product?.category_id || "");
+  const [featured, setFeatured] = useState(product?.featured || "");
+  const [shop, setShop] = useState(product?.shop_id || "");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
@@ -27,6 +26,8 @@ export const ProductForm = ({ product, formType, id }) => {
       description,
       details,
       shipping,
+      featured,
+      shop_id: shop,
       category_id: category,
     };
     console.log(product);
@@ -42,7 +43,7 @@ export const ProductForm = ({ product, formType, id }) => {
         return setErrors(putProduct.errors);
       }
     }
-    navigate("/products")
+    navigate("/products");
   };
 
   return (
@@ -85,6 +86,21 @@ export const ProductForm = ({ product, formType, id }) => {
           type="text"
           value={shipping}
           onChange={(e) => setShipping(e.target.value)}
+        />
+      </label>
+      <label>
+        FEATURED
+        <select value={featured} onChange={(e) => setFeatured(e.target.value)}>
+          <option value={true}>True</option>
+          <option value={false}>False</option>
+        </select>
+      </label>
+      <label>
+        SHOP
+        <input
+          type="number"
+          value={shop}
+          onChange={(e) => setShop(e.target.value)}
         />
       </label>
       <label>

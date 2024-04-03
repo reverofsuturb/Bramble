@@ -18,12 +18,6 @@ module.exports = {
       policies: {
         type: Sequelize.STRING
       },
-      items: {
-        type: Sequelize.INTEGER
-      },
-      featured: {
-        type: Sequelize.INTEGER
-      },
       category_id: {
         type: Sequelize.INTEGER
       },

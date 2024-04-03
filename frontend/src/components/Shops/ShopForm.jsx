@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  thunkPostShop,
-  thunkPutShop,
-
-} from "../../store/shops";
+import { thunkPostShop, thunkPutShop } from "../../store/shops";
 import { useDispatch } from "react-redux";
 import "./ShopForm.css";
 
@@ -14,8 +10,6 @@ export const ShopForm = ({ shop, formType, id }) => {
   const [name, setName] = useState(shop?.name || "");
   const [about, setAbout] = useState(shop?.about || "");
   const [policies, setPolicies] = useState(shop?.policies || "");
-  const [items, setItems] = useState(shop?.items || "");
-  const [featured, setFeatured] = useState(shop?.featured || "");
   const [category, setCategory] = useState(shop?.category_id || "");
   const [errors, setErrors] = useState({});
 
@@ -42,7 +36,7 @@ export const ShopForm = ({ shop, formType, id }) => {
         return setErrors(putShop.errors);
       }
     }
-    navigate("/shops")
+    navigate("/shops");
   };
 
   return (
@@ -69,22 +63,6 @@ export const ShopForm = ({ shop, formType, id }) => {
           type="text"
           value={policies}
           onChange={(e) => setPolicies(e.target.value)}
-        />
-      </label>
-      <label>
-        ITEMS:
-        <input
-          type="number"
-          value={items}
-          onChange={(e) => setItems(e.target.value)}
-        />
-      </label>
-      <label>
-        FEATURED:
-        <input
-          type="number"
-          value={featured}
-          onChange={(e) => setFeatured(e.target.value)}
         />
       </label>
       <label>

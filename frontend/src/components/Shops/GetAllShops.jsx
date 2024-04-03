@@ -24,8 +24,6 @@ export const GetAllShops = () => {
           <div>{shop.name}</div>
           <div>{shop.about}</div>
           <div>{shop.policies}</div>
-          <div>{shop.items}</div>
-          <div>{shop.featured}</div>
           <div>{shop.category_id}</div>
           <Link to={`/shops/${shop.id}`}>EDIT</Link>
           <button onClick={() => dispatch(thunkDeleteShop(shop.id))}>

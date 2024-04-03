@@ -11,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       // Product.hasMany(models.Category, { foreignKey: "category_id" });
       Product.belongsTo(models.Category, { foreignKey: "category_id" });
       Product.belongsTo(models.User, { foreignKey: "user_id" });
-      Product.hasMany(models.Shop, { foreignKey: "items" });
-      Product.hasMany(models.Shop, { foreignKey: "featured" });
-      Product.hasMany(models.ProductImage, {foreignKey: "product_id"})
-      Product.hasMany(models.Review, {foreignKey: "product_id"})
+      Product.belongsTo(models.Shop, { foreignKey: "shop_id" });
+      Product.hasMany(models.ProductImage, { foreignKey: "product_id" });
+      Product.hasMany(models.Review, { foreignKey: "product_id" });
     }
   }
   Product.init(
@@ -24,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.STRING,
       details: DataTypes.STRING,
       shipping: DataTypes.STRING,
+      featured: DataTypes.BOOLEAN,
+      shop_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
     },

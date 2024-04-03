@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation/";
 import * as sessionActions from "./store/session";
 import { Modal } from "./context/Modal";
 
-import { GetAllProducts, PostProduct, PutProduct } from "./components/Products";
+import { GetAllProducts, PostProduct, ProductDetails, PutProduct } from "./components/Products";
 import { GetAllShops, PostShop, PutShop } from "./components/Shops";
 import { GetAllCategories } from "./components/Categories";
 
@@ -43,7 +43,8 @@ const router = createBrowserRouter([
         path: "/products/new",
         element: <PostProduct />,
       },
-      { path: "/products/:id", element: <PutProduct /> },
+      { path: "/products/:id/edit", element: <PutProduct /> },
+      { path: "/products/:id", element: <ProductDetails />},
       { path: "/shops", element: <GetAllShops /> },
       {
         path: "/shops/new",

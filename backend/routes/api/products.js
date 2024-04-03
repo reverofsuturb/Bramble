@@ -42,6 +42,8 @@ router.post("/new", async (req, res) => {
     description,
     details,
     shipping,
+    featured,
+    shop_id,
     category_id,
     user_id: user.id,
   });
@@ -61,6 +63,8 @@ router.put("/:id", async (req, res) => {
   product.description = description || product.description;
   product.details = details || product.details;
   product.shipping = shipping || product.shipping;
+  product.featured = featured || product.featured;
+  product.shop_id = shop_id || product.shop_id;
   product.category_id = category_id || product.category_id;
   await product.save();
   res.json(product);

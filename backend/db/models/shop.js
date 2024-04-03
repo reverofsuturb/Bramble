@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Shop.belongsTo(models.Category, { foreignKey: "category_id" });
       Shop.belongsTo(models.User, { foreignKey: "user_id" });
-      Shop.belongsTo(models.Product, { foreignKey: "items" });
-      Shop.belongsTo(models.Product, { foreignKey: "featured" });
+      Shop.hasMany(models.Product, { foreignKey: "shop_id" });
       Shop.hasMany(models.ShopImage, { foreignKey: "shop_id" });
       Shop.hasMany(models.Review, { foreignKey: "shop_id" });
     }
@@ -21,8 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       about: DataTypes.STRING,
       policies: DataTypes.STRING,
-      items: DataTypes.INTEGER,
-      featured: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
     },

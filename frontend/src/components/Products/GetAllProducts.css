@@ -19,8 +19,13 @@
 
 .products-gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 1rem;
   grid-template-rows: auto;
+  justify-content: center;
+  gap: 5px;
+  width: 1400px;
+  margin: auto;
 }
 
 .products-allimage {
