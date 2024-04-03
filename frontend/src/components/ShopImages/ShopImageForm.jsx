@@ -28,10 +28,10 @@ const makeAi = async () => {
 };
 
 makeAi()
-  .then((openai) => {
-    console.log(openai);
-  })
-  .catch((error) => console.error(error));
+  // .then((openai) => {
+  //   console.log(openai);
+  // })
+  // .catch((error) => console.error(error));
 
 export const ShopImageForm = ({
   id,
