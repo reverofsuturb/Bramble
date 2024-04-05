@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { thunkPostProduct, thunkPutProduct } from "../../store/products";
 import { thunkGetShops } from "../../store/shops";
 import { thunkGetCategories } from "../../store/categories";
@@ -154,7 +154,10 @@ export const ProductForm = ({ product, formType, id }) => {
           </label>
         </>
       ) : (
-        ""
+        <Link className="products-form-link" to="/shops/new">
+          Look's like you haven't made any shops to include a product in, if you
+          would like to make a shop first click anywhere in this text
+        </Link>
       )}
       <label className="products-form-label">
         CATEGORY

@@ -69,7 +69,10 @@ export const ProductDetails = () => {
         </div>
       </div>
       <div className="prodetails-utilities">
-        {generating || uploading || product?.ProductImages?.length || product?.user_id != user.id ? (
+        {generating ||
+        uploading ||
+        product?.ProductImages?.length ||
+        product?.user_id != user.id ? (
           ""
         ) : (
           <ProductImageForm
@@ -111,8 +114,10 @@ export const ProductDetails = () => {
       </div>
       {reviewFind || product?.user_id == user?.id ? (
         ""
-      ) : (
+      ) : user ? (
         <PostReview id={product?.id} idType={idType} />
+      ) : (
+        ""
       )}
       <div>
         {product?.Reviews?.length ? "Reviews:" : ""}

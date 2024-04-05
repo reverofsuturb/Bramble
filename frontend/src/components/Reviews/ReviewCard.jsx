@@ -14,7 +14,7 @@ export const ReviewCard = ({ id, review, idType }) => {
       <div>user_id: {review.user_id}</div>
       <div>{`product_id: ${review.product_id}`}</div>
       <div>{`shop_id: ${review.shop_id}`}</div>
-      {user.id === review.user_id ? (
+      {user && user.id === review.user_id ? (
         <>
           <PutReview id={id} idType={idType} review={review} />
           <OpenModalButton

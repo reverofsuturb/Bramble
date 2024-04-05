@@ -61,6 +61,15 @@
   justify-content: space-between;
 }
 
+.products-button-filter {
+  margin: 10px;
+  width: 174px;
+}
+
+.products-button-filter:hover {
+  box-shadow: 5px 5px 5px #28b599;
+}
+
 @media screen and (max-width: 1300px) {
   .products-gallery {
     display: grid;

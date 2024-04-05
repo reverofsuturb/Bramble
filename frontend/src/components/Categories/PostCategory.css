@@ -1,0 +1,8 @@
+.category-post-button {
+  margin: 10px;
+  width: 174px;
+}
+
+.category-post-button:hover {
+  box-shadow: 5px 5px 5px #28b599;
+}

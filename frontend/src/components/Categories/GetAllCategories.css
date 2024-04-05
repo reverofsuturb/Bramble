@@ -40,6 +40,15 @@
   margin: 10px;
 }
 
+.categories-button-filter {
+  margin: 10px;
+  width: 174px;
+}
+
+.categories-button-filter:hover {
+  box-shadow: 5px 5px 5px #28b599;
+}
+
 @media screen and (max-width: 1300px) {
   .categories-gallery {
     display: grid;

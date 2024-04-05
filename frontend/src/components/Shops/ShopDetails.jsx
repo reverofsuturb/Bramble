@@ -51,7 +51,10 @@ export const ShopDetails = () => {
       </div>
       {shop?.user_id == user?.id ? (
         <div className="shopdetails-utilities">
-          {generating || uploading || shop?.ShopImages?.length || shop?.user_id != user.id ? (
+          {generating ||
+          uploading ||
+          shop?.ShopImages?.length ||
+          shop?.user_id != user.id ? (
             ""
           ) : (
             <ShopImageForm
@@ -90,8 +93,10 @@ export const ShopDetails = () => {
       )}
       {reviewFind || shop?.user_id == user?.id ? (
         ""
-      ) : (
+      ) : user ? (
         <PostReview id={shop?.id} idType={idType} />
+      ) : (
+        ""
       )}
       <div>
         {shop?.Reviews?.length ? "Reviews:" : ""}
