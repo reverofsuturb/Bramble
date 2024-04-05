@@ -26,6 +26,7 @@ module.exports = {
             model: "Shops",
             key: "id",
           },
+          onDelete: 'CASCADE'
         },
         createdAt: {
           allowNull: false,

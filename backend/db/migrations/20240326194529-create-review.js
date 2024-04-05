@@ -29,6 +29,7 @@ module.exports = {
             model: "Users",
             key: "id",
           },
+          onDelete: "CASCADE",
         },
         product_id: {
           allowNull: true,
@@ -37,6 +38,7 @@ module.exports = {
             model: "Products",
             key: "id",
           },
+          onDelete: "CASCADE",
         },
         shop_id: {
           allowNull: true,
@@ -45,6 +47,7 @@ module.exports = {
             model: "Shops",
             key: "id",
           },
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,

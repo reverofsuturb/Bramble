@@ -27,11 +27,13 @@ module.exports = {
           type: Sequelize.STRING,
         },
         category_id: {
+          allowNull: true,
           type: Sequelize.INTEGER,
           references: {
             model: "Categories",
             key: "id",
           },
+          onDelete: "SET NULL",
         },
         user_id: {
           type: Sequelize.INTEGER,
@@ -39,6 +41,7 @@ module.exports = {
             model: "Users",
             key: "id",
           },
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,
