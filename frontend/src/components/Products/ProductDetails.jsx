@@ -24,7 +24,7 @@ export const ProductDetails = () => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
   const reviewFind = product?.Reviews?.find(
-    (review) => (review.user_id = user?.id)
+    (review) => review.user_id == user?.id
   );
   useEffect(() => {
     dispatch(thunkGetProducts());
@@ -122,12 +122,7 @@ export const ProductDetails = () => {
       <div>
         {product?.Reviews?.length ? "Reviews:" : ""}
         {product?.Reviews?.map((review) => (
-          <ReviewCard
-            key={review?.id}
-            review={review}
-            id={product?.id}
-            idType={idType}
-          />
+          <ReviewCard key={review?.id} id={id} review={review} idType={idType} />
         ))}
       </div>
     </div>

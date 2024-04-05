@@ -22,7 +22,7 @@ export const ShopDetails = () => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
   };
   const reviewFind = shop?.Reviews?.find(
-    (review) => (review.user_id = user?.id)
+    (review) => (review.user_id == user?.id)
   );
 
   useEffect(() => {
