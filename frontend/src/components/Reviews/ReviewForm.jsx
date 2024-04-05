@@ -76,7 +76,9 @@ export const ReviewForm = ({
         Rating:
         <select onChange={(e) => setRating(e.target.value)}>
           {rate.map((rat) => (
-            <option value={rat}>{rat}</option>
+            <option key={rat.id} value={rat}>
+              {rat}
+            </option>
           ))}
         </select>
       </label>

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { thunkGetProducts } from "../../store/products";
 import { thunkGetProductImages } from "../../store/productimages";
@@ -13,12 +13,9 @@ import "./ProductDetails.css";
 
 export const ProductDetails = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const product = useSelector((state) => state.products[id]);
   const user = useSelector((state) => state.session.user);
-  const reviewsObj = useSelector((state) => state.reviews);
-  const reviews = Object.values(reviewsObj);
   const idType = "product";
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);

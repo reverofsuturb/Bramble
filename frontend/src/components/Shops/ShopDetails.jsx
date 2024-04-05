@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { thunkGetShops, thunkDeleteShop } from "../../store/shops";
+import { thunkGetShops } from "../../store/shops";
 import { thunkGetShopImages } from "../../store/shopimages";
 import { ShopImageForm } from "../ShopImages/ShopImageForm";
 import { PostReview } from "../Reviews/PostReview";
@@ -12,7 +12,6 @@ import "./ShopDetails.css";
 
 export const ShopDetails = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const shop = useSelector((state) => state.shops[id]);
   const user = useSelector((state) => state.session.user);

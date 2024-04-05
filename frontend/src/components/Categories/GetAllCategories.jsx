@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  thunkGetCategories,
-  thunkDeleteCategory,
-} from "../../store/categories";
+import { thunkGetCategories } from "../../store/categories";
 import { PutCategory } from "./PutCategory";
 import { PostCategory } from "./PostCategory";
 import OpenModalButton from "../OpenModalButton";
