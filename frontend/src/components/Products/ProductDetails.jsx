@@ -72,7 +72,7 @@ export const ProductDetails = () => {
         {generating ||
         uploading ||
         product?.ProductImages?.length ||
-        product?.user_id != user.id ? (
+        product?.user_id != user?.id ? (
           ""
         ) : (
           <ProductImageForm
@@ -98,14 +98,14 @@ export const ProductDetails = () => {
         ) : (
           ""
         )}
-        {user?.id == product.user_id ? (
+        {user?.id == product?.user_id ? (
           <div>
             <Link to={`/products/${product?.id}/edit`}>
               <button className="prodetails-button">EDIT PRODUCT</button>
             </Link>
             <OpenModalButton
               buttonText={"DELETE PRODUCT"}
-              modalComponent={<DeleteProduct id={product.id} />}
+              modalComponent={<DeleteProduct id={product?.id} />}
             />{" "}
           </div>
         ) : (
@@ -122,7 +122,12 @@ export const ProductDetails = () => {
       <div>
         {product?.Reviews?.length ? "Reviews:" : ""}
         {product?.Reviews?.map((review) => (
-          <ReviewCard key={review?.id} id={id} review={review} idType={idType} />
+          <ReviewCard
+            key={review?.id}
+            id={id}
+            review={review}
+            idType={idType}
+          />
         ))}
       </div>
     </div>

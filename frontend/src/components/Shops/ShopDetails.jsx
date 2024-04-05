@@ -54,7 +54,7 @@ export const ShopDetails = () => {
           {generating ||
           uploading ||
           shop?.ShopImages?.length ||
-          shop?.user_id != user.id ? (
+          shop?.user_id != user?.id ? (
             ""
           ) : (
             <ShopImageForm
