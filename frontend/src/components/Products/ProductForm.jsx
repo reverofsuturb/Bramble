@@ -155,7 +155,7 @@ export const ProductForm = ({ product, formType, id }) => {
         </>
       ) : (
         <Link className="products-form-link" to="/shops/new">
-          Look's like you haven't made any shops to include a product in, if you
+          Look&apos;s like you haven&apos;t made any shops to include a product in, if you
           would like to make a shop first click anywhere in this text
         </Link>
       )}

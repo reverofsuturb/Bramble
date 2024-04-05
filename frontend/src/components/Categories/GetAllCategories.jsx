@@ -15,7 +15,7 @@ export const GetAllCategories = () => {
   const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
   const myCategories = categories?.filter(
-    (category) => categories?.user_id === user?.id
+    (category) => category?.user_id === user?.id
   );
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const GetAllCategories = () => {
               </div>
             ))
           ) : (
-            <h2>You haven't made any categories yet!</h2>
+            <h2>You haven&apos;t made any categories yet!</h2>
           )
         ) : (
           categories?.map((category) => (

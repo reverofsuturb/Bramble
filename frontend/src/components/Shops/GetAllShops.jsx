@@ -62,7 +62,7 @@ export const GetAllShops = () => {
               </Link>
             ))
           ) : (
-            <h2> You haven't made any shops yet!</h2>
+            <h2> You haven&apos;t made any shops yet!</h2>
           )
         ) : (
           shops?.map((shop) => (

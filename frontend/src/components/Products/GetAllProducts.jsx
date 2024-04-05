@@ -83,7 +83,7 @@ export const GetAllProducts = () => {
               </Link>
             ))
           ) : (
-            <h2> You haven't made any products yet!</h2>
+            <h2> You haven&apos;t made any products yet!</h2>
           )
         ) : (
           products?.map((product) => (
