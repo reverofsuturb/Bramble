@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   margin: 8px;
+  height: 417.5px;
   width: 350px;
   padding: 10px;
   background-color: grey;
@@ -42,6 +43,7 @@
   width: 327.5px;
 }
 
+.shops-text,
 .shops-name {
   overflow: hidden;
   text-overflow: ellipsis;

@@ -55,8 +55,11 @@ export const GetAllShops = () => {
                       Rating:{" "}
                       {shop?.Reviews?.length ? getRating(shop) : "Not Rated"}
                     </div>
-                    <div>Policies: {shop?.policies}</div>
-                    <div>Category: {shop?.Category?.name}</div>
+                    <div className="shops-text">Policies: {shop?.policies}</div>
+                    <div>
+                      {shop?.Category?.name &&
+                        `Category: ${shop?.Category?.name}`}
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -82,8 +85,10 @@ export const GetAllShops = () => {
                     Rating:{" "}
                     {shop?.Reviews?.length ? getRating(shop) : "Not Rated"}
                   </div>
-                  <div>Policies: {shop?.policies}</div>
-                  <div>Category: {shop?.Category?.name}</div>
+                  <div className="shops-text">Policies: {shop?.policies}</div>
+                  <div>
+                    {shop?.Category?.name && `Category: ${shop?.Category?.name}`}
+                  </div>
                 </div>
               </div>
             </Link>

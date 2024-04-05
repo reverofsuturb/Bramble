@@ -28,7 +28,10 @@ export const GetAllProducts = () => {
   return (
     <div className="products-button-div">
       {user && (
-        <button className= "products-button-filter" onClick={() => setUserProducts(!userProducts)}>
+        <button
+          className="products-button-filter"
+          onClick={() => setUserProducts(!userProducts)}
+        >
           {userProducts ? "Show All Products" : "Show Only Your Products"}
         </button>
       )}
@@ -77,7 +80,9 @@ export const GetAllProducts = () => {
                         ""
                       )}
                     </div>
-                    <div>{product?.Category?.name}</div>
+                    <div className="products-text">
+                      {product?.Category?.name && `${product?.Category?.name}`}
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -128,7 +133,9 @@ export const GetAllProducts = () => {
                       ""
                     )}
                   </div>
-                  <div>{product?.Category?.name}</div>
+                  <div className="products-text">
+                    {product?.Category?.name && `${product?.Category?.name}`}
+                  </div>
                 </div>
               </div>
             </Link>

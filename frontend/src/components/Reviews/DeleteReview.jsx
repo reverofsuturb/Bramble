@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkDeleteReview } from "../../store/reviews";
 import { thunkGetProducts } from "../../store/products";
+import { thunkGetShops } from "../../store/shops";
 import "./DeleteReview.css";
 
 export const DeleteReview = ({ id }) => {
@@ -16,6 +17,7 @@ export const DeleteReview = ({ id }) => {
         onClick={() => {
           dispatch(thunkDeleteReview(id));
           dispatch(thunkGetProducts());
+          dispatch(thunkGetShops());
           closeModal();
         }}
       >
