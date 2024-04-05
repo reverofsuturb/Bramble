@@ -69,7 +69,7 @@ export const ProductDetails = () => {
         </div>
       </div>
       <div className="prodetails-utilities">
-        {generating || uploading || product?.ProductImages?.length ? (
+        {generating || uploading || product?.ProductImages?.length || product?.user_id != user.id ? (
           ""
         ) : (
           <ProductImageForm
