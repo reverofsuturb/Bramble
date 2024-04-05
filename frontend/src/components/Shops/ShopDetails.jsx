@@ -17,18 +17,19 @@ export const ShopDetails = () => {
   const user = useSelector((state) => state.session.user);
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
+  const [deleting, isDeleting] = useState(false);
   const idType = "shop";
   const getRating = (shop) => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
   };
   const reviewFind = shop?.Reviews?.find(
-    (review) => (review.user_id == user?.id)
+    (review) => review.user_id == user?.id
   );
 
   useEffect(() => {
     dispatch(thunkGetShops());
     dispatch(thunkGetShopImages());
-  }, [dispatch, id, generating, uploading]);
+  }, [dispatch, id, generating, uploading, deleting]);
 
   if (!shop) return <></>;
   return (
@@ -85,7 +86,7 @@ export const ShopDetails = () => {
           </Link>
           <OpenModalButton
             buttonText={"DELETE SHOP"}
-            modalComponent={<DeleteShop id={shop.id} />}
+            modalComponent={<DeleteShop id={shop.id} isDeleting={isDeleting} />}
           />
         </div>
       ) : (

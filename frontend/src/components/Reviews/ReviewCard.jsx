@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { DeleteReview } from "./DeleteReview";
 import { PutReview } from "./PutReview";
 import OpenModalButton from "../OpenModalButton";
@@ -5,7 +6,8 @@ import { useSelector } from "react-redux";
 
 export const ReviewCard = ({ id, review, idType }) => {
   const user = useSelector((state) => state.session.user);
-
+  const [deleting, isDeleting] = useState(false);
+  console.log(deleting);
   return (
     <div className="reviews-container" key={review.id}>
       <div>id: {review.id}</div>
@@ -19,7 +21,9 @@ export const ReviewCard = ({ id, review, idType }) => {
           <PutReview id={id} idType={idType} review={review} />
           <OpenModalButton
             buttonText={"DELETE"}
-            modalComponent={<DeleteReview id={review.id} />}
+            modalComponent={
+              <DeleteReview id={review.id} isDeleting={isDeleting} />
+            }
           />
         </>
       ) : (

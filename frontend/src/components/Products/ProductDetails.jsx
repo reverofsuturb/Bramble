@@ -19,7 +19,7 @@ export const ProductDetails = () => {
   const idType = "product";
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
-
+  const [deleting, isDeleting] = useState(false);
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
@@ -30,7 +30,7 @@ export const ProductDetails = () => {
     dispatch(thunkGetProducts());
     dispatch(thunkGetProductImages());
     dispatch(thunkGetReviews());
-  }, [dispatch, id, generating, uploading]);
+  }, [dispatch, id, generating, uploading, deleting]);
 
   if (!product) return <></>;
   return (
@@ -105,7 +105,7 @@ export const ProductDetails = () => {
             </Link>
             <OpenModalButton
               buttonText={"DELETE PRODUCT"}
-              modalComponent={<DeleteProduct id={product?.id} />}
+              modalComponent={<DeleteProduct id={product?.id} isDeleting={isDeleting}/>}
             />{" "}
           </div>
         ) : (
