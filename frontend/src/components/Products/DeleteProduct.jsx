@@ -4,7 +4,7 @@ import { thunkGetProducts, thunkDeleteProduct } from "../../store/products";
 import { useNavigate } from "react-router-dom";
 import "./DeleteProduct.css";
 
-export const DeleteProduct = ({ id }) => {
+export const DeleteProduct = ({ id, isDeleting }) => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const navigate = useNavigate();
