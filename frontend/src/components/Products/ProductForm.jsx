@@ -138,6 +138,9 @@ export const ProductForm = ({ product, formType, id }) => {
               value={shop}
               onChange={(e) => setShop(e.target.value)}
             >
+              <option className="products-form-option" value="">
+                None
+              </option>
               {filteredShops?.map((shop) => (
                 <option
                   key={shop.id}
@@ -147,9 +150,6 @@ export const ProductForm = ({ product, formType, id }) => {
                   {shop.name}
                 </option>
               ))}
-              <option className="products-form-option" value={null}>
-                No Shop
-              </option>
             </select>
           </label>
         </>

@@ -84,7 +84,7 @@ router.delete("/:id", requireAuth, async (req, res) => {
   if (shop.user_id != user.id)
     return res.status(403).json({ message: "Forbidden" });
 
-  await shop.destoy();
+  await shop.destroy();
   res.json({ message: `Deleted Shop with id: ${req.params.id}` });
 });
 

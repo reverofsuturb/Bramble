@@ -6,6 +6,8 @@ import { thunkGetShopImages } from "../../store/shopimages";
 import { ShopImageForm } from "../ShopImages/ShopImageForm";
 import { PostReview } from "../Reviews/PostReview";
 import { ReviewCard } from "../Reviews/ReviewCard";
+import { DeleteShop } from "./DeleteShop";
+import OpenModalButton from "../OpenModalButton";
 import "./ShopDetails.css";
 
 export const ShopDetails = () => {
@@ -17,10 +19,12 @@ export const ShopDetails = () => {
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
   const idType = "shop";
-  console.log(isGenerating);
   const getRating = (shop) => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
   };
+  const reviewFind = shop?.Reviews?.find(
+    (review) => (review.user_id = user?.id)
+  );
 
   useEffect(() => {
     dispatch(thunkGetShops());
@@ -77,20 +81,19 @@ export const ShopDetails = () => {
           <Link to={`/shops/${shop?.id}/edit`}>
             <button className="shopdetails-button">EDIT SHOP</button>
           </Link>
-          <button
-            className="shopdetails-button"
-            onClick={() => {
-              dispatch(thunkDeleteShop(shop.id));
-              navigate("/shops");
-            }}
-          >
-            DELETE SHOP
-          </button>
+          <OpenModalButton
+            buttonText={"DELETE SHOP"}
+            modalComponent={<DeleteShop id={shop.id} />}
+          />
         </div>
       ) : (
         ""
       )}
-      <PostReview id={shop?.id} idType={idType} />
+      {reviewFind || shop?.user_id == user?.id ? (
+        ""
+      ) : (
+        <PostReview id={shop?.id} idType={idType} />
+      )}
       <div>
         {shop?.Reviews?.length ? "Reviews:" : ""}
         {shop?.Reviews?.map((review) => (

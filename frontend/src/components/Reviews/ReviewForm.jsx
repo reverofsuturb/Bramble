@@ -16,6 +16,7 @@ export const ReviewForm = ({
   const [body, setBody] = useState(review?.body || "");
   const [rating, setRating] = useState(review?.rating || "");
   const [errors, setErrors] = useState({});
+  let rate = [1, 2, 3, 4, 5];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,11 +74,11 @@ export const ReviewForm = ({
       {errors.body && <p className="error">{errors.body}</p>}
       <label>
         Rating:
-        <input
-          type="number"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        />
+        <select onChange={(e) => setRating(e.target.value)}>
+          {rate.map((rat) => (
+            <option value={rat}>{rat}</option>
+          ))}
+        </select>
       </label>
       {errors.rating && <p className="error">{errors.rating}</p>}
       <button>Submit</button>

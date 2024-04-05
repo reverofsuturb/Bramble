@@ -22,7 +22,9 @@ export const CategoryProductsById = () => {
   }, [dispatch, id]);
 
   if (!category?.Products?.length)
-    return <div>Oh no! We don&apos;t have any {category?.name} products yet!</div>;
+    return (
+      <div>Oh no! We don&apos;t have any {category?.name} products yet!</div>
+    );
   return (
     <div className="category-products-gallery">
       <div className="category-name">{category.name}</div>
@@ -35,24 +37,31 @@ export const CategoryProductsById = () => {
           <div className="category-products-container">
             <img
               className="category-products-allimage"
-              src={product?.ProductImages[0]?.image || "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"}
+              src={
+                product?.ProductImages[0]?.image ||
+                "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+              }
             />
             <div className="category-products-container-text">
               <div className="category-products-name">{product.name}</div>
-              <div>${product.price.toFixed(2)}</div>
+              <div>${product?.price.toFixed(2)}</div>
               <div className="category-products-review-shop">
                 <div>
                   {product.Reviews?.length ? getRating(product) : "Not Rated"}
                 </div>
-                <div>
-                  Visit{" "}
-                  <Link
-                    className="category-products-link-shop"
-                    to={`/shops/${product.Shop.id}`}
-                  >
-                    {product.Shop.name}
-                  </Link>
-                </div>
+                {product?.Shop?.id ? (
+                  <div>
+                    Visit{" "}
+                    <Link
+                      className="category-products-link-shop"
+                      to={`/shops/${product.Shop.id}`}
+                    >
+                      {product.Shop.name}
+                    </Link>
+                  </div>
+                ) : (
+                  " "
+                )}
               </div>
             </div>
           </div>

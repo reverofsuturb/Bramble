@@ -17,6 +17,13 @@ const {
 
 const { validateReview } = require("../../utils/validation");
 
+
+
+router.get("/", async (req, res) => {
+  reviews = await Review.findAll()
+  res.json(reviews)
+})
+
 // get all reviews associated with id
 // need to decide if this is dynamically implementable this way as not really following rest convention
 router.get("/:id", async (req, res) => {

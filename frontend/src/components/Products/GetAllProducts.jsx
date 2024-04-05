@@ -37,24 +37,28 @@ export const GetAllProducts = () => {
             />
             <div className="products-container-text">
               <div className="products-name">{product.name}</div>
-              <div>${product.price.toFixed(2)}</div>
+              <div>${product?.price.toFixed(2)}</div>
               <div className="products-review-shop">
                 <div>
                   {product?.Reviews?.length ? getRating(product) : "Not Rated"}
                 </div>
-                <div>
-                  Visit{" "}
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      navigate(`/shops/${product?.Shop?.id}`);
-                    }}
-                    className="products-link-shop"
-                  >
-                    {product?.Shop?.name}
-                  </span>
-                </div>
+                {product?.Shop?.id ? (
+                  <div>
+                    Visit{" "}
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        navigate(`/shops/${product?.Shop?.id}`);
+                      }}
+                      className="products-link-shop"
+                    >
+                      {product?.Shop?.name}
+                    </span>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div>{product?.Category?.name}</div>
             </div>

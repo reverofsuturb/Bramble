@@ -7,7 +7,9 @@ import {
 } from "../../store/categories";
 import { PutCategory } from "./PutCategory";
 import { PostCategory } from "./PostCategory";
+import OpenModalButton from "../OpenModalButton";
 import "./GetAllCategories.css";
+import { DeleteCategory } from "./DeleteCategory";
 
 export const GetAllCategories = () => {
   const dispatch = useDispatch();
@@ -37,11 +39,10 @@ export const GetAllCategories = () => {
             {category.user_id === user?.id ? (
               <div className="categories-utilities">
                 <PutCategory id={category.id} category={category} />
-                <button
-                  onClick={() => dispatch(thunkDeleteCategory(category.id))}
-                >
-                  DELETE
-                </button>
+                <OpenModalButton
+                  buttonText={"DELETE CATEGORY"}
+                  modalComponent={<DeleteCategory id={category.id} />}
+                />
               </div>
             ) : (
               " "

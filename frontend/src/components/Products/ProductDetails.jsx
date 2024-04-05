@@ -1,11 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { thunkGetProducts, thunkDeleteProduct } from "../../store/products";
+import { thunkGetProducts } from "../../store/products";
 import { thunkGetProductImages } from "../../store/productimages";
+import { thunkGetReviews } from "../../store/reviews";
 import { ProductImageForm } from "../ProductImages/ProductImageForm";
+import { DeleteProduct } from "./DeleteProduct";
 import { PostReview } from "../Reviews/PostReview";
 import { ReviewCard } from "../Reviews/ReviewCard";
+import OpenModalButton from "../OpenModalButton";
 import "./ProductDetails.css";
 
 export const ProductDetails = () => {
@@ -14,6 +17,8 @@ export const ProductDetails = () => {
   const { id } = useParams();
   const product = useSelector((state) => state.products[id]);
   const user = useSelector((state) => state.session.user);
+  const reviewsObj = useSelector((state) => state.reviews);
+  const reviews = Object.values(reviewsObj);
   const idType = "product";
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
@@ -24,10 +29,10 @@ export const ProductDetails = () => {
   const reviewFind = product?.Reviews?.find(
     (review) => (review.user_id = user?.id)
   );
-
   useEffect(() => {
     dispatch(thunkGetProducts());
     dispatch(thunkGetProductImages());
+    dispatch(thunkGetReviews());
   }, [dispatch, id, generating, uploading]);
 
   if (!product) return <></>;
@@ -43,20 +48,24 @@ export const ProductDetails = () => {
           }
         />
         <div className="prodetails-container-text">
-          <div>${product.price.toFixed(2)}</div>
+          <div>${product?.price.toFixed(2)}</div>
           <div className="prodetails-name">{product?.name}</div>
           <div>
             {product?.Reviews?.length ? getRating(product) : "Not Rated"}
           </div>
-          <div>
-            Visit{" "}
-            <Link
-              className="prodetails-link-shop"
-              to={`/shops/${product?.Shop?.id}`}
-            >
-              {product?.Shop?.name}
-            </Link>
-          </div>
+          {product?.Shop?.id ? (
+            <div>
+              Visit{" "}
+              <Link
+                className="category-products-link-shop"
+                to={`/shops/${product?.Shop?.id}`}
+              >
+                {product?.Shop?.name}
+              </Link>
+            </div>
+          ) : (
+            " "
+          )}
           <div>{product?.description}</div>
           <div>{product?.details}</div>
           <div>{product?.shipping}</div>
@@ -89,20 +98,25 @@ export const ProductDetails = () => {
         ) : (
           ""
         )}
-        <Link to={`/products/${product?.id}/edit`}>
-          <button className="prodetails-button">EDIT PRODUCT</button>
-        </Link>
-        <button
-          className="prodetails-button"
-          onClick={() => {
-            dispatch(thunkDeleteProduct(product?.id));
-            navigate("/products");
-          }}
-        >
-          DELETE PRODUCT
-        </button>
+        {user?.id == product.user_id ? (
+          <div>
+            <Link to={`/products/${product?.id}/edit`}>
+              <button className="prodetails-button">EDIT PRODUCT</button>
+            </Link>
+            <OpenModalButton
+              buttonText={"DELETE PRODUCT"}
+              modalComponent={<DeleteProduct id={product.id} />}
+            />{" "}
+          </div>
+        ) : (
+          " "
+        )}
       </div>
-      {reviewFind ? "" : <PostReview id={product?.id} idType={idType} />}
+      {reviewFind || product?.user_id == user?.id ? (
+        ""
+      ) : (
+        <PostReview id={product?.id} idType={idType} />
+      )}
       <div>
         {product?.Reviews?.length ? "Reviews:" : ""}
         {product?.Reviews?.map((review) => (
