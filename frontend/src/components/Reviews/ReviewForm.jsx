@@ -56,9 +56,9 @@ export const ReviewForm = ({
         }
       }
     }
-    setEditing(false);
     dispatch(thunkGetProducts());
     dispatch(thunkGetShops());
+    setEditing(false);
   };
 
   return (

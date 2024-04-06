@@ -26,10 +26,12 @@ export const ShopDetails = () => {
     (review) => review.user_id == user?.id
   );
 
+  let shopLength = shop?.Reviews?.length
+
   useEffect(() => {
     dispatch(thunkGetShops());
     dispatch(thunkGetShopImages());
-  }, [dispatch, id, generating, uploading, deleting]);
+  }, [dispatch, id, generating, uploading, deleting, shopLength]);
 
   if (!shop) return <></>;
   return (
