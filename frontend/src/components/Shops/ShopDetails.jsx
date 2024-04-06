@@ -101,14 +101,14 @@ export const ShopDetails = () => {
       )}
       <div>
         {shop?.Reviews?.length ? "Reviews:" : ""}
-        {shop?.Reviews?.map((review) => (
+        {shop?.Reviews?.length ? shop?.Reviews?.map((review) => (
           <ReviewCard
             key={review.id}
             review={review}
             id={shop.id}
             idType={idType}
           />
-        ))}
+        )) : ""}
       </div>
       <div className="shopdetails-gallery-products">
         {shop?.Products?.map((product) => (

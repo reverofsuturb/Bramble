@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { thunkGetProducts } from "../../store/products";
 import { thunkGetProductImages } from "../../store/productimages";
-import { thunkGetReviews } from "../../store/reviews";
 import { ProductImageForm } from "../ProductImages/ProductImageForm";
 import { DeleteProduct } from "./DeleteProduct";
 import { PostReview } from "../Reviews/PostReview";
@@ -29,7 +28,6 @@ export const ProductDetails = () => {
   useEffect(() => {
     dispatch(thunkGetProducts());
     dispatch(thunkGetProductImages());
-    dispatch(thunkGetReviews());
   }, [dispatch, id, generating, uploading, deleting]);
 
   if (!product) return <></>;
@@ -105,7 +103,9 @@ export const ProductDetails = () => {
             </Link>
             <OpenModalButton
               buttonText={"DELETE PRODUCT"}
-              modalComponent={<DeleteProduct id={product?.id} isDeleting={isDeleting}/>}
+              modalComponent={
+                <DeleteProduct id={product?.id} isDeleting={isDeleting} />
+              }
             />{" "}
           </div>
         ) : (
@@ -121,14 +121,16 @@ export const ProductDetails = () => {
       )}
       <div>
         {product?.Reviews?.length ? "Reviews:" : ""}
-        {product?.Reviews?.map((review) => (
-          <ReviewCard
-            key={review?.id}
-            id={id}
-            review={review}
-            idType={idType}
-          />
-        ))}
+        {product?.Reviews?.length
+          ? product?.Reviews?.map((review) => (
+              <ReviewCard
+                key={review?.id}
+                id={id}
+                review={review}
+                idType={idType}
+              />
+            ))
+          : ""}
       </div>
     </div>
   );
