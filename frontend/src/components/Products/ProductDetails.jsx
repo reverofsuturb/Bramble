@@ -22,13 +22,15 @@ export const ProductDetails = () => {
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
+  let revLength = product?.Reviews?.length;
+  console.log(revLength);
   const reviewFind = product?.Reviews?.find(
     (review) => review.user_id == user?.id
   );
   useEffect(() => {
     dispatch(thunkGetProducts());
     dispatch(thunkGetProductImages());
-  }, [dispatch, id, generating, uploading, deleting]);
+  }, [dispatch, id, generating, uploading, deleting, revLength]);
 
   if (!product) return <></>;
   return (
@@ -121,14 +123,9 @@ export const ProductDetails = () => {
       )}
       <div>
         {product?.Reviews?.length ? "Reviews:" : ""}
-        {product?.Reviews?.length
+        {!deleting && product?.Reviews?.length
           ? product?.Reviews?.map((review) => (
-              <ReviewCard
-                key={review?.id}
-                id={id}
-                review={review}
-                idType={idType}
-              />
+              <ReviewCard key={review.id} id={id} review={review} idType={idType} />
             ))
           : ""}
       </div>
