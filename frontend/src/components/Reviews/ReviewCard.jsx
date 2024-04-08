@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { DeleteReview } from "./DeleteReview";
 import { PutReview } from "./PutReview";
 import OpenModalButton from "../OpenModalButton";
