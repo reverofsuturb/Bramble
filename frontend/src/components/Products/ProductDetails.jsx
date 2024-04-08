@@ -18,7 +18,8 @@ export const ProductDetails = () => {
   const idType = "product";
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
-  const [deleting, isDeleting] = useState(false);
+  const [deleting, isDeleting] = useState("");
+  console.log(deleting, " DEEEEEELEEEEETIIIINGG ")
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
@@ -30,6 +31,7 @@ export const ProductDetails = () => {
   useEffect(() => {
     dispatch(thunkGetProducts());
     dispatch(thunkGetProductImages());
+    isDeleting(false)
   }, [dispatch, id, generating, uploading, deleting, revLength]);
 
   if (!product) return <></>;
@@ -125,7 +127,7 @@ export const ProductDetails = () => {
         {product?.Reviews?.length ? "Reviews:" : ""}
         {!deleting && product?.Reviews?.length
           ? product?.Reviews?.map((review) => (
-              <ReviewCard key={review.id} id={id} review={review} idType={idType} />
+              <ReviewCard key={review.id} id={id} review={review} idType={idType} isDeleting={isDeleting}/>
             ))
           : ""}
       </div>

@@ -4,10 +4,8 @@ import { PutReview } from "./PutReview";
 import OpenModalButton from "../OpenModalButton";
 import { useSelector } from "react-redux";
 
-export const ReviewCard = ({ id, review, idType }) => {
+export const ReviewCard = ({ id, review, idType, isDeleting }) => {
   const user = useSelector((state) => state.session.user);
-  const [deleting, isDeleting] = useState(false);
-  console.log(deleting);
   return (
     <div className="reviews-container" key={review.id}>
       <div>id: {review.id}</div>

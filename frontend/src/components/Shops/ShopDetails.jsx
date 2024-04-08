@@ -17,7 +17,8 @@ export const ShopDetails = () => {
   const user = useSelector((state) => state.session.user);
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
-  const [deleting, isDeleting] = useState(false);
+  const [deleting, isDeleting] = useState("");
+  console.log(deleting)
   const idType = "shop";
   const getRating = (shop) => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
@@ -31,6 +32,7 @@ export const ShopDetails = () => {
   useEffect(() => {
     dispatch(thunkGetShops());
     dispatch(thunkGetShopImages());
+    isDeleting(false)
   }, [dispatch, id, generating, uploading, deleting, shopLength]);
 
   if (!shop) return <></>;
@@ -109,6 +111,7 @@ export const ShopDetails = () => {
             review={review}
             id={shop.id}
             idType={idType}
+            isDeleting={isDeleting}
           />
         )) : ""}
       </div>
@@ -131,7 +134,7 @@ export const ShopDetails = () => {
                 <div className="shopdetails-name">{product?.name}</div>
                 <div>${product?.price.toFixed(2)}</div>
                 <div>
-                  {product?.Reviews.length ? getRating(product) : "Not Rated"}
+                  {product?.Reviews?.length ? getRating(product) : "Not Rated"}
                 </div>
                 <div>{product?.Category?.name}</div>
               </div>

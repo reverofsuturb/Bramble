@@ -8,7 +8,7 @@ import "./DeleteReview.css";
 export const DeleteReview = ({ id, isDeleting }) => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
-  isDeleting(true);
+
   return (
     <div className="delete-review-modal">
       <h2 className="delete-review-header">CONFIRM DELETE</h2>
@@ -18,7 +18,8 @@ export const DeleteReview = ({ id, isDeleting }) => {
           dispatch(thunkDeleteReview(id));
           dispatch(thunkGetProducts());
           dispatch(thunkGetShops());
-          isDeleting(false);
+          isDeleting(true);
+          // isDeleting(false);
           closeModal();
         }}
       >
@@ -27,7 +28,7 @@ export const DeleteReview = ({ id, isDeleting }) => {
       <button
         className="delete-review-button"
         onClick={() => {
-          isDeleting(false);
+          // isDeleting(false);
           closeModal();
         }}
       >
