@@ -62,7 +62,7 @@ export const ProductDetails = () => {
             <div className="prodetails-text">
               By{" "}
               <Link
-                className="category-products-link-shop"
+                className="prodetails-link-shop"
                 to={`/shops/${product?.Shop?.id}`}
               >
                 {product?.Shop?.name}
