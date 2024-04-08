@@ -85,6 +85,7 @@ export const ReviewForm = ({
           value={rating}
           onChange={(e) => setRating(e.target.value)}
         >
+          <option value={""}>Select a Number</option>
           {rate.map((rat) => (
             <option key={rat} value={rat} className="reviewform-option">
               {rat}
