@@ -7,6 +7,7 @@ import { ShopImageForm } from "../ShopImages/ShopImageForm";
 import { PostReview } from "../Reviews/PostReview";
 import { ReviewCard } from "../Reviews/ReviewCard";
 import { DeleteShop } from "./DeleteShop";
+import { FaRegStar } from "react-icons/fa";
 import OpenModalButton from "../OpenModalButton";
 import "./ShopDetails.css";
 
@@ -18,7 +19,6 @@ export const ShopDetails = () => {
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
   const [deleting, isDeleting] = useState("");
-  console.log(deleting)
   const idType = "shop";
   const getRating = (shop) => {
     return shop.Reviews.reduce((a, c) => a + c.rating, 0) / shop.Reviews.length;
@@ -27,34 +27,42 @@ export const ShopDetails = () => {
     (review) => review.user_id == user?.id
   );
 
-  let shopLength = shop?.Reviews?.length
+  let shopLength = shop?.Reviews?.length;
 
   useEffect(() => {
     dispatch(thunkGetShops());
     dispatch(thunkGetShopImages());
-    isDeleting(false)
+    isDeleting(false);
   }, [dispatch, id, generating, uploading, deleting, shopLength]);
 
   if (!shop) return <></>;
   return (
-    <div className="shopdetails-container">
-      <div className="shopdetails-imgdetails-container">
-        <img
-          className="shopdetails-image"
-          src={
-            shop?.ShopImages?.length
-              ? shop?.ShopImages[0]?.image
-              : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
-          }
-        />
-        <div className="shopdetails-container-text">
-          <div className="shopdetails-name">{shop.name}</div>
-          <div>{shop?.Reviews?.length ? getRating(shop) : "Not Rated"}</div>
-          <div>{shop?.about}</div>
-          <div>{shop?.policies}</div>
+    <>
+      <div className="shopdetails-container">
+        <div className="shopdetails-imgdetails-container">
+          <img
+            className="shopdetails-image"
+            src={
+              shop?.ShopImages?.length
+                ? shop?.ShopImages[0]?.image
+                : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+            }
+          />
+          <div className="shopdetails-container-text">
+            <div className="shopdetails-name shopdetails-text">{shop.name}</div>
+            <div className="shopdetails-text">
+              {shop?.Reviews?.length ? (
+                <>
+                  {getRating(shop)} <FaRegStar />
+                </>
+              ) : (
+                "Not Rated"
+              )}
+            </div>
+            <div className="shopdetails-text">{shop?.about}</div>
+            <div className="shopdetails-text">{shop?.policies}</div>
+          </div>
         </div>
-      </div>
-      {shop?.user_id == user?.id ? (
         <div className="shopdetails-utilities">
           {generating ||
           uploading ||
@@ -85,35 +93,55 @@ export const ShopDetails = () => {
           ) : (
             ""
           )}
-          <Link to={`/shops/${shop?.id}/edit`}>
-            <button className="shopdetails-button">EDIT SHOP</button>
-          </Link>
-          <OpenModalButton
-            buttonText={"DELETE SHOP"}
-            modalComponent={<DeleteShop id={shop.id} isDeleting={isDeleting} />}
-          />
+          {shop?.user_id == user?.id ? (
+            <div className="shopdetails-edit-delete">
+              <Link to={`/shops/${shop?.id}/edit`}>
+                <button className="shopdetails-button">EDIT SHOP</button>
+              </Link>
+              <OpenModalButton
+                buttonText={"DELETE SHOP"}
+                css={"shopdetails-button"}
+                modalComponent={
+                  <DeleteShop id={shop.id} isDeleting={isDeleting} />
+                }
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-      )}
-      {reviewFind || shop?.user_id == user?.id ? (
-        ""
-      ) : user ? (
-        <PostReview id={shop?.id} idType={idType} />
-      ) : (
-        ""
-      )}
-      <div>
-        {shop?.Reviews?.length ? "Reviews:" : ""}
-        {shop?.Reviews?.length ? shop?.Reviews?.map((review) => (
-          <ReviewCard
-            key={review.id}
-            review={review}
-            id={shop.id}
-            idType={idType}
-            isDeleting={isDeleting}
+        {reviewFind || shop?.user_id == user?.id ? (
+          ""
+        ) : user ? (
+          <OpenModalButton
+            buttonText={"Add Review"}
+            css={"shopdetails-button"}
+            modalComponent={<PostReview id={shop?.id} idType={idType} />}
           />
-        )) : ""}
+        ) : (
+          ""
+        )}
+        <div className="shopdetails-reviews-container">
+          {shop?.Reviews?.length ? (
+            <div className="shopdetails-text">Reviews: </div>
+          ) : (
+            ""
+          )}
+
+          <div className="shopdetails-reviews-gallery">
+            {shop?.Reviews?.length
+              ? shop?.Reviews?.map((review) => (
+                  <ReviewCard
+                    key={review.id}
+                    review={review}
+                    id={shop.id}
+                    idType={idType}
+                    isDeleting={isDeleting}
+                  />
+                ))
+              : ""}
+          </div>
+        </div>
       </div>
       <div className="shopdetails-gallery-products">
         {shop?.Products?.map((product) => (
@@ -130,11 +158,19 @@ export const ShopDetails = () => {
                   "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
                 }
               />
-              <div className="shopdetails-container-text">
-                <div className="shopdetails-name">{product?.name}</div>
-                <div>${product?.price.toFixed(2)}</div>
-                <div>
-                  {product?.Reviews?.length ? getRating(product) : "Not Rated"}
+              <div className="shopdetails-product-container-text">
+                <div className="shopdetails-product-name">{product?.name}</div>
+                <div className="shopdetails-product-price">
+                  ${product?.price.toFixed(2)}
+                </div>
+                <div className="shopdetails-product-rating">
+                  {product?.Reviews?.length ? (
+                    <>
+                      {getRating(product)} <FaRegStar />{" "}
+                    </>
+                  ) : (
+                    "Not Rated"
+                  )}
                 </div>
                 <div>{product?.Category?.name}</div>
               </div>
@@ -142,6 +178,6 @@ export const ShopDetails = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };

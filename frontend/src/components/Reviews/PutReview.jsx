@@ -7,18 +7,15 @@ export const PutReview = ({ id, idType, review }) => {
 
   return (
     <>
-      {editing === false ? (
-        <button onClick={() => setEditing(!editing)}>Edit</button>
-      ) : (
-        <ReviewForm
-          revId={review.id}
-          id={id}
-          idType={idType}
-          formType={formType}
-          review={review}
-          setEditing={setEditing}
-        />
-      )}
+      <ReviewForm
+        revId={review.id}
+        id={id}
+        idType={idType}
+        formType={formType}
+        review={review}
+        setEditing={setEditing}
+        editing={editing}
+      />
     </>
   );
 };

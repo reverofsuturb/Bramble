@@ -7,16 +7,13 @@ export const PutCategory = ({ id, category }) => {
 
   return (
     <>
-      {editing === false ? (
-        <button onClick={() => setEditing(!editing)}>Edit</button>
-      ) : (
-        <CategoryForm
-          formType={formType}
-          id={id}
-          category={category}
-          setEditing={setEditing}
-        />
-      )}
+      <CategoryForm
+        formType={formType}
+        id={id}
+        category={category}
+        setEditing={setEditing}
+        editing={editing}
+      />
     </>
   );
 };

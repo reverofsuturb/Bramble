@@ -57,6 +57,10 @@ export const ShopForm = ({ shop, formType, id }) => {
         />
       </label>
       {errors.name && <p className="error">{errors.name}</p>}
+      <span className="products-form-span">
+        What would you like to name your shop? The name will be used if you
+        choose to generate an image for this item in the next screen.
+      </span>
       <label className="shops-form-label">
         ABOUT
         <textarea
@@ -67,6 +71,10 @@ export const ShopForm = ({ shop, formType, id }) => {
         />
       </label>
       {errors.about && <p className="error">{errors.about}</p>}
+      <span className="products-form-span">
+        What can you tell us about your store? This section will be used if you
+        choose to generate an image for this store in the next screen.
+      </span>
       <label className="shops-form-label">
         POLICIES
         <textarea
@@ -77,6 +85,9 @@ export const ShopForm = ({ shop, formType, id }) => {
         />
       </label>
       {errors.policies && <p className="error">{errors.policies}</p>}
+      <span className="shops-form-span">
+        Place pertinent shipping info here.
+      </span>
       <label className="shops-form-label">
         CATEGORY
         <select
@@ -84,14 +95,23 @@ export const ShopForm = ({ shop, formType, id }) => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
+          {" "}
+          <option value={""}>Select One</option>
           {categories?.map((category) => (
-            <option key={category.id} className="shops-form-option" value={category.id}>
+            <option
+              key={category.id}
+              className="shops-form-option"
+              value={category.id}
+            >
               {category.name}
             </option>
           ))}
         </select>
       </label>
       {errors.category_id && <p className="error">{errors.category_id}</p>}
+      <span className="shops-form-span">
+        Which category best represents your shop?
+      </span>
       <button className="shops-form-button">Submit</button>
     </form>
   );

@@ -5,6 +5,7 @@ import { thunkGetProducts } from "../../store/products";
 import { Link, useNavigate } from "react-router-dom";
 import { thunkGetProductImages } from "../../store/productimages";
 import "./GetAllProducts.css";
+import { FaRegStar } from "react-icons/fa";
 
 export const GetAllProducts = () => {
   const dispatch = useDispatch();
@@ -55,16 +56,20 @@ export const GetAllProducts = () => {
                   />
                   <div className="products-container-text">
                     <div className="products-name">{product.name}</div>
-                    <div>${product?.price.toFixed(2)}</div>
+                    <div className="products-price">${product?.price.toFixed(2)}</div>
                     <div className="products-review-shop">
-                      <div>
-                        {product?.Reviews?.length
-                          ? getRating(product)
-                          : "Not Rated"}
+                      <div className="products-rating">
+                        {product?.Reviews?.length ? (
+                          <>
+                            {getRating(product)} <FaRegStar />
+                          </>
+                        ) : (
+                          "Not Rated"
+                        )}
                       </div>
                       {product?.Shop?.id ? (
-                        <div>
-                          Visit{" "}
+                        <div className="products-link-div">
+                          By{" "}
                           <span
                             onClick={(e) => {
                               e.stopPropagation();
@@ -108,16 +113,20 @@ export const GetAllProducts = () => {
                 />
                 <div className="products-container-text">
                   <div className="products-name">{product.name}</div>
-                  <div>${product?.price.toFixed(2)}</div>
+                  <div className="products-price">${product?.price.toFixed(2)}</div>
                   <div className="products-review-shop">
-                    <div>
-                      {product?.Reviews?.length
-                        ? getRating(product)
-                        : "Not Rated"}
+                    <div className="products-rating">
+                      {product?.Reviews?.length ? (
+                        <>
+                          {getRating(product)} <FaRegStar />
+                        </>
+                      ) : (
+                        "Not Rated"
+                      )}
                     </div>
                     {product?.Shop?.id ? (
-                      <div>
-                        Visit{" "}
+                      <div className="products-link-div">
+                        By{" "}
                         <span
                           onClick={(e) => {
                             e.stopPropagation();

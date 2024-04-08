@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
         ],
       },
       { model: ShopImage },
-      { model: Review },
+      { model: Review, include: { model: User } },
       { model: User },
     ],
   });

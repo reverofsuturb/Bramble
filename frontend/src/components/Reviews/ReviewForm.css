@@ -1,4 +1,4 @@
-.shops-form {
+.reviewform-form {
   display: flex;
   flex-direction: column;
   border-radius: 50px;
@@ -7,7 +7,7 @@
   gap: 10px;
 }
 
-.shops-form-label {
+.reviewform-label {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -21,16 +21,7 @@
   font-size: 1.2rem;
 }
 
-.shops-form-span {
-  max-width: 500px;
-  background-color: #b6bad4;
-  border: 3px solid #b6bad4;
-  color: #3b3214;
-  padding: 10px;
-  border-radius: 50px;
-}
-
-.shops-form-input {
+.reviewform-input {
   border-radius: 50px;
   width: 300px;
   outline: none;
@@ -38,18 +29,18 @@
   border: 3px solid #b6bad4;
   color: #3b3214;
   padding: 10px;
-  font-size: 1rem
+  font-size: 1rem;
 }
 
-.shops-form-input:hover {
+.reviewform-input:hover {
   border: 3px solid #7a6f48;
 }
 
-.shops-form-input:focus {
+.reviewform-input:focus {
   border: 3px solid #7a6f48;
 }
 
-.shops-form-select {
+.reviewform-select {
   border-radius: 50px;
   width: 175px;
   outline: none;
@@ -60,11 +51,11 @@
   font-size: 1rem;
 }
 
-.shops-form-select:hover {
+.reviewform-select:hover {
   border: 3px solid #7a6f48;
 }
 
-.shops-form-button {
+.reviewform-button {
   margin: auto;
   margin-top: 10px;
   width: 150px;
@@ -77,6 +68,6 @@
   color: #3b3214;
 }
 
-.shops-form-button:hover {
+.reviewform-button:hover {
   border: 3px solid #7a6f48;
 }

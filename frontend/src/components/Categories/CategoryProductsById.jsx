@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCategoryById } from "../../store/categories";
 import { Link, useParams } from "react-router-dom";
+import { FaRegStar } from "react-icons/fa";
 
 import "./CategoryProductsById.css";
 
@@ -44,14 +45,22 @@ export const CategoryProductsById = () => {
             />
             <div className="category-products-container-text">
               <div className="category-products-name">{product.name}</div>
-              <div>${product?.price.toFixed(2)}</div>
+              <div className="category-products-price">
+                ${product?.price.toFixed(2)}
+              </div>
               <div className="category-products-review-shop">
-                <div>
-                  {product.Reviews?.length ? getRating(product) : "Not Rated"}
+                <div className="category-products-rating">
+                  {product.Reviews?.length ? (
+                    <>
+                      {getRating(product)} <FaRegStar />
+                    </>
+                  ) : (
+                    "Not Rated"
+                  )}
                 </div>
                 {product?.Shop?.id ? (
-                  <div>
-                    Visit{" "}
+                  <div className="category-products-link-div">
+                    By{" "}
                     <Link
                       className="category-products-link-shop"
                       to={`/shops/${product.Shop.id}`}

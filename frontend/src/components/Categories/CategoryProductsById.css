@@ -3,14 +3,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 8px;
+  height: 417.5px;
   width: 350px;
   padding: 10px;
-  background-color: grey;
+  background-color: #14193b;
+  border-radius: 10px;
 }
 
 .category-name {
   font-size: 2rem;
+  color: #14193b;
 }
 
 .category-products-container-text {
@@ -18,33 +20,50 @@
   max-width: 350px;
   flex-direction: column;
   justify-content: left;
-  margin-bottom: 10px;
+  width: 350px;
+  color: #b6bad4;
+}
+
+.category-products-price,
+.category-products-rating {
+  color: #bab39c;
 }
 
 .category-products-link {
   text-decoration: none;
-  color: black;
+  margin: 8px;
+  height: 417.5px;
+  width: 350px;
 }
 
 .category-products-link:hover {
-  box-shadow: 7.5px 7.5px 7.5px #28b599;
+  box-shadow: 27.5px 27.5px 27.5px #b6bad4;
+}
+
+.category-products-link-div {
+  color: #b6bad4;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px #14193b solid;
+}
+
+.category-products-link-div:hover {
+  border-bottom: 1px #b6bad4 solid;
 }
 
 .category-products-link-shop {
   text-decoration: none;
-  color: black;
-}
-.category-products-link-shop:hover {
-  border-bottom: 1px black solid;
+  color: #b6bad4;
 }
 
 .category-products-gallery {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  column-gap: 1rem;
+  gap: 1rem;
   grid-template-rows: auto;
   justify-content: center;
-  gap: 5px;
   margin: auto;
 }
 
@@ -69,10 +88,9 @@
   .category-products-gallery {
     display: grid;
     grid-template-columns: auto auto auto;
-    column-gap: 1rem;
     grid-template-rows: auto;
     justify-content: center;
-    gap: 5px;
+    gap: 1rem;
     margin: auto;
   }
 }
@@ -81,10 +99,9 @@
   .category-products-gallery {
     display: grid;
     grid-template-columns: auto auto;
-    column-gap: 1rem;
     grid-template-rows: auto;
     justify-content: center;
-    gap: 5px;
+    gap: 1rem;
     margin: auto;
   }
 }
@@ -93,10 +110,9 @@
   .category-products-gallery {
     display: grid;
     grid-template-columns: auto;
-    column-gap: 1rem;
     grid-template-rows: auto;
     justify-content: center;
-    gap: 5px;
+    gap: 1rem;
     margin: auto;
   }
 }

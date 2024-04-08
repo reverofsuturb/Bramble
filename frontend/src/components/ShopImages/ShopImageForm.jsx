@@ -3,6 +3,7 @@ import { useState } from "react";
 import { thunkGetShopImages, thunkPostShopImage } from "../../store/shopimages";
 import { useDispatch } from "react-redux";
 import OpenAI from "openai";
+import "./ShopImageForm.css";
 
 const keyFetch = async () => {
   try {
@@ -95,21 +96,30 @@ export const ShopImageForm = ({
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="shoimg-container">
+      <form className="shoimg-form" onSubmit={handleSubmit}>
+        <label className="shoimg-label">
           Submit your own image:
-          <input type="file" onChange={updateFile} />
+          <input
+            className="shoimg-file-input"
+            type="file"
+            onChange={updateFile}
+          />
+          <button
+            className="shoimg-button"
+            disabled={image === null ? true : false}
+          >
+            Submit
+          </button>
         </label>
-        <button>Submit</button>
       </form>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="shoimg-form" onSubmit={handleSubmit}>
+        <label className="shoimg-label">
           Generate a unique image for this product based on it&apos;s
           description
         </label>
-        <button>Generate</button>
+        <button className="shoimg-button">Generate</button>
       </form>
-    </>
+    </div>
   );
 };

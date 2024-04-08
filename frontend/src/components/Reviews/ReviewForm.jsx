@@ -3,6 +3,8 @@ import { thunkPostReview, thunkPutReview } from "../../store/reviews";
 import { thunkGetProducts } from "../../store/products";
 import { thunkGetShops } from "../../store/shops";
 import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import "./ReviewForm.css";
 
 export const ReviewForm = ({
   revId,
@@ -16,6 +18,8 @@ export const ReviewForm = ({
   const [body, setBody] = useState(review?.body || "");
   const [rating, setRating] = useState(review?.rating || "");
   const [errors, setErrors] = useState({});
+  const { closeModal } = useModal();
+
   let rate = [1, 2, 3, 4, 5];
 
   const handleSubmit = async (e) => {
@@ -59,31 +63,37 @@ export const ReviewForm = ({
     dispatch(thunkGetProducts());
     dispatch(thunkGetShops());
     setEditing(false);
+    closeModal();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className="reviewform-form" onSubmit={handleSubmit}>
+      <label className="reviewform-label">
         Body:
         <input
-          type="text"
+          className="reviewform-input"
+          type="textarea"
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
       </label>
       {errors.body && <p className="error">{errors.body}</p>}
-      <label>
+      <label className="reviewform-label">
         Rating:
-        <select value={rating} onChange={(e) => setRating(e.target.value)}>
+        <select
+          className="reviewform-select"
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
+        >
           {rate.map((rat) => (
-            <option key={rat} value={rat}>
+            <option key={rat} value={rat} className="reviewform-option">
               {rat}
             </option>
           ))}
         </select>
       </label>
       {errors.rating && <p className="error">{errors.rating}</p>}
-      <button>Submit</button>
+      <button className="reviewform-button">Submit</button>
     </form>
   );
 };

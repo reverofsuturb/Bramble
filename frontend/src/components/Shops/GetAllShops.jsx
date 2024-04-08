@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetShops } from "../../store/shops";
 import { Link } from "react-router-dom";
-
+import { FaRegStar } from "react-icons/fa";
 import "./GetAllShops.css";
 
 export const GetAllShops = () => {
@@ -51,12 +51,17 @@ export const GetAllShops = () => {
                   />
                   <div className="shops-container-text">
                     <div className="shops-name">{shop.name}</div>
-                    <div>
-                      Rating:{" "}
-                      {shop?.Reviews?.length ? getRating(shop) : "Not Rated"}
+                    <div className="shops-rating">
+                      {shop?.Reviews?.length ? (
+                        <>
+                          {getRating(shop)} <FaRegStar />
+                        </>
+                      ) : (
+                        "Not Rated"
+                      )}
                     </div>
                     <div className="shops-text">Policies: {shop?.policies}</div>
-                    <div>
+                    <div className="shops-text">
                       {shop?.Category?.name &&
                         `Category: ${shop?.Category?.name}`}
                     </div>
@@ -81,13 +86,19 @@ export const GetAllShops = () => {
                 />
                 <div className="shops-container-text">
                   <div className="shops-name">{shop.name}</div>
-                  <div>
-                    Rating:{" "}
-                    {shop?.Reviews?.length ? getRating(shop) : "Not Rated"}
+                  <div className="shops-rating">
+                    {shop?.Reviews?.length ? (
+                      <>
+                        {getRating(shop)} <FaRegStar />
+                      </>
+                    ) : (
+                      "Not Rated"
+                    )}
                   </div>
                   <div className="shops-text">Policies: {shop?.policies}</div>
-                  <div>
-                    {shop?.Category?.name && `Category: ${shop?.Category?.name}`}
+                  <div className="shops-text">
+                    {shop?.Category?.name &&
+                      `Category: ${shop?.Category?.name}`}
                   </div>
                 </div>
               </div>

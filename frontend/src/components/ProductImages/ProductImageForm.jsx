@@ -6,7 +6,7 @@ import {
 } from "../../store/productimages";
 import { useDispatch } from "react-redux";
 import OpenAI from "openai";
-
+import "./ProductImageForm.css";
 const keyFetch = async () => {
   try {
     const res = await csrfFetch("/api/productimages/api-key");
@@ -30,11 +30,11 @@ const makeAi = async () => {
   }
 };
 
-makeAi()
-  // .then((openai) => {
-  //   console.log(openai);
-  // })
-  // .catch((error) => console.error(error));
+makeAi();
+// .then((openai) => {
+//   console.log(openai);
+// })
+// .catch((error) => console.error(error));
 
 export const ProductImageForm = ({
   id,
@@ -100,21 +100,30 @@ export const ProductImageForm = ({
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="proimg-container">
+      <form className="proimg-form" onSubmit={handleSubmit}>
+        <label className="proimg-label">
           Submit your own image:
-          <input type="file" onChange={updateFile} />
+          <input
+            className="proimg-file-input"
+            type="file"
+            onChange={updateFile}
+          />
+          <button
+            className="proimg-button"
+            disabled={image === null ? true : false}
+          >
+            Submit
+          </button>
         </label>
-        <button>Submit</button>
       </form>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="proimg-form" onSubmit={handleSubmit}>
+        <label className="proimg-label">
           Generate a unique image for this product based on it&apos;s
           description
         </label>
-        <button>Generate</button>
+        <button className="proimg-button">Generate</button>
       </form>
-    </>
+    </div>
   );
 };

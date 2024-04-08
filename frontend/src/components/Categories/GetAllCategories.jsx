@@ -12,6 +12,7 @@ export const GetAllCategories = () => {
   const dispatch = useDispatch();
   const categoriesObj = useSelector((state) => state.categories);
   const [userCategories, setUserCategories] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
   const myCategories = categories?.filter(
@@ -34,7 +35,12 @@ export const GetAllCategories = () => {
               ? "Show All Categories"
               : "Show Only Your Categories"}
           </button>
-          <PostCategory />
+          <OpenModalButton
+            buttonText={"Create Category"}
+            css={"categories-button"}
+            modalComponent={<PostCategory />}
+          />
+          <button className="categories-button" onClick={() => setShowEdit(!showEdit)}>{showEdit? "Hide Edit/Delete" : "Show Edit/Delete"}</button>
         </>
       )}
       <div className="categories-gallery">
@@ -51,11 +57,18 @@ export const GetAllCategories = () => {
                     <div>{category.name}</div>
                   </div>
                 </Link>
-                {category.user_id === user?.id ? (
+                {category.user_id === user?.id && showEdit ? (
                   <div className="categories-utilities">
-                    <PutCategory id={category.id} category={category} />
                     <OpenModalButton
-                      buttonText={"DELETE CATEGORY"}
+                      buttonText={"EDIT"}
+                      css={"categories-button"}
+                      modalComponent={
+                        <PutCategory id={category.id} category={category} />
+                      }
+                    />
+                    <OpenModalButton
+                      buttonText={"DELETE"}
+                      css={"categories-button"}
                       modalComponent={<DeleteCategory id={category.id} />}
                     />
                   </div>
@@ -79,11 +92,18 @@ export const GetAllCategories = () => {
                   <div>{category.name}</div>
                 </div>
               </Link>
-              {category.user_id === user?.id ? (
+              {category.user_id === user?.id && showEdit ? (
                 <div className="categories-utilities">
-                  <PutCategory id={category.id} category={category} />
                   <OpenModalButton
-                    buttonText={"DELETE CATEGORY"}
+                    buttonText={"EDIT"}
+                    css={"categories-button"}
+                    modalComponent={
+                      <PutCategory id={category.id} category={category} />
+                    }
+                  />
+                  <OpenModalButton
+                    buttonText={"DELETE"}
+                    css={"categories-button"}
                     modalComponent={<DeleteCategory id={category.id} />}
                   />
                 </div>

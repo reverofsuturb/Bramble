@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
       { model: Category },
       { model: Shop },
       { model: ProductImage },
-      { model: Review },
+      { model: Review, include: { model: User } },
       { model: User },
     ],
   });

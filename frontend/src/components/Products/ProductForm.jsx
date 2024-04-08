@@ -16,7 +16,7 @@ export const ProductForm = ({ product, formType, id }) => {
   const [shipping, setShipping] = useState(product?.shipping || "");
   const [category, setCategory] = useState(product?.category_id || "");
   const [featured, setFeatured] = useState(product?.featured || false);
-  const [shop, setShop] = useState(product?.shop_id || null);
+  const [shop, setShop] = useState(product?.shop_id || "");
   const [errors, setErrors] = useState({});
   const user = useSelector((state) => state.session.user);
   const categoriesObj = useSelector((state) => state.categories);
@@ -74,6 +74,10 @@ export const ProductForm = ({ product, formType, id }) => {
         />
       </label>
       {errors.name && <p className="error">{errors.name}</p>}
+      <span className="products-form-span">
+        What would you like to name your product? The name will be used if you
+        choose to generate an image for this item in the next screen.
+      </span>
       <label className="products-form-label">
         PRICE
         <input
@@ -84,6 +88,7 @@ export const ProductForm = ({ product, formType, id }) => {
         />
       </label>
       {errors.price && <p className="error">{errors.price}</p>}
+      <span className="products-form-span">How much does it cost?</span>
       <label className="products-form-label">
         DESCRIPTION
         <textarea
@@ -94,6 +99,10 @@ export const ProductForm = ({ product, formType, id }) => {
         />
       </label>
       {errors.description && <p className="error">{errors.description}</p>}
+      <span className="products-form-span">
+        How would you describe the product? This description will be used if you
+        choose to generate an image for this item in the next screen.
+      </span>
       <label className="products-form-label">
         DETAILS
         <textarea
@@ -104,6 +113,9 @@ export const ProductForm = ({ product, formType, id }) => {
         />
       </label>
       {errors.details && <p className="error">{errors.details}</p>}
+      <span className="products-form-span">
+        Any specific details about this product?
+      </span>
       <label className="products-form-label">
         SHIPPING
         <textarea
@@ -114,6 +126,9 @@ export const ProductForm = ({ product, formType, id }) => {
         />
       </label>
       {errors.shipping && <p className="error">{errors.shipping}</p>}
+      <span className="products-form-span">
+        Place pertinent shipping info here.
+      </span>
       {shopFind ? (
         <>
           <label className="products-form-label">
@@ -131,6 +146,9 @@ export const ProductForm = ({ product, formType, id }) => {
               </option>
             </select>
           </label>
+          <span className="products-form-span">
+            Will this item be specially featured?
+          </span>
           <label className="products-form-label">
             SHOP
             <select
@@ -138,7 +156,7 @@ export const ProductForm = ({ product, formType, id }) => {
               value={shop}
               onChange={(e) => setShop(e.target.value)}
             >
-              <option className="products-form-option" value="">
+              <option className="products-form-option" value={""}>
                 None
               </option>
               {filteredShops?.map((shop) => (
@@ -152,11 +170,14 @@ export const ProductForm = ({ product, formType, id }) => {
               ))}
             </select>
           </label>
+          <span className="products-form-span">
+            Which of your shops would this product belong to?
+          </span>
         </>
       ) : (
         <Link className="products-form-link" to="/shops/new">
-          Look&apos;s like you haven&apos;t made any shops to include a product in, if you
-          would like to make a shop first click anywhere in this text
+          Look&apos;s like you haven&apos;t made any shops to include a product
+          in, if you would like to make a shop first click anywhere in this text
         </Link>
       )}
       <label className="products-form-label">
@@ -166,6 +187,8 @@ export const ProductForm = ({ product, formType, id }) => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
+          {" "}
+          <option value={""}>Select One</option>
           {categories?.map((category) => (
             <option
               key={category.id}
@@ -178,6 +201,9 @@ export const ProductForm = ({ product, formType, id }) => {
         </select>
       </label>
       {errors.category_id && <p className="error">{errors.category_id}</p>}
+      <span className="products-form-span">
+        Which category best represents your product?
+      </span>
       <button className="products-form-button">Submit</button>
     </form>
   );

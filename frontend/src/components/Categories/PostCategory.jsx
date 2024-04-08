@@ -6,16 +6,7 @@ export const PostCategory = () => {
   const formType = "post";
   return (
     <>
-      {editing === false ? (
-        <button
-          className="category-post-button"
-          onClick={() => setEditing(!editing)}
-        >
-          Create Category
-        </button>
-      ) : (
-        <CategoryForm formType={formType} setEditing={setEditing} />
-      )}
+      <CategoryForm formType={formType} setEditing={setEditing} editing={editing}/>
     </>
   );
 };

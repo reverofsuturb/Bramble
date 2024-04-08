@@ -1,0 +1,31 @@
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  padding: 10px;
+  background-color: #777ca1;
+  border-radius: 15px;
+}
+
+.reviews-container > div {
+  background-color: #b6bad4;
+  border: 3px solid #b6bad4;
+  color: #3b3214;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.reviews-button {
+  margin: auto;
+  margin-top: 10px;
+  width: 150px;
+  background-color: #b6bad4;
+  border-radius: 50px;
+  border: 3px solid #b6bad4;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #3b3214;
+}

@@ -7,6 +7,7 @@ import { ProductImageForm } from "../ProductImages/ProductImageForm";
 import { DeleteProduct } from "./DeleteProduct";
 import { PostReview } from "../Reviews/PostReview";
 import { ReviewCard } from "../Reviews/ReviewCard";
+import { FaRegStar } from "react-icons/fa";
 import OpenModalButton from "../OpenModalButton";
 import "./ProductDetails.css";
 
@@ -19,7 +20,7 @@ export const ProductDetails = () => {
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
   const [deleting, isDeleting] = useState("");
-  console.log(deleting, " DEEEEEELEEEEETIIIINGG ")
+  console.log(deleting, " DEEEEEELEEEEETIIIINGG ");
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
@@ -31,7 +32,7 @@ export const ProductDetails = () => {
   useEffect(() => {
     dispatch(thunkGetProducts());
     dispatch(thunkGetProductImages());
-    isDeleting(false)
+    isDeleting(false);
   }, [dispatch, id, generating, uploading, deleting, revLength]);
 
   if (!product) return <></>;
@@ -47,14 +48,20 @@ export const ProductDetails = () => {
           }
         />
         <div className="prodetails-container-text">
-          <div>${product?.price.toFixed(2)}</div>
-          <div className="prodetails-name">{product?.name}</div>
-          <div>
-            {product?.Reviews?.length ? getRating(product) : "Not Rated"}
+          <div className="prodetails-text">${product?.price.toFixed(2)}</div>
+          <div className="prodetails-name prodetails-text">{product?.name}</div>
+          <div className="prodetails-text">
+            {product?.Reviews?.length ? (
+              <>
+                {getRating(product)} <FaRegStar />
+              </>
+            ) : (
+              "Not Rated"
+            )}
           </div>
           {product?.Shop?.id ? (
-            <div>
-              Visit{" "}
+            <div className="prodetails-text">
+              By{" "}
               <Link
                 className="category-products-link-shop"
                 to={`/shops/${product?.Shop?.id}`}
@@ -65,9 +72,10 @@ export const ProductDetails = () => {
           ) : (
             " "
           )}
-          <div>{product?.description}</div>
-          <div>{product?.details}</div>
-          <div>{product?.shipping}</div>
+          <div className="prodetails-text">{product?.description}</div>
+          <div className="prodetails-text">{product?.details}</div>
+          <div className="prodetails-text">{product?.shipping}</div>
+          <div className="prodetails-text">{product?.Category?.name}</div>
         </div>
       </div>
       <div className="prodetails-utilities">
@@ -101,12 +109,13 @@ export const ProductDetails = () => {
           ""
         )}
         {user?.id == product?.user_id ? (
-          <div>
+          <div className="prodetails-edit-delete">
             <Link to={`/products/${product?.id}/edit`}>
               <button className="prodetails-button">EDIT PRODUCT</button>
             </Link>
             <OpenModalButton
               buttonText={"DELETE PRODUCT"}
+              css={"prodetails-button"}
               modalComponent={
                 <DeleteProduct id={product?.id} isDeleting={isDeleting} />
               }
@@ -119,17 +128,34 @@ export const ProductDetails = () => {
       {reviewFind || product?.user_id == user?.id ? (
         ""
       ) : user ? (
-        <PostReview id={product?.id} idType={idType} />
+        <OpenModalButton
+          buttonText={"Add Review"}
+          css={"prodetails-button"}
+          modalComponent={<PostReview id={product?.id} idType={idType} />}
+        />
       ) : (
         ""
       )}
-      <div>
-        {product?.Reviews?.length ? "Reviews:" : ""}
-        {!deleting && product?.Reviews?.length
-          ? product?.Reviews?.map((review) => (
-              <ReviewCard key={review.id} id={id} review={review} idType={idType} isDeleting={isDeleting}/>
-            ))
-          : ""}
+      <div className="prodetails-reviews-container">
+        {product?.Reviews?.length ? (
+          <div className="prodetails-text">Reviews:</div>
+        ) : (
+          ""
+        )}
+
+        <div className="prodetails-reviews-gallery">
+          {!deleting && product?.Reviews?.length
+            ? product?.Reviews?.map((review) => (
+                <ReviewCard
+                  key={review.id}
+                  id={id}
+                  review={review}
+                  idType={idType}
+                  isDeleting={isDeleting}
+                />
+              ))
+            : ""}
+        </div>
       </div>
     </div>
   );

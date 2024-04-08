@@ -11,17 +11,19 @@ function Navigation({ isLoaded }) {
     <div className="nav-container">
       <div>
         <NavLink
-          className={
-            selected === "bramble" ? "nav-link nav-link-b" : "nav-link"
-          }
+          className={"nav-link"}
           onClick={() => isSelected("bramble")}
           to="/"
         >
-          Bramble
+          <img
+            className="nav-logo"
+            src="/BrambleLogoCrop.png"
+            alt="A detailed and vibrant logo for a shop named 'Bramble'. The design aesthetic should exude an appealing amalgamation of mystical elements and futuristic nuances. The shop is envisioned as a creative platform for conceiving and implementing simulation of unique boutiques, with each showcasing its own distinct array of generated art. The logo should essentially encapsulate and visually translate this concept."
+          />
         </NavLink>
       </div>
       {isLoaded && (
-        <>
+        <div className="nav-links-container">
           <div>
             <NavLink
               className={
@@ -88,7 +90,7 @@ function Navigation({ isLoaded }) {
           <div>
             <ProfileButton user={sessionUser} />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

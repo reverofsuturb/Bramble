@@ -1,0 +1,58 @@
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #777ca1;
+  border-radius: 50px;
+  gap: 10px;
+}
+
+.landing-image-logo {
+  height: 512px;
+  width: 512px;
+  margin: 25px;
+  border-radius: 50px;
+}
+
+.landing-images {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  gap: 50px;
+}
+
+.landing-image-btn {
+  height: 400px;
+  width: 400px;
+  border-radius: 50px;
+  border: 5px solid #777ca1;
+}
+
+.landing-image-btn:hover {
+  border: 5px solid #7a6f48;
+  cursor: pointer;
+}
+
+.landing-welcome {
+  max-width: 1000px;
+  font-style: italic;
+  background-color: #14193b;
+  color: #b6bad4;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.landing-p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 760px) {
+  .landing-images {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    gap: 50px;
+  }
+}

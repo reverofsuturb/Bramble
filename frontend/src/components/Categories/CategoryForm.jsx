@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { thunkPostCategory, thunkPutCategory } from "../../store/categories";
 import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import "./CategoryForm.css";
 
 export const CategoryForm = ({ id, formType, category, setEditing }) => {
@@ -9,6 +10,7 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
   const navigate = useNavigate();
   const [name, setName] = useState(category?.name || "");
   const [errors, setErrors] = useState({});
+  const { closeModal } = useModal()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,12 +32,12 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
       }
     }
     setEditing(false);
+    closeModal();
     navigate("/categories");
   };
 
   return (
-    <>
-      {errors.name && <p className="error">{errors.name}</p>}
+    <div className="categories-form-container">
       <form className="categories-form" onSubmit={handleSubmit}>
         <label className="categories-form-label">
           NAME:
@@ -46,8 +48,11 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <button className="categories-form-button">Submit</button>
+        <button className="categories-form-button" type="submit">
+          Submit
+        </button>
       </form>
-    </>
+      {errors.name && <p className="error">{errors.name}</p>}
+    </div>
   );
 };
