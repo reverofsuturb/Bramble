@@ -20,11 +20,12 @@ export const ProductDetails = () => {
   const [generating, isGenerating] = useState(false);
   const [uploading, isUploading] = useState(false);
   const [deleting, isDeleting] = useState("");
+
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
   let revLength = product?.Reviews?.length;
-
+  console.log(revLength);
   const reviewFind = product?.Reviews?.find(
     (review) => review.user_id == user?.id
   );

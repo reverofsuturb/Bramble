@@ -62,8 +62,7 @@ export const GetAllShops = () => {
                     </div>
                     <div className="shops-text">Policies: {shop?.policies}</div>
                     <div className="shops-text">
-                      {shop?.Category?.name &&
-                        `Category: ${shop?.Category?.name}`}
+                      {shop?.Category?.name && `${shop?.Category?.name}`}
                     </div>
                   </div>
                 </div>
@@ -97,8 +96,7 @@ export const GetAllShops = () => {
                   </div>
                   <div className="shops-text">Policies: {shop?.policies}</div>
                   <div className="shops-text">
-                    {shop?.Category?.name &&
-                      `Category: ${shop?.Category?.name}`}
+                    {shop?.Category?.name && `${shop?.Category?.name}`}
                   </div>
                 </div>
               </div>
