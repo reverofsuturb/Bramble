@@ -27,15 +27,17 @@ export const GetAllProducts = () => {
   }, [dispatch]);
 
   return (
-    <div className="products-button-div">
-      {user && (
-        <button
-          className="products-button-filter"
-          onClick={() => setUserProducts(!userProducts)}
-        >
-          {userProducts ? "Show All Products" : "Show Only Your Products"}
-        </button>
-      )}
+    <div className="products-flex-container">
+      <div className="products-button-div">
+        {user && (
+          <button
+            className="products-button-filter"
+            onClick={() => setUserProducts(!userProducts)}
+          >
+            {userProducts ? "Show All Products" : "Show Only Your Products"}
+          </button>
+        )}
+      </div>
       <div className="products-gallery">
         {userProducts ? (
           myProducts?.length ? (
@@ -56,7 +58,9 @@ export const GetAllProducts = () => {
                   />
                   <div className="products-container-text">
                     <div className="products-name">{product.name}</div>
-                    <div className="products-price">${product?.price.toFixed(2)}</div>
+                    <div className="products-price">
+                      ${product?.price.toFixed(2)}
+                    </div>
                     <div className="products-review-shop">
                       <div className="products-rating">
                         {product?.Reviews?.length ? (
@@ -113,7 +117,9 @@ export const GetAllProducts = () => {
                 />
                 <div className="products-container-text">
                   <div className="products-name">{product.name}</div>
-                  <div className="products-price">${product?.price.toFixed(2)}</div>
+                  <div className="products-price">
+                    ${product?.price.toFixed(2)}
+                  </div>
                   <div className="products-review-shop">
                     <div className="products-rating">
                       {product?.Reviews?.length ? (

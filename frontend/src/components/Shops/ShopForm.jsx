@@ -86,7 +86,7 @@ export const ShopForm = ({ shop, formType, id }) => {
       </label>
       {errors.policies && <p className="error">{errors.policies}</p>}
       <span className="shops-form-span">
-        Place pertinent shipping info here.
+        Place pertinent policies here.
       </span>
       <label className="shops-form-label">
         CATEGORY

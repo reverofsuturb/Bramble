@@ -27,8 +27,19 @@ export const CategoryProductsById = () => {
       <div>Oh no! We don&apos;t have any {category?.name} products yet!</div>
     );
   return (
-    <div className="category-products-gallery">
-      <div className="category-name">{category.name}</div>
+    <div>
+        <div className="category-name pacifico-regular">{category.name}</div>
+        <div className="category-products-gallery">
+      <div className="category-image-container">
+        <img
+          src={
+            category?.CategoryImages?.length
+              ? category?.CategoryImages[0]?.image
+              : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+          }
+          className="categories-allimage"
+        />
+      </div>
       {category.Products.map((product) => (
         <Link
           className="category-products-link"
@@ -76,6 +87,7 @@ export const CategoryProductsById = () => {
           </div>
         </Link>
       ))}
+    </div>
     </div>
   );
 };

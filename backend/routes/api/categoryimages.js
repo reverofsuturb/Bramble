@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { requireAuth } = require("../../utils/auth");
-const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3");
+const {
+  singleMulterUpload,
+  singlePublicFileUpload,
+  blobUpload,
+} = require("../../awsS3");
 
 // import models
 const {
@@ -22,7 +26,7 @@ router.get("/", async (req, res) => {
 
 router.post("/fetchblob", [requireAuth], async (req, res) => {
   const user = { req };
-  const { url } = req.body;
+  const { url, id } = req.body;
   console.log(url);
   const blobHelper = async (url) => {
     try {
@@ -40,7 +44,11 @@ router.post("/fetchblob", [requireAuth], async (req, res) => {
     console.log(blob);
     let response = await blobUpload(blob);
     console.log(response);
-    return res.json({ message: response });
+    let categoryImage = await CategoryImage.create({
+      image: response,
+      category_id: id,
+    });
+    return res.json(categoryImage);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Image failed to be retrieved" });

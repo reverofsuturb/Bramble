@@ -19,17 +19,22 @@ const { validateCategory } = require("../../utils/validation");
 //get all categories
 
 router.get("/", async (req, res) => {
-  const categories = await Category.findAll();
+  const categories = await Category.findAll({
+    include: { model: CategoryImage },
+  });
   return res.json(categories);
 });
 
 router.get("/:id", async (req, res) => {
   const category = await Category.findByPk(req.params.id, {
-    include: {
-      model: Product,
-      where: { category_id: req.params.id },
-      include: [{ model: Review }, { model: ProductImage }, { model: Shop }],
-    },
+    include: [
+      { model: CategoryImage },
+      {
+        model: Product,
+        where: { category_id: req.params.id },
+        include: [{ model: Review }, { model: ProductImage }, { model: Shop }],
+      },
+    ],
   });
   res.json(category);
 });

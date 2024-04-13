@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { thunkGetCategories } from "../../store/categories";
 import { PutCategory } from "./PutCategory";
 import { PostCategory } from "./PostCategory";
+import { CategoryImageForm } from "../CategoryImages/CategoryImageForm";
 import OpenModalButton from "../OpenModalButton";
 import "./GetAllCategories.css";
 import { DeleteCategory } from "./DeleteCategory";
@@ -13,6 +14,7 @@ export const GetAllCategories = () => {
   const categoriesObj = useSelector((state) => state.categories);
   const [userCategories, setUserCategories] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [generating, isGenerating] = useState(false);
   const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
   const myCategories = categories?.filter(
@@ -40,7 +42,12 @@ export const GetAllCategories = () => {
             css={"categories-button"}
             modalComponent={<PostCategory />}
           />
-          <button className="categories-button" onClick={() => setShowEdit(!showEdit)}>{showEdit? "Hide Edit/Delete" : "Show Edit/Delete"}</button>
+          <button
+            className="categories-button"
+            onClick={() => setShowEdit(!showEdit)}
+          >
+            {showEdit ? "Hide Edit/Delete" : "Show Edit/Delete"}
+          </button>
         </>
       )}
       <div className="categories-gallery">
@@ -54,23 +61,32 @@ export const GetAllCategories = () => {
                   to={`/categories/${category.id}`}
                 >
                   <div className="categories-container">
+                  <img
+                    src={
+                      category?.CategoryImages?.length
+                        ? category?.CategoryImages[0]?.image
+                        : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+                    }
+                    className="categories-allimage"
+                  />
                     <div>{category.name}</div>
                   </div>
                 </Link>
                 {category.user_id === user?.id && showEdit ? (
                   <div className="categories-utilities">
                     <OpenModalButton
-                      buttonText={"EDIT"}
+                      buttonText={"Edit"}
                       css={"categories-button"}
                       modalComponent={
                         <PutCategory id={category.id} category={category} />
                       }
                     />
                     <OpenModalButton
-                      buttonText={"DELETE"}
+                      buttonText={"Delete"}
                       css={"categories-button"}
                       modalComponent={<DeleteCategory id={category.id} />}
                     />
+                    <CategoryImageForm id={category.id} name={category.name} isGenerating={isGenerating} />
                   </div>
                 ) : (
                   " "
@@ -89,23 +105,32 @@ export const GetAllCategories = () => {
                 to={`/categories/${category.id}`}
               >
                 <div className="categories-container">
+                <img
+                    src={
+                      category?.CategoryImages?.length
+                        ? category?.CategoryImages[0]?.image
+                        : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+                    }
+                    className="categories-allimage"
+                  />
                   <div>{category.name}</div>
                 </div>
               </Link>
               {category.user_id === user?.id && showEdit ? (
                 <div className="categories-utilities">
                   <OpenModalButton
-                    buttonText={"EDIT"}
+                    buttonText={"Edit"}
                     css={"categories-button"}
                     modalComponent={
                       <PutCategory id={category.id} category={category} />
                     }
                   />
                   <OpenModalButton
-                    buttonText={"DELETE"}
+                    buttonText={"Delete"}
                     css={"categories-button"}
                     modalComponent={<DeleteCategory id={category.id} />}
                   />
+                  <CategoryImageForm id={category.id} name={category.name} isGenerating={isGenerating} />
                 </div>
               ) : (
                 " "

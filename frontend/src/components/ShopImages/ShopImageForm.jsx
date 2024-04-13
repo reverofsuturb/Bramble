@@ -115,7 +115,7 @@ export const ShopImageForm = ({
       </form>
       <form className="shoimg-form" onSubmit={handleSubmit}>
         <label className="shoimg-label">
-          Generate a unique image for this product based on it&apos;s
+          Generate a unique image for this shop based on it&apos;s
           description
         </label>
         <button className="shoimg-button">Generate</button>

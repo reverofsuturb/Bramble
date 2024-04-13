@@ -41,6 +41,7 @@
 }
 
 .shops-allimage {
+  border-radius: 10px;
   height: 327.5px;
   width: 327.5px;
 }
@@ -106,5 +107,17 @@
     justify-content: center;
     gap: 1rem;
     margin: auto;
+  }
+  .shops-container {
+    padding: 0;
+  }
+  .shops-name,
+  .shops-text,
+  .shops-container-text {
+    max-width: 320px;
+  }
+  .shops-allimage {
+    width: 310px;
+    height: 310px;
   }
 }

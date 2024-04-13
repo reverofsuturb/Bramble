@@ -50,3 +50,9 @@ html {
   font-style: italic;
   text-align: center;
 }
+
+@media screen and (max-width: 460px) {
+  *{
+    max-width: 100vh;
+  }
+}
