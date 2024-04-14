@@ -97,6 +97,7 @@ export const categoriesReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_CATEGORIES: {
       const categoriesState = {};
+      console.log(action.categories)
       action.categories.forEach((category) => {
         categoriesState[category.id] = category;
       });

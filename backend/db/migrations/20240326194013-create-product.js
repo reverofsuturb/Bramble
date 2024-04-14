@@ -43,7 +43,7 @@ module.exports = {
             model: "Shops",
             key: "id",
           },
-          onDelete: 'SET NULL'
+          onDelete: "SET NULL",
         },
         category_id: {
           allowNull: true,
@@ -52,7 +52,7 @@ module.exports = {
             model: "Categories",
             key: "id",
           },
-          onDelete: 'SET NULL'
+          onDelete: "SET NULL",
         },
         user_id: {
           type: Sequelize.INTEGER,
@@ -60,7 +60,7 @@ module.exports = {
             model: "Users",
             key: "id",
           },
-          onDelete: 'CASCADE'
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,

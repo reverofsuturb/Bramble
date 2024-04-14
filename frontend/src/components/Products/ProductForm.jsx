@@ -37,7 +37,7 @@ export const ProductForm = ({ product, formType, id }) => {
       details,
       shipping,
       featured,
-      shop_id: shop,
+      shop_id:  shop == "" ? null : shop,
       category_id: category,
     };
     console.log(product);

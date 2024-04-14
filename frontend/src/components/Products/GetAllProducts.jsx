@@ -59,7 +59,7 @@ export const GetAllProducts = () => {
                   <div className="products-container-text">
                     <div className="products-name">{product.name}</div>
                     <div className="products-price">
-                      ${product?.price.toFixed(2)}
+                      ${product?.price?.toFixed(2)}
                     </div>
                     <div className="products-review-shop">
                       <div className="products-rating">
@@ -118,7 +118,7 @@ export const GetAllProducts = () => {
                 <div className="products-container-text">
                   <div className="products-name">{product.name}</div>
                   <div className="products-price">
-                    ${product?.price.toFixed(2)}
+                    ${product?.price?.toFixed(2)}
                   </div>
                   <div className="products-review-shop">
                     <div className="products-rating">
