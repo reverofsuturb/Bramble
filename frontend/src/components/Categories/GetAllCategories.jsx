@@ -14,7 +14,7 @@ export const GetAllCategories = () => {
   const categoriesObj = useSelector((state) => state.categories);
   const [userCategories, setUserCategories] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [generating, isGenerating] = useState(false);
+  const [generating, isGenerating] = useState(true);
   const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
   const myCategories = categories?.filter(
@@ -61,32 +61,46 @@ export const GetAllCategories = () => {
                   to={`/categories/${category.id}`}
                 >
                   <div className="categories-container">
-                  <img
-                    src={
-                      category?.CategoryImages?.length
-                        ? category?.CategoryImages[0]?.image
-                        : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
-                    }
-                    className="categories-allimage"
-                  />
+                    <img
+                      src={
+                        category?.CategoryImages?.length
+                          ? category?.CategoryImages[0]?.image
+                          : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
+                      }
+                      className="categories-allimage"
+                    />
                     <div>{category.name}</div>
                   </div>
                 </Link>
                 {category.user_id === user?.id && showEdit ? (
                   <div className="categories-utilities">
-                    <OpenModalButton
-                      buttonText={"Edit"}
-                      css={"categories-button"}
-                      modalComponent={
-                        <PutCategory id={category.id} category={category} />
-                      }
-                    />
-                    <OpenModalButton
-                      buttonText={"Delete"}
-                      css={"categories-button"}
-                      modalComponent={<DeleteCategory id={category.id} />}
-                    />
-                    <CategoryImageForm id={category.id} name={category.name} isGenerating={isGenerating} />
+                    {!generating ? (
+                      <>
+                        <OpenModalButton
+                          buttonText={"Edit"}
+                          css={"categories-button"}
+                          modalComponent={
+                            <PutCategory id={category.id} category={category} />
+                          }
+                        />
+                        <OpenModalButton
+                          buttonText={"Delete"}
+                          css={"categories-button"}
+                          modalComponent={<DeleteCategory id={category.id} />}
+                        />
+                        {!category?.CategoryImages?.length && (
+                          <CategoryImageForm
+                            id={category.id}
+                            name={category.name}
+                            isGenerating={isGenerating}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <div className="categories-text">
+                        Image currently generating, please wait 7-10 seconds.
+                      </div>
+                    )}
                   </div>
                 ) : (
                   " "
@@ -105,7 +119,7 @@ export const GetAllCategories = () => {
                 to={`/categories/${category.id}`}
               >
                 <div className="categories-container">
-                <img
+                  <img
                     src={
                       category?.CategoryImages?.length
                         ? category?.CategoryImages[0]?.image
@@ -118,19 +132,34 @@ export const GetAllCategories = () => {
               </Link>
               {category.user_id === user?.id && showEdit ? (
                 <div className="categories-utilities">
-                  <OpenModalButton
-                    buttonText={"Edit"}
-                    css={"categories-button"}
-                    modalComponent={
-                      <PutCategory id={category.id} category={category} />
-                    }
-                  />
-                  <OpenModalButton
-                    buttonText={"Delete"}
-                    css={"categories-button"}
-                    modalComponent={<DeleteCategory id={category.id} />}
-                  />
-                  <CategoryImageForm id={category.id} name={category.name} isGenerating={isGenerating} />
+                  {!generating ? (
+                    <>
+                      {" "}
+                      <OpenModalButton
+                        buttonText={"Edit"}
+                        css={"categories-button"}
+                        modalComponent={
+                          <PutCategory id={category.id} category={category} />
+                        }
+                      />
+                      <OpenModalButton
+                        buttonText={"Delete"}
+                        css={"categories-button"}
+                        modalComponent={<DeleteCategory id={category.id} />}
+                      />
+                      {!category?.CategoryImages?.length && (
+                        <CategoryImageForm
+                          id={category.id}
+                          name={category.name}
+                          isGenerating={isGenerating}
+                        />
+                      )}{" "}
+                    </>
+                  ) : (
+                    <div className="categories-text">
+                      Image currently generating, please wait 7-10 seconds.
+                    </div>
+                  )}
                 </div>
               ) : (
                 " "
