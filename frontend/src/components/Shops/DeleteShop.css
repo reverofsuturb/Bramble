@@ -33,3 +33,9 @@
 .delete-shop-button:hover {
   border: 3px solid #7a6f48;
 }
+
+@media screen and (max-width: 460px) {
+  .delete-shop-modal {
+    gap: 10px;
+  }
+}

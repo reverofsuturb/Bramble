@@ -58,4 +58,33 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: transparent;
+}
+
+
+@media screen and (max-width: 460px) {
+  .categories-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3B426E;
+    border-radius: 50px;
+  }
+
+  .categories-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+  }
+  .categories-form-input {
+    border-radius: 50px;
+    width: fit-content;
+    outline: none;
+    background-color: #b6bad4;
+    border: 3px solid #b6bad4;
+    color: #3b3214;
+    padding: 10px;
+    font-size: 1rem;
+  }
 }

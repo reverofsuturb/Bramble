@@ -25,7 +25,13 @@
 
 #modal-content {
   position: absolute;
-  background-color: white;
+  background-color: transparent;
   width: 450px;
   border-radius: 50px;
+}
+
+@media screen and (max-width: 460px) {
+  #modal-content {
+    width: 350px;
+  }
 }

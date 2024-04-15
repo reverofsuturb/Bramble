@@ -130,4 +130,15 @@
     gap: 5px;
     margin: auto;
   }
+  .categories-button-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .categories-button-filter,
+  .categories-button {
+    width: fit-content;
+    font-size: 1.2rem;
+  }
 }
