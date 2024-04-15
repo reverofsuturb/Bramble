@@ -14,7 +14,7 @@ export const GetAllCategories = () => {
   const categoriesObj = useSelector((state) => state.categories);
   const [userCategories, setUserCategories] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [generating, isGenerating] = useState(true);
+  const [generating, isGenerating] = useState(false);
   const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
   const myCategories = categories?.filter(
