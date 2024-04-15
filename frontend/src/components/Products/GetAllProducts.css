@@ -148,15 +148,20 @@
     padding: 8px;
     cursor: pointer;
     width: fit-content;
-    font-size: 1rem;
     color: #3b3214;
     white-space: nowrap;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .products-button-div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .products-button-filter {
+    font-size: 1.8rem;
   }
 }

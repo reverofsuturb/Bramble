@@ -55,4 +55,49 @@
     grid-template-rows: auto;
     gap: 50px;
   }
+  .landing-welcome {
+    max-width: 1000px;
+    font-style: italic;
+    background-color: #14193b;
+    color: #b6bad4;
+    padding: 20px;
+    border-radius: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #777ca1;
+    border-radius: 50px;
+    gap: 10px;
+    width: 375px;
+    margin: auto;
+  }
+
+  .landing-image-logo {
+    height: 350px;
+    width: 350px;
+    margin: 25px;
+    border-radius: 50px;
+  }
+  .landing-image-btn {
+    height: 310px;
+    width: 310px;
+    border-radius: 50px;
+    border: 5px solid #777ca1;
+  }
+  .landing-welcome {
+    max-width: 1000px;
+    font-style: italic;
+    background-color: #14193b;
+    color: #b6bad4;
+    padding: 20px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+  }
 }
