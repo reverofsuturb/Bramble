@@ -37,7 +37,7 @@ export const CategoryProductsById = () => {
               ? category?.CategoryImages[0]?.image
               : "https://bramble-bucket.s3.us-east-2.amazonaws.com/1712157318099.png"
           }
-          className="categories-allimage"
+          className="category-image"
         />
       </div>
       {category.Products.map((product) => (
