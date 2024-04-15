@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const environment = require("../../config");
+const { environment } = require("../../config");
 const isProduction = environment === "production";
 const { Op } = require("sequelize");
 const { check } = require("express-validator");
