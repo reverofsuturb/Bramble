@@ -23,7 +23,7 @@ export const GetAllCategories = () => {
 
   useEffect(() => {
     dispatch(thunkGetCategories());
-  }, [dispatch]);
+  }, [dispatch, generating]);
 
   return (
     <div className="categories-button-div">
