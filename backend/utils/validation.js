@@ -47,11 +47,11 @@ const validateProduct = [
   check("details")
     .exists({ checkFalsy: true })
     .isLength({ min: 5, max: 100 })
-    .withMessage("Details must be between 5 and 100 characters."),
+    .withMessage("Details must be selected."),
   check("shipping")
     .exists({ checkFalsy: true })
     .isLength({ min: 5, max: 100 })
-    .withMessage("Shipping must be between 5 and 100 characters."),
+    .withMessage("Shipping must be selected."),
   check("category_id")
     .exists({ checkFalsy: true })
     .withMessage("Please select a category."),
@@ -69,8 +69,8 @@ const validateShop = [
     .withMessage("Description must be between 10 and 900 characters."),
   check("policies")
     .exists({ checkFalsy: true })
-    .isLength({ min: 5, max: 100 })
-    .withMessage("Details must be between 5 and 100 characters."),
+    .isLength({ min: 5, max: 250 })
+    .withMessage("Policy must be selected."),
   check("category_id")
     .exists({ checkFalsy: true })
     .withMessage("Please select a category."),

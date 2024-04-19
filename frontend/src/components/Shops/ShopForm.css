@@ -52,13 +52,15 @@
 
 .shops-form-select {
   border-radius: 50px;
-  width: 175px;
+  max-width: 370px;
   outline: none;
   background-color: #b6bad4;
   border: 3px solid #b6bad4;
   color: #3b3214;
   padding: 10px;
   font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .shops-form-select:hover {
@@ -80,4 +82,10 @@
 
 .shops-form-button:hover {
   border: 3px solid #7a6f48;
+}
+
+@media screen and (max-width: 570px) {
+  .shops-form-select {
+    width: 175px;
+  }
 }

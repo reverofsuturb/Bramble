@@ -96,6 +96,7 @@
 .prodetails-link-shop {
   text-decoration: none;
   color: #3b3214;
+  cursor: pointer;
 }
 .prodetails-link-shop:hover {
   border-bottom: 1px #3b3214 solid;
@@ -105,13 +106,13 @@
   display: flex;
   justify-content: space-around;
   border-radius: 50px;
-  background-color: #b6bad4
+  background-color: #b6bad4;
 }
 .prodetails-shipping-details {
   display: flex;
   justify-content: space-around;
   border-radius: 50px;
-  background-color: #b6bad4
+  background-color: #b6bad4;
 }
 
 .prodetails-details {
@@ -122,8 +123,8 @@
 .prodetails-caption {
   width: fit-content;
   border-radius: 5px;
-  padding:2px;
-  background-color: #14193B;
+  padding: 2px;
+  background-color: #14193b;
 }
 
 @media screen and (max-width: 1300px) {
@@ -201,6 +202,9 @@
     margin: auto;
   }
 
+  .prodetails-name {
+    font-size: 1.2rem;
+  }
   .prodetails-container-text {
     display: flex;
     flex-direction: column;

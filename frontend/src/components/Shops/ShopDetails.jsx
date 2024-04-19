@@ -51,6 +51,7 @@ export const ShopDetails = () => {
           />
           <div className="shopdetails-container-text">
             <div className="shopdetails-name shopdetails-text">{shop.name}</div>
+            <div className="shopdetails-text">{shop?.about}</div>
             <div className="shopdetails-text">
               {shop?.Reviews?.length ? (
                 <>
@@ -60,8 +61,19 @@ export const ShopDetails = () => {
                 "Not Rated"
               )}
             </div>
-            <div className="shopdetails-text">{shop?.about}</div>
             <div className="shopdetails-text">{shop?.policies}</div>
+            <div
+              className="shopdetails-text"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                navigate(`/categories/${shop?.Category?.id}`);
+              }}
+            >
+              <span className="shopdetails-category">
+                {shop?.Category?.name}
+              </span>
+            </div>
           </div>
         </div>
         <div className="shopdetails-utilities">
@@ -174,7 +186,7 @@ export const ShopDetails = () => {
                   )}
                 </div>
                 <div
-                  className="shops-products-category"
+                  className="shopdetails-products-category"
                   onClick={(e) => {
                     e.stopPropagation();
                     e.preventDefault();

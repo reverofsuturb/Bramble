@@ -62,7 +62,7 @@ export const GetAllShops = () => {
                         "Not Rated"
                       )}
                     </div>
-                    <div className="shops-text">Policies: {shop?.policies}</div>
+                    <div className="shops-text">{shop?.policies}</div>
                     <div
                       className="shops-text shops-category"
                       onClick={(e) => {
@@ -103,7 +103,7 @@ export const GetAllShops = () => {
                       "Not Rated"
                     )}
                   </div>
-                  <div className="shops-text">Policies: {shop?.policies}</div>
+                  <div className="shops-text">{shop?.policies}</div>
                   <div
                       className="shops-text shops-category"
                       onClick={(e) => {

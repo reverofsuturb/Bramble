@@ -113,6 +113,13 @@
   color: #14193b;
 }
 
+.category-arrow {
+  width: fit-content;
+  font-size: 2rem;
+  color: #14193b;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1300px) {
   .category-products-gallery {
     display: grid;

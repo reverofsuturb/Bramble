@@ -25,6 +25,24 @@
   border-radius: 50px;
 }
 
+.shopdetails-products-category {
+  width: fit-content;
+  border-bottom: 1px #14193b solid;
+  cursor: pointer;
+}
+.shopdetails-products-category:hover {
+  border-bottom: 1px #b6bad4 solid;
+}
+
+.shopdetails-category {
+  width: fit-content;
+  border-bottom: 1px #b6bad4 solid;
+  cursor: pointer;
+}
+.shopdetails-category:hover {
+  border-bottom: 1px #14193b solid;
+}
+
 .shopdetails-imgdetails-container {
   display: flex;
   gap: 10px;

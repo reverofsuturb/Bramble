@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { thunkPostShop, thunkPutShop } from "../../store/shops";
 import { thunkGetCategories } from "../../store/categories";
 import { useDispatch, useSelector } from "react-redux";
+import { shopPolicies } from "./PolicyArrays";
 import "./ShopForm.css";
 
 export const ShopForm = ({ shop, formType, id }) => {
@@ -80,17 +81,22 @@ export const ShopForm = ({ shop, formType, id }) => {
       </span>
       <label className="shops-form-label">
         POLICIES
-        <textarea
-          className="shops-form-input"
-          type="text"
+        <select
+          className="shops-form-select"
           value={policies}
           onChange={(e) => setPolicies(e.target.value)}
-        />
+        >
+          {" "}
+          <option value={""}>Choose One</option>
+          {shopPolicies.map((policy) => (
+            <option key={policy} value={policy}>
+              {policy}
+            </option>
+          ))}
+        </select>
       </label>
       {errors.policies && <p className="error">{errors.policies}</p>}
-      <span className="shops-form-span">
-        Place pertinent policies here.
-      </span>
+      <span className="shops-form-span">Select a policy.</span>
       <label className="shops-form-label">
         CATEGORY
         <select
@@ -98,7 +104,6 @@ export const ShopForm = ({ shop, formType, id }) => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          {" "}
           <option value={""}>Select One</option>
           {categories?.map((category) => (
             <option

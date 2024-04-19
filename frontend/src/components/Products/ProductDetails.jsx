@@ -50,7 +50,7 @@ export const ProductDetails = () => {
         />
         <div className="prodetails-container-text">
           <div className="prodetails-name prodetails-text">{product?.name}</div>
-              <div className="prodetails-text">{product?.description}</div>
+          <div className="prodetails-text">{product?.description}</div>
           <div className="prodetails-price-rating">
             <div className="prodetails-text">${product?.price.toFixed(2)}</div>
             <div className="prodetails-text">
@@ -82,7 +82,16 @@ export const ProductDetails = () => {
           ) : (
             " "
           )}
-          <div className="prodetails-text">{product?.Category?.name}</div>
+          <div
+            className="prodetails-text"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              navigate(`/categories/${product?.Category?.id}`);
+            }}
+          >
+            <span className="prodetails-link-shop">{product?.Category?.name}</span>
+          </div>
         </div>
       </div>
       <div className="prodetails-utilities">
