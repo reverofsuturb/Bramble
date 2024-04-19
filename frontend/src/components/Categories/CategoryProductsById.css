@@ -108,6 +108,11 @@
   justify-content: space-between;
 }
 
+.category-na {
+  font-size: 2rem;
+  color: #14193b;
+}
+
 @media screen and (max-width: 1300px) {
   .category-products-gallery {
     display: grid;

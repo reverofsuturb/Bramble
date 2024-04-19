@@ -24,7 +24,7 @@ export const CategoryProductsById = () => {
 
   if (!category?.Products?.length)
     return (
-      <div>Oh no! We don&apos;t have any {category?.name} products yet!</div>
+      <div className="category-na">Oh no! We don&apos;t have any {category?.name} products yet!</div>
     );
   return (
     <div>

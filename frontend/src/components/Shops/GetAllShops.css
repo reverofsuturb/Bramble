@@ -55,6 +55,14 @@
   width: 350px;
 }
 
+.shops-category {
+  width: fit-content;
+  border-bottom: 1px #14193b solid;
+}
+.shops-category:hover {
+  border-bottom: 1px #b6bad4 solid;
+}
+
 .shops-rating {
   color: #bab39c;
 }
@@ -75,6 +83,14 @@
 
 .shops-button-filter:hover {
   border: 3px solid #7a6f48;
+}
+
+.shops-products-category {
+  width: fit-content;
+  border-bottom: 1px #14193b solid;
+}
+.shops-products-category:hover {
+  border-bottom: 1px #b6bad4 solid;
 }
 
 @media screen and (max-width: 1300px) {

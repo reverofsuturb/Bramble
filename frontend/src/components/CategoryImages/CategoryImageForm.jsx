@@ -33,7 +33,7 @@ makeAi();
 // })
 // .catch((error) => console.error(error));
 
-export const CategoryImageForm = ({ id, name, isGenerating }) => {
+export const CategoryImageForm = ({ id, name, isGenerating, isSelected }) => {
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState({});
 
@@ -53,6 +53,7 @@ export const CategoryImageForm = ({ id, name, isGenerating }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    isSelected(id);
     isGenerating(true);
     let openai = await makeAi();
     let generateImage = await openai.images.generate({

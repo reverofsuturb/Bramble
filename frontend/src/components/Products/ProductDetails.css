@@ -101,6 +101,31 @@
   border-bottom: 1px #3b3214 solid;
 }
 
+.prodetails-price-rating {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 50px;
+  background-color: #b6bad4
+}
+.prodetails-shipping-details {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 50px;
+  background-color: #b6bad4
+}
+
+.prodetails-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.prodetails-caption {
+  width: fit-content;
+  border-radius: 5px;
+  padding:2px;
+  background-color: #14193B;
+}
+
 @media screen and (max-width: 1300px) {
   .prodetails-reviews-gallery {
     display: grid;

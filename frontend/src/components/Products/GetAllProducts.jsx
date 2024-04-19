@@ -89,7 +89,14 @@ export const GetAllProducts = () => {
                         ""
                       )}
                     </div>
-                    <div className="products-text">
+                    <div
+                      className="products-text product-category"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        navigate(`/categories/${product?.Category?.id}`);
+                      }}
+                    >
                       {product?.Category?.name && `${product?.Category?.name}`}
                     </div>
                   </div>
@@ -148,7 +155,14 @@ export const GetAllProducts = () => {
                       ""
                     )}
                   </div>
-                  <div className="products-text">
+                  <div
+                      className="products-text products-category"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        navigate(`/categories/${product?.Category?.id}`);
+                      }}
+                    >
                     {product?.Category?.name && `${product?.Category?.name}`}
                   </div>
                 </div>

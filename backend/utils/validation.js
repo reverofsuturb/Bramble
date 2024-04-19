@@ -23,7 +23,6 @@ const validateCategory = [
   check("name")
     .exists({ checkFalsy: true })
     .isLength({ min: 3, max: 30 })
-    .isAlpha()
     .withMessage(
       "Category name must be in letters and a minimum of three characters to a maximum of thirty characters."
     ),
@@ -33,8 +32,8 @@ const validateCategory = [
 const validateProduct = [
   check("name")
     .exists({ checkFalsy: true })
-    .isLength({ min: 1, max: 50 })
-    .withMessage("Name must be between 1 and 50 characters."),
+    .isLength({ min: 1, max: 100 })
+    .withMessage("Name must be between 1 and 100 characters."),
   check("price")
     .exists({ checkFalsy: true })
     .isFloat()

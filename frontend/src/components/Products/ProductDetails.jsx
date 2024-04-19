@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { thunkGetProducts } from "../../store/products";
 import { thunkGetProductImages } from "../../store/productimages";
@@ -13,6 +13,7 @@ import "./ProductDetails.css";
 
 export const ProductDetails = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const product = useSelector((state) => state.products[id]);
   const user = useSelector((state) => state.session.user);
@@ -48,16 +49,25 @@ export const ProductDetails = () => {
           }
         />
         <div className="prodetails-container-text">
-          <div className="prodetails-text">${product?.price.toFixed(2)}</div>
           <div className="prodetails-name prodetails-text">{product?.name}</div>
-          <div className="prodetails-text">
-            {product?.Reviews?.length ? (
-              <>
-                {getRating(product)} <FaRegStar />
-              </>
-            ) : (
-              "Not Rated"
-            )}
+              <div className="prodetails-text">{product?.description}</div>
+          <div className="prodetails-price-rating">
+            <div className="prodetails-text">${product?.price.toFixed(2)}</div>
+            <div className="prodetails-text">
+              {product?.Reviews?.length ? (
+                <>
+                  {getRating(product)} <FaRegStar />
+                </>
+              ) : (
+                "Not Rated"
+              )}
+            </div>
+          </div>
+          <div className="prodetails-shipping-details">
+            <div className="prodetails-text prodetails-details">
+              {product?.details}
+            </div>
+            <div className="prodetails-text">{product?.shipping}</div>
           </div>
           {product?.Shop?.id ? (
             <div className="prodetails-text">
@@ -72,9 +82,6 @@ export const ProductDetails = () => {
           ) : (
             " "
           )}
-          <div className="prodetails-text">{product?.description}</div>
-          <div className="prodetails-text">{product?.details}</div>
-          <div className="prodetails-text">{product?.shipping}</div>
           <div className="prodetails-text">{product?.Category?.name}</div>
         </div>
       </div>
@@ -119,7 +126,7 @@ export const ProductDetails = () => {
               modalComponent={
                 <DeleteProduct id={product?.id} isDeleting={isDeleting} />
               }
-            />{" "}
+            />
           </div>
         ) : (
           " "

@@ -15,6 +15,7 @@ export const GetAllCategories = () => {
   const [userCategories, setUserCategories] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [generating, isGenerating] = useState(false);
+  const [selected, isSelected] = useState("");
   const user = useSelector((state) => state.session.user);
   const categories = Object.values(categoriesObj);
   const myCategories = categories?.filter(
@@ -93,13 +94,16 @@ export const GetAllCategories = () => {
                             id={category.id}
                             name={category.name}
                             isGenerating={isGenerating}
+                            isSelected={isSelected}
                           />
                         )}
                       </>
-                    ) : (
+                    ) : selected == category.id ? (
                       <div className="categories-text">
                         Image currently generating, please wait 7-10 seconds.
                       </div>
+                    ) : (
+                      ""
                     )}
                   </div>
                 ) : (
@@ -134,7 +138,6 @@ export const GetAllCategories = () => {
                 <div className="categories-utilities">
                   {!generating ? (
                     <>
-                      {" "}
                       <OpenModalButton
                         buttonText={"Edit"}
                         css={"categories-button"}
@@ -152,13 +155,16 @@ export const GetAllCategories = () => {
                           id={category.id}
                           name={category.name}
                           isGenerating={isGenerating}
+                          isSelected={isSelected}
                         />
-                      )}{" "}
+                      )}
                     </>
-                  ) : (
+                  ) : selected == category.id ? (
                     <div className="categories-text">
                       Image currently generating, please wait 7-10 seconds.
                     </div>
+                  ) : (
+                    ""
                   )}
                 </div>
               ) : (

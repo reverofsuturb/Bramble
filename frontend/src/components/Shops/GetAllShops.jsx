@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { thunkGetShops } from "../../store/shops";
 import { Link } from "react-router-dom";
 import { FaRegStar } from "react-icons/fa";
@@ -7,6 +8,7 @@ import "./GetAllShops.css";
 
 export const GetAllShops = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [userShops, setUserShops] = useState(false);
   const user = useSelector((state) => state.session.user);
   const shopsObj = useSelector((state) => state.shops);
@@ -61,7 +63,14 @@ export const GetAllShops = () => {
                       )}
                     </div>
                     <div className="shops-text">Policies: {shop?.policies}</div>
-                    <div className="shops-text">
+                    <div
+                      className="shops-text shops-category"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        navigate(`/categories/${shop?.Category?.id}`);
+                      }}
+                    >
                       {shop?.Category?.name && `${shop?.Category?.name}`}
                     </div>
                   </div>
@@ -95,7 +104,14 @@ export const GetAllShops = () => {
                     )}
                   </div>
                   <div className="shops-text">Policies: {shop?.policies}</div>
-                  <div className="shops-text">
+                  <div
+                      className="shops-text shops-category"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        navigate(`/categories/${shop?.Category?.id}`);
+                      }}
+                    >
                     {shop?.Category?.name && `${shop?.Category?.name}`}
                   </div>
                 </div>

@@ -45,6 +45,7 @@
   border-bottom: 1px #14193b solid;
 }
 
+
 .products-gallery {
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -67,6 +68,14 @@
   white-space: nowrap;
   width: 350px;
   color: #b6bad4;
+}
+
+.products-category {
+  width: fit-content;
+  border-bottom: 1px #14193b solid;
+}
+.products-category:hover {
+  border-bottom: 1px #b6bad4 solid;
 }
 
 .products-price,

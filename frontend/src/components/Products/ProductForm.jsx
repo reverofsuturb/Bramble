@@ -4,6 +4,7 @@ import { thunkPostProduct, thunkPutProduct } from "../../store/products";
 import { thunkGetShops } from "../../store/shops";
 import { thunkGetCategories } from "../../store/categories";
 import { useDispatch, useSelector } from "react-redux";
+import { describe1, describe2, describe3 } from "./DetailsArrays";
 import "./ProductForm.css";
 
 export const ProductForm = ({ product, formType, id }) => {
@@ -13,6 +14,9 @@ export const ProductForm = ({ product, formType, id }) => {
   const [price, setPrice] = useState(product?.price || "");
   const [description, setDescription] = useState(product?.description || "");
   const [details, setDetails] = useState(product?.details || "");
+  const [detail1, setDetail1] = useState("");
+  const [detail2, setDetail2] = useState("");
+  const [detail3, setDetail3] = useState("");
   const [shipping, setShipping] = useState(product?.shipping || "");
   const [category, setCategory] = useState(product?.category_id || "");
   const [featured, setFeatured] = useState(product?.featured || false);
@@ -23,7 +27,6 @@ export const ProductForm = ({ product, formType, id }) => {
   const shopsObj = useSelector((state) => state.shops);
   const categories = Object.values(categoriesObj);
   const shops = Object.values(shopsObj);
-
   const shopFind = shops?.find((shop) => shop.user_id === user?.id);
   const filteredShops = shops?.filter((shop) => shop.user_id === user?.id);
 
@@ -37,7 +40,7 @@ export const ProductForm = ({ product, formType, id }) => {
       details,
       shipping,
       featured,
-      shop_id:  shop == "" ? null : shop,
+      shop_id: shop == "" ? null : shop,
       category_id: category,
     };
     console.log(product);
@@ -62,6 +65,10 @@ export const ProductForm = ({ product, formType, id }) => {
     dispatch(thunkGetCategories());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (detail1 || detail2 || detail3) setDetails(detail1 + detail2 + detail3);
+  }, [detail1, detail2, detail3]);
+
   return (
     <form onSubmit={handleSubmit} className="products-form">
       <label className="products-form-label">
@@ -79,6 +86,23 @@ export const ProductForm = ({ product, formType, id }) => {
         choose to generate an image for this item in the next screen.
       </span>
       <label className="products-form-label">
+        DESCRIPTION
+        <div
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          className="products-form-input"
+          value={description}
+          onBlur={(e) => setDescription(e.currentTarget.innerText)}
+        >
+          {description && description}
+        </div>
+      </label>
+      {errors.description && <p className="error">{errors.description}</p>}
+      <span className="products-form-span">
+        How would you describe the product? This description will be used if you
+        choose to generate an image for this item in the next screen.
+      </span>
+      <label className="products-form-label">
         PRICE
         <input
           className="products-form-input"
@@ -90,45 +114,106 @@ export const ProductForm = ({ product, formType, id }) => {
       {errors.price && <p className="error">{errors.price}</p>}
       <span className="products-form-span">How much does it cost?</span>
       <label className="products-form-label">
-        DESCRIPTION
-        <textarea
-          className="products-form-input"
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </label>
-      {errors.description && <p className="error">{errors.description}</p>}
-      <span className="products-form-span">
-        How would you describe the product? This description will be used if you
-        choose to generate an image for this item in the next screen.
-      </span>
-      <label className="products-form-label">
         DETAILS
-        <textarea
-          className="products-form-input"
-          type="text"
-          value={details}
-          onChange={(e) => setDetails(e.target.value)}
-        />
+        <div className="products-details-select">
+          <div>{product?.details && `Current: ${product?.details}`}</div>
+          <select
+            className="products-form-select"
+            type="text"
+            value={detail1}
+            onChange={(e) => {
+              e.stopPropagation();
+              setDetail1(e.currentTarget.value);
+            }}
+          >
+            <option className="products-form-option" value="">
+              Pick
+            </option>
+            {describe1.map((details1) => (
+              <option
+                key={details1}
+                className="products-form-option"
+                value={details1}
+              >
+                {details1}
+              </option>
+            ))}
+          </select>
+          <select
+            className="products-form-select"
+            type="text"
+            value={detail2}
+            onChange={(e) => {
+              e.stopPropagation();
+              setDetail2(e.currentTarget.value);
+            }}
+          >
+            <option className="products-form-option" value="">
+              Your
+            </option>
+            {describe2.map((details2) => (
+              <option
+                key={details2}
+                className="products-form-option"
+                value={details2}
+              >
+                {details2}
+              </option>
+            ))}
+          </select>
+          <select
+            className="products-form-select"
+            type="text"
+            value={detail3}
+            onChange={(e) => {
+              e.stopPropagation();
+              setDetail3(e.currentTarget.value);
+            }}
+          >
+            <option className="products-form-option" value="">
+              Details
+            </option>
+            {describe3.map((details3) => (
+              <option
+                key={details3}
+                className="products-form-option"
+                value={details3}
+              >
+                {details3}
+              </option>
+            ))}
+          </select>
+        </div>
       </label>
       {errors.details && <p className="error">{errors.details}</p>}
-      <span className="products-form-span">
-        Any specific details about this product?
-      </span>
+      <span className="products-form-span">Please choose three details</span>
       <label className="products-form-label">
         SHIPPING
-        <textarea
-          className="products-form-input"
+        <select
+          className="products-form-select"
           type="text"
           value={shipping}
           onChange={(e) => setShipping(e.target.value)}
-        />
+        >
+          <option className="products-form-option" value="">
+            Choose One
+          </option>
+          <option className="products-form-option" value="Free Shipping">
+            Free Shipping
+          </option>
+          <option className="products-form-option" value="Express Shipping">
+            Express Shipping
+          </option>
+          <option className="products-form-option" value="Carrier Pigeon">
+            Carrier Pigeon
+          </option>
+          <option className="products-form-option" value="Sloth Delivery">
+            Sloth Delivery
+          </option>
+        </select>
       </label>
       {errors.shipping && <p className="error">{errors.shipping}</p>}
-      <span className="products-form-span">
-        Place pertinent shipping info here.
-      </span>
+      <span className="products-form-span">Select shipping info here.</span>
       {shopFind ? (
         <>
           <label className="products-form-label">

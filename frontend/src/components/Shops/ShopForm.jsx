@@ -63,12 +63,15 @@ export const ShopForm = ({ shop, formType, id }) => {
       </span>
       <label className="shops-form-label">
         ABOUT
-        <textarea
+        <div
+          contentEditable={true}
+          suppressContentEditableWarning={true}
           className="shops-form-input"
-          type="text"
           value={about}
-          onChange={(e) => setAbout(e.target.value)}
-        />
+          onBlur={(e) => setAbout(e.currentTarget.innerText)}
+        >
+          {about && about}
+        </div>
       </label>
       {errors.about && <p className="error">{errors.about}</p>}
       <span className="products-form-span">
