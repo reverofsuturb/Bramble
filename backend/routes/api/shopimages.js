@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 router.post("/fetchblob", [requireAuth], async (req, res) => {
   const user = { req };
   const { url, id } = req.body;
-  console.log(url);
+
   const blobHelper = async (url) => {
     try {
       let image = await fetch(url);

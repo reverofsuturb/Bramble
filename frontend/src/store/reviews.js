@@ -58,7 +58,6 @@ export const thunkPutReview = (reviewId, review) => async (dispatch) => {
     body: JSON.stringify(review),
   });
   const editReview = await response.json();
-  console.log(editReview);
   if (editReview.errors) {
     return editReview;
   }
@@ -74,7 +73,6 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
     return review;
   }
   await dispatch(deleteReview(reviewId));
-  console.log(`deleted ${reviewId}`);
 };
 
 // reducer

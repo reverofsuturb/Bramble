@@ -49,7 +49,6 @@ export const thunkPostProduct = (product) => async (dispatch) => {
     return newProduct;
   }
   await dispatch(postProduct(newProduct));
-  console.log(newProduct)
   return newProduct;
 };
 

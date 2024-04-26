@@ -10,7 +10,7 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
   const navigate = useNavigate();
   const [name, setName] = useState(category?.name || "");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal()
+  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +18,6 @@ export const CategoryForm = ({ id, formType, category, setEditing }) => {
     const category = {
       name,
     };
-    console.log(category);
 
     if (formType === "post") {
       const postCategory = await dispatch(thunkPostCategory(category));

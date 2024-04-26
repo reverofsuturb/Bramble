@@ -14,8 +14,6 @@ export const CategoryProductsById = () => {
 
   const category = useSelector((state) => state.categories[id]);
 
-  console.log(category);
-
   const getRating = (prod) => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
@@ -27,9 +25,9 @@ export const CategoryProductsById = () => {
   if (!category?.Products?.length)
     return (
       <>
-      <div className="category-arrow" onClick={() => navigate("/categories")}>
-        <TbArrowBigLeft />
-      </div>
+        <div className="category-arrow" onClick={() => navigate("/categories")}>
+          <TbArrowBigLeft />
+        </div>
         <div className="category-na">
           Oh no! We don&apos;t have any {category?.name} products yet!
         </div>

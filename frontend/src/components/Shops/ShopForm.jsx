@@ -26,7 +26,7 @@ export const ShopForm = ({ shop, formType, id }) => {
       policies,
       category_id: category,
     };
-    console.log(shop);
+
     if (formType === "post") {
       const postShop = await dispatch(thunkPostShop(shop));
       if (postShop && postShop.errors) {

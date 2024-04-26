@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 router.post("/fetchblob", [requireAuth], async (req, res) => {
   const user = { req };
   const { url, id } = req.body;
-  console.log(url);
+
   const blobHelper = async (url) => {
     try {
       let image = await fetch(url);
@@ -41,16 +41,15 @@ router.post("/fetchblob", [requireAuth], async (req, res) => {
 
   try {
     let blob = await blobHelper(url);
-    console.log(blob);
+
     let response = await blobUpload(blob);
-    console.log(response);
+
     let categoryImage = await CategoryImage.create({
       image: response,
       category_id: id,
     });
     return res.json(categoryImage);
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ message: "Image failed to be retrieved" });
   }
 });

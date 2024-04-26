@@ -19,7 +19,6 @@ export const thunkGetCategoryImages = () => async (dispatch) => {
   if (images.errors) {
     return images.errors;
   }
-  console.log(images);
   dispatch(getCategoryImages(images));
 };
 
@@ -43,9 +42,7 @@ export const thunkPostCategoryImage = (id, image) => async (dispatch) => {
     },
     body: formData,
   });
-  console.log(response);
   const data = await response.json();
-  console.log(data);
   const newImage = await dispatch(postCategoryImage(data));
   return newImage;
 };

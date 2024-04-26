@@ -19,7 +19,6 @@ export const thunkGetShopImages = () => async (dispatch) => {
   if (images.errors) {
     return images.errors;
   }
-  console.log(images);
   dispatch(getShopImages(images));
 };
 
@@ -43,9 +42,7 @@ export const thunkPostShopImage = (id, image) => async (dispatch) => {
     },
     body: formData,
   });
-  console.log(response);
   const data = await response.json();
-  console.log(data);
   const newImage = await dispatch(postShopImage(data));
   return newImage;
 };

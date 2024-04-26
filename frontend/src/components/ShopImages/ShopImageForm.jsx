@@ -29,10 +29,6 @@ const makeAi = async () => {
 };
 
 makeAi();
-// .then((openai) => {
-//   console.log(openai);
-// })
-// .catch((error) => console.error(error));
 
 export const ShopImageForm = ({
   id,
@@ -52,10 +48,9 @@ export const ShopImageForm = ({
       body: JSON.stringify({ url: url, id: id }),
     });
     if (fetchImage && fetchImage.errors) {
-      console.log(fetchImage);
       return fetchImage.errors;
     }
-    console.log(fetchImage);
+
     return fetchImage;
   };
 
@@ -70,10 +65,9 @@ export const ShopImageForm = ({
         n: 1,
         size: "1024x1024",
       });
-      console.log(generateImage);
+      console.log(generateImage); //keep
 
       let pngBlob = await blobFetcher(generateImage.data[0].url);
-      console.log(pngBlob);
 
       await dispatch(thunkGetShopImages());
       isGenerating(false);
@@ -81,9 +75,8 @@ export const ShopImageForm = ({
     } else {
       isUploading(true);
       const shopImage = await dispatch(thunkPostShopImage(id, image));
-      console.log(shopImage);
+
       if (shopImage && shopImage.errors) {
-        console.log(shopImage);
         return shopImage.errors;
       }
       await dispatch(thunkGetShopImages());
@@ -115,8 +108,7 @@ export const ShopImageForm = ({
       </form>
       <form className="shoimg-form" onSubmit={handleSubmit}>
         <label className="shoimg-label">
-          Generate a unique image for this shop based on it&apos;s
-          description
+          Generate a unique image for this shop based on it&apos;s description
         </label>
         <button className="shoimg-button">Generate</button>
       </form>

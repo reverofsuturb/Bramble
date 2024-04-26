@@ -43,14 +43,12 @@ export const ProductForm = ({ product, formType, id }) => {
       shop_id: shop == "" ? null : shop,
       category_id: category,
     };
-    console.log(product);
 
     if (formType === "post") {
       const postProduct = await dispatch(thunkPostProduct(product));
       if (postProduct && postProduct.errors) {
         return setErrors(postProduct.errors);
       }
-      console.log(postProduct);
       navigate(`/products/${postProduct.id}`);
     } else if (formType === "put") {
       const putProduct = await dispatch(thunkPutProduct(id, product));

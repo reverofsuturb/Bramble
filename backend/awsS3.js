@@ -28,7 +28,6 @@ const blobUpload = async (blob) => {
 
   try {
     const result = await s3.upload(uploadParams).promise();
-    console.log(result);
 
     return result.Location;
   } catch (err) {

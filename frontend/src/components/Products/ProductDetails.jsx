@@ -26,7 +26,6 @@ export const ProductDetails = () => {
     return prod.Reviews.reduce((a, c) => a + c.rating, 0) / prod.Reviews.length;
   };
   let revLength = product?.Reviews?.length;
-  console.log(revLength);
   const reviewFind = product?.Reviews?.find(
     (review) => review.user_id == user?.id
   );
@@ -90,7 +89,9 @@ export const ProductDetails = () => {
               navigate(`/categories/${product?.Category?.id}`);
             }}
           >
-            <span className="prodetails-link-shop">{product?.Category?.name}</span>
+            <span className="prodetails-link-shop">
+              {product?.Category?.name}
+            </span>
           </div>
         </div>
       </div>

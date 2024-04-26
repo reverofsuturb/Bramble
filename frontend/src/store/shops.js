@@ -59,7 +59,6 @@ export const thunkPutShop = (shopId, shop) => async (dispatch) => {
     body: JSON.stringify(shop),
   });
   const editShop = await response.json();
-  console.log(editShop);
   if (editShop.errors) {
     return editShop;
   }
@@ -76,7 +75,6 @@ export const thunkDeleteShop = (shopId) => async (dispatch) => {
     return shop;
   }
   await dispatch(deleteShop(shopId));
-  console.log(`deleted ${shopId}`);
 };
 
 // reducer

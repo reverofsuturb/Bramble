@@ -31,10 +31,6 @@ const makeAi = async () => {
 };
 
 makeAi();
-// .then((openai) => {
-//   console.log(openai);
-// })
-// .catch((error) => console.error(error));
 
 export const ProductImageForm = ({
   id,
@@ -54,10 +50,9 @@ export const ProductImageForm = ({
       body: JSON.stringify({ url: url, id: id }),
     });
     if (fetchImage && fetchImage.errors) {
-      console.log(fetchImage);
       return fetchImage.errors;
     }
-    console.log(fetchImage);
+
     return fetchImage;
   };
 
@@ -72,21 +67,18 @@ export const ProductImageForm = ({
         n: 1,
         size: "1024x1024",
       });
-      console.log(generateImage);
+      console.log(generateImage); //keep
 
       let pngBlob = await blobFetcher(generateImage.data[0].url);
-      console.log(pngBlob);
 
       await dispatch(thunkGetProductImages());
       isGenerating(false);
       return pngBlob;
     } else {
-      console.log(image);
       isUploading(true);
       const productImage = await dispatch(thunkPostProductImage(id, image));
-      console.log(productImage);
+
       if (productImage && productImage.errors) {
-        console.log(productImage);
         return productImage.errors;
       }
       await dispatch(thunkGetProductImages());

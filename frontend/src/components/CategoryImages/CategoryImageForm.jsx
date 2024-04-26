@@ -28,10 +28,6 @@ const makeAi = async () => {
 };
 
 makeAi();
-// .then((openai) => {
-//   console.log(openai);
-// })
-// .catch((error) => console.error(error));
 
 export const CategoryImageForm = ({ id, name, isGenerating, isSelected }) => {
   const dispatch = useDispatch();
@@ -44,10 +40,9 @@ export const CategoryImageForm = ({ id, name, isGenerating, isSelected }) => {
       body: JSON.stringify({ url: url, id: id }),
     });
     if (fetchImage && fetchImage.errors) {
-      console.log(fetchImage);
       return fetchImage.errors;
     }
-    console.log(fetchImage);
+
     return fetchImage;
   };
 
@@ -62,10 +57,9 @@ export const CategoryImageForm = ({ id, name, isGenerating, isSelected }) => {
       n: 1,
       size: "1024x1024",
     });
-    console.log(generateImage);
+    console.log(generateImage); //keep
 
     let pngBlob = await blobFetcher(generateImage.data[0].url);
-    console.log(pngBlob);
 
     await dispatch(thunkGetCategoryImages());
     isGenerating(false);

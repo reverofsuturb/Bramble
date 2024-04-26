@@ -6,7 +6,7 @@ const {
   singlePublicFileUpload,
   blobUpload,
 } = require("../../awsS3");
-require("dotenv")
+require("dotenv");
 // import models
 const {
   User,
@@ -33,7 +33,7 @@ router.get("/api-key", async (req, res) => {
 router.post("/fetchblob", [requireAuth], async (req, res) => {
   const user = { req };
   const { url, id } = req.body;
-  console.log(url);
+
   const blobHelper = async (url) => {
     try {
       let image = await fetch(url);
@@ -47,16 +47,15 @@ router.post("/fetchblob", [requireAuth], async (req, res) => {
 
   try {
     let blob = await blobHelper(url);
-    console.log(blob);
+
     let response = await blobUpload(blob);
-    console.log(response);
+
     let productImage = await ProductImage.create({
       image: response,
       product_id: id,
     });
     return res.json(productImage);
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ message: "Image failed to be retrieved" });
   }
 });
