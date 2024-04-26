@@ -171,7 +171,7 @@ router.get("/:id", async (req, res) => {
 });
 ```
 Response:
-````json
+```json
 {
     "id": 1,
     "name": "Clothing",
@@ -222,7 +222,7 @@ Response:
                 "updatedAt": "2024-04-14T02:06:43.366Z"
             }
         },
-        ```
+```
 
 #### Post New Category
 Route:
@@ -238,7 +238,7 @@ router.post("/new", [requireAuth, validateCategory], async (req, res) => {
   return res.status(201).json(category);
 });
 
-````
+```
 Request:
 ```json
 {
@@ -510,7 +510,7 @@ Response:
 }
 ```
 Errors:
-````json
+```json
     "errors": {
       "price": "Price must be entered as a float, preferably in an XX.XX format",
       "description": "Description must be between 10 and 900 characters.",
@@ -518,8 +518,8 @@ Errors:
       "shipping": "Shipping must be selected.",
       "category_id": "Please select a category."
   },
-  ```
-````
+  
+```
 
 #### Edit Product by Id
 Route:
@@ -912,7 +912,7 @@ Response:
         "createdAt": "2024-04-14T02:06:43.425Z",
         "updatedAt": "2024-04-14T02:06:43.425Z"
     },
-    ```
+```
 #### Get Review by Id
 Route:
 ```js
