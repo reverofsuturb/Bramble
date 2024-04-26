@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { Footer } from "./components/Footer";
 import { Landing } from "./components/Navigation/Landing";
 import Navigation from "./components/Navigation/";
 import * as sessionActions from "./store/session";
@@ -39,6 +39,7 @@ function Layout() {
       <Modal />
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Outlet />}
+      <Footer />
     </>
   );
 }

@@ -18,6 +18,12 @@ html {
   background-color: #906d61;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .pacifico-regular {
   font-family: "Pacifico", cursive;
   font-weight: 400;
