@@ -2,6 +2,14 @@
 
 [Bramble Link](https://bramble-idq1.onrender.com/)
 
+## Contents
+
+- [Project Summary](#project-summary)
+- [Screenshots](#screenshots)
+- [Build Instructions](#build-instructions)
+- [Technologies Used](#technologies-used)
+- [API](#api)
+
 ## Project Summary
 
 Bramble is an Etsy clone with a mythical twist, users are encouraged to create their own categories, shops, and products with fantastic qualities. This site also features custom AI powered art generation influenced by user input.
