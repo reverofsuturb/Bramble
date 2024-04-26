@@ -26,7 +26,8 @@
 }
 
 .products-link:hover {
-  box-shadow: 27.5px 27.5px 27.5px #b6bad4;
+  box-shadow: 27.5px 27.5px 27.5px 10px#b6bad4, 0 0 27.5px 10px #b6bad4;
+  transition: ease-in 0.2s;
 }
 
 .products-link-shop {
@@ -75,6 +76,7 @@
 }
 .products-category:hover {
   border-bottom: 1px #b6bad4 solid;
+  transition: ease-in 0.4s;
 }
 
 .products-price,
@@ -102,9 +104,10 @@
 
 .products-button-filter:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1560px) {
   .products-gallery {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -115,7 +118,7 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1160px) {
   .products-gallery {
     display: grid;
     grid-template-columns: auto auto;
@@ -126,7 +129,7 @@
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 780px) {
   .products-gallery {
     display: flex;
     flex-direction: column;

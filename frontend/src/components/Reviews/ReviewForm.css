@@ -34,6 +34,7 @@
 
 .reviewform-input:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .reviewform-input:focus {
@@ -53,6 +54,7 @@
 
 .reviewform-select:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .reviewform-button {
@@ -70,4 +72,5 @@
 
 .reviewform-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }

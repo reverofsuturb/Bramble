@@ -31,6 +31,7 @@
 
 .landing-image-btn:hover {
   border: 5px solid #7a6f48;
+  transition: ease-in 0.4s;
   cursor: pointer;
 }
 
@@ -41,6 +42,7 @@
   color: #b6bad4;
   padding: 20px;
   border-radius: 50px;
+  font-size: 1.5rem;
 }
 
 .landing-p {
@@ -48,7 +50,7 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 900px) {
   .landing-images {
     display: grid;
     grid-template-columns: auto;
@@ -56,13 +58,13 @@
     gap: 50px;
   }
   .landing-welcome {
-    max-width: 1000px;
+    max-width: 700px;
     font-style: italic;
     background-color: #14193b;
     color: #b6bad4;
     padding: 20px;
     border-radius: 50px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -98,6 +100,5 @@
     color: #b6bad4;
     padding: 20px;
     border-radius: 50px;
-    font-size: 1.2rem;
   }
 }

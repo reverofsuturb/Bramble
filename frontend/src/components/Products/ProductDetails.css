@@ -91,6 +91,7 @@
 
 .prodetails-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .prodetails-link-shop {
@@ -100,6 +101,7 @@
 }
 .prodetails-link-shop:hover {
   border-bottom: 1px #3b3214 solid;
+  transition: ease-in 0.4s;
 }
 
 .prodetails-price-rating {

@@ -36,6 +36,7 @@
 
 .login-input:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .login-input:focus {
@@ -57,6 +58,7 @@
 .login-button-demo:hover,
 .login-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .login-button-demo {

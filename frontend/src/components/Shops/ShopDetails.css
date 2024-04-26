@@ -32,6 +32,7 @@
 }
 .shopdetails-products-category:hover {
   border-bottom: 1px #b6bad4 solid;
+  transition: ease-in 0.4s;
 }
 
 .shopdetails-category {
@@ -41,6 +42,7 @@
 }
 .shopdetails-category:hover {
   border-bottom: 1px #14193b solid;
+  transition: ease-in 0.4s;
 }
 
 .shopdetails-imgdetails-container {
@@ -106,6 +108,7 @@
 
 .shopdetails-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .shopdetails-edit-delete {
@@ -123,7 +126,8 @@
 }
 
 .shopdetails-link:hover {
-  box-shadow: 27.5px 27.5px 27.5px #b6bad4;
+  box-shadow: 27.5px 27.5px 27.5px 10px#b6bad4, 0 0 27.5px 10px #b6bad4;
+  transition: ease-in 0.2s;
 }
 
 .shopdetails-allimage {
@@ -166,7 +170,7 @@
   margin: auto;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1560px) {
   .shopdetails-gallery-products {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -186,7 +190,7 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1160px) {
   .shopdetails-gallery-products {
     display: grid;
     grid-template-columns: auto auto;
@@ -221,7 +225,7 @@
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 780px) {
   .shopdetails-gallery-products {
     display: grid;
     grid-template-columns: auto;

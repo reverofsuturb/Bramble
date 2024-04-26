@@ -18,8 +18,8 @@ export const Landing = () => {
       <h1 className="landing-welcome">
         Welcome to Bramble, you are about to embark on a journey through many
         magical stores and the viewing of surreal products. Here at Bramble we
-        allow you to take control of what&apos;s for sale, and quite frankly you can
-        truly find anything.
+        allow you to take control of what&apos;s for sale, and quite frankly you
+        can truly find anything.
       </h1>
       <div className="landing-images">
         {!user ? (
@@ -47,7 +47,6 @@ export const Landing = () => {
           </>
         ) : (
           <>
-            {" "}
             <div>
               <img
                 className="landing-image-btn"

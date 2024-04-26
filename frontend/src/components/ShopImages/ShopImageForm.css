@@ -14,6 +14,7 @@
 
 .shoimg-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .shoimg-form {

@@ -43,6 +43,7 @@
 
 .categories-link:hover {
   border: 3px solid #b6bad4;
+  transition: ease-in 0.4s;
 }
 
 .categories-utilities {
@@ -83,20 +84,34 @@
 
 .categories-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .categories-button-filter:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .categories-text {
   white-space: nowrap;
   color: #b6bad4;
   padding: 5px;
-  font-size: 0.8rem;
 }
 
-@media screen and (max-width: 1300px) {
+.mini-loading {
+  max-width: 350px;
+  background-color: #3b3214;
+  border: 3px solid #b6bad4;
+  color: #b6bad4;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+  animation: pulse 1s infinite;
+}
+
+@media screen and (max-width: 1560px) {
   .categories-gallery {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -108,7 +123,7 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1160px) {
   .categories-gallery {
     display: grid;
     grid-template-columns: auto auto;
@@ -120,7 +135,7 @@
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 780px) {
   .categories-gallery {
     display: grid;
     grid-template-columns: auto;

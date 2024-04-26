@@ -99,8 +99,8 @@ export const GetAllCategories = () => {
                         )}
                       </>
                     ) : selected == category.id ? (
-                      <div className="categories-text">
-                        Image currently generating, please wait 7-10 seconds.
+                      <div className="categories-text mini-loading">
+                        Image generating, please wait 7-10 seconds.
                       </div>
                     ) : (
                       ""
@@ -160,8 +160,8 @@ export const GetAllCategories = () => {
                       )}
                     </>
                   ) : selected == category.id ? (
-                    <div className="categories-text">
-                      Image currently generating, please wait 7-10 seconds.
+                    <div className="categories-text mini-loading">
+                      Image generating, please wait 7-10 seconds.
                     </div>
                   ) : (
                     ""

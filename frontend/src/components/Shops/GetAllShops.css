@@ -26,7 +26,8 @@
 }
 
 .shops-link:hover {
-  box-shadow: 27.5px 27.5px 27.5px #b6bad4;
+  box-shadow: 27.5px 27.5px 27.5px 10px#b6bad4, 0 0 27.5px 10px #b6bad4;
+  transition: ease-in 0.2s;
 }
 
 .shops-gallery {
@@ -59,6 +60,7 @@
 }
 .shops-category:hover {
   border-bottom: 1px #b6bad4 solid;
+  transition: ease-in 0.4s;
 }
 
 .shops-rating {
@@ -80,6 +82,7 @@
 
 .shops-button-filter:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .shops-products-category {
@@ -88,9 +91,10 @@
 }
 .shops-products-category:hover {
   border-bottom: 1px #b6bad4 solid;
+  transition: ease-in 0.4s;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1560px) {
   .shops-gallery {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -101,7 +105,7 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1160px) {
   .shops-gallery {
     display: grid;
     grid-template-columns: auto auto;
@@ -112,7 +116,7 @@
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 780px) {
   .shops-gallery {
     display: grid;
     grid-template-columns: auto;

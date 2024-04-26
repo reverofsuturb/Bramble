@@ -55,10 +55,19 @@ html {
   font-size: 1.2rem;
   font-style: italic;
   text-align: center;
+  animation: pulse 1s infinite;
 }
 
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 200, 100, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 255, 100, 0);
+  }
+}
 @media screen and (max-width: 460px) {
-  *{
+  * {
     max-width: 100vh;
   }
 }

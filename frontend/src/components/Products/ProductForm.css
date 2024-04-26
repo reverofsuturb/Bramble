@@ -36,6 +36,7 @@
 
 .products-form-link:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .products-form-span {
@@ -62,6 +63,7 @@
 
 .products-form-input:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .products-form-input:focus {
@@ -86,7 +88,7 @@
   gap: 10px;
 }
 
-.products-form-select:hover {
+.products-form-select {
   border: 3px solid #7a6f48;
 }
 
@@ -105,6 +107,7 @@
 
 .products-form-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 @media screen and (max-width: 820px) {

@@ -1,5 +1,6 @@
 .profile-dropdown {
   position: absolute;
+  right: 3%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -8,6 +9,7 @@
   border-radius: 50px;
   padding: 20px;
   align-items: center;
+  animation: show 0.4s;
 }
 
 .profile-dropdown > li {
@@ -25,6 +27,7 @@
 
 .profile-button:hover {
   border: 3px solid #7a6f48;
+  transition: ease-in 0.4s;
 }
 
 .profile-login-signup,
@@ -81,7 +84,36 @@
   border-bottom-left-radius: 65px;
   border-bottom-right-radius: 65px;
 }
-@media screen and (max-width: 1100px) {
+
+.wiggle {
+  animation: wiggle 1s;
+}
+
+@keyframes wiggle {
+  12.5% {
+    transform: rotate(-45deg);
+  }
+  25% {
+    transform: rotate(45deg);
+  }
+  37.5% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  62.5% {
+    transform: rotate(-45deg);
+  }
+  75% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media screen and (max-width: 1160px) {
   .nav-container {
     display: flex;
     flex-direction: column;
@@ -99,7 +131,7 @@
     border-radius: 65px;
   }
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 780px) {
   .nav-container {
     display: flex;
     flex-direction: column;
@@ -122,6 +154,9 @@
     color: #3b3214;
     font-size: 1.2rem;
   }
+}
+.nav-probutton-container {
+  position: relative;
 }
 
 @media screen and (max-width: 460px) {
